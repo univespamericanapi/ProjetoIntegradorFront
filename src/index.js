@@ -15,8 +15,8 @@ const flag_zero = 0;
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-   <Principal componenteUm={<Componente1 />} componenteDois={<Componente2 />} flag={flag} />
-   {/* <Principal componenteUm={<Cadastro />} componenteDoisNew={<FomularioCadastroDesfile /> } flag={flag_zero} /> */}
+   {/* <Principal componenteUm={<Componente1 />} componenteDois={<Componente2 />} flag={flag} /> */}
+   <Principal componenteUm={<Cadastro />} componenteDoisNew={<FomularioCadastroDesfile /> } flag={flag_zero} />
   </React.StrictMode>
 );
 
