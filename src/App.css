@@ -1,38 +1,118 @@
-.App {
-  text-align: center;
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.componente-um {
+  height: 100%;
+  flex-basis: 25%; /* Define a largura da div left-div como 30% do espaço disponível */
+  flex-grow: 0; /* Impede que a div left-div cresça além de 30% do espaço disponível */
+  background-color: #5C2863;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.componente-dois {
+  height: 100%;
+  flex-basis: 75%;
+  flex-grow: 1;
+  background-color: #FF914D;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.componente-dois-new {
+  height: 100%;
+  flex-basis: 75%;
+  flex-grow: 1;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.center-img {
+  margin-top: -50%;
+  width: 90%; /* Substitua 50% pelo tamanho desejado */
+  height: auto; /* Para manter a proporção da imagem */
+}
+
+.Imagem{
+  display: flex;
+  padding-top: 20px;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.titulo {
   color: white;
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.App-link {
-  color: #61dafb;
+.Botao {
+  display: flex;
+  padding-top: 20px;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.TituloCadastro{
+  text-align: center;
+  color: white;
+  font-size: 65px;
+  padding-bottom: 50px;
+  border-bottom: 5px solid white; /* ou '15px solid white' se quiser uma linha mais grossa */
+  width: 100%;
+
+
+}
+
+.LeftNavBar{
+  display: flex;
+  padding-top: 100px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+.ImagemCadastro {
+  text-align: center;
+  margin-top: 70%;
+  border-bottom: 5px solid white; /* ou '15px solid white' se quiser uma linha mais grossa */
+  width: 100%;
+}
+
+
+
+.center-img2{
+  padding-bottom: 15px;
+  width: 30%; /* Substitua 50% pelo tamanho desejado */
+  height: auto; /* Para manter a proporção da imagem */
+}
+
+.TituloCadastro2{
+  color: #8C538B;
+  font-size: 30px;
+
 }
