@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Button } from '@mui/material';
 
-export default function FomularioCadastroDesfile() {
+export default function FormularioCadastroDisfile2() {
   const [Evento, setEvento] = React.useState('');
 
   const handleChange = (event) => {
@@ -15,7 +15,7 @@ export default function FomularioCadastroDesfile() {
 
   return (
 
-    <Box sx={{ minWidth: 130,border: '1px solid white', padding: '1rem', borderRadius: '30px', width: '60%', height: '60%',  backgroundColor: '#FF914D'  }}>
+    <Box sx={{ minWidth: 130,border: '1px solid white', padding: '1rem', borderRadius: '30px', width: '60%', height: '60%',  backgroundColor: '#FF914D', position: 'relative'  }}>
         <h2 style={{ color: 'white' }}>SELECIONE O EVENTO:</h2>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label" >Evento</InputLabel>
@@ -34,7 +34,7 @@ export default function FomularioCadastroDesfile() {
       </FormControl>
       <h2 style={{ color: 'white' }}>Regras desfile cosplay:</h2>
       <p>TEXTO TEXTO TEXTO TEXTO</p>
-      <div className='Botao' style={{ display: 'flex', justifyContent: 'flex-end', paddingTop:'35%'}}>
+      <div className='Botao' style={{ position: 'absolute', bottom: '5%', right: '5%',display: 'flex', justifyContent: 'flex-end'}}>
          <Button variant="contained" size="large" sx={{ bgcolor: '#5C2863', width: '250px',  borderRadius: '50px', fontWeight: 'Bold'  }} >PROSSEGUIR</Button>
         </div>
 
