@@ -4,14 +4,48 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { Button } from '@mui/material';
+import { Button, Menu } from '@mui/material';
+import {useState, useEffect} from 'react'
 
-export default function FormularioCadastroDisfile2() {
+import api from '../Api.js';
+import axios from 'axios';
+
+
+export default function FormularioCadastroDisfile2() {  
   const [Evento, setEvento] = React.useState('');
 
   const handleChange = (event) => {
     setEvento(event.target.value);
   };
+  
+  // useEffect(() => {
+  //   api.get('').then(res =>{
+  //     console.log(res.data.message)
+  //   })
+  // }, [])
+
+
+  const teste = api.get('').then(res =>console.log(res.data.message));
+
+  console.log( teste)
+
+
+  // const myJSON = JSON.stringify(teste);
+
+  // console.log( myJSON + 12)
+
+//   api.post('/api/auth/signin', {
+//   usuario_login: 'admin',
+//   usuario_senha: 'senha'
+// }, {
+//   headers: {
+//     'Content-Type': 'application/json'
+//   }
+// })
+// .then(response => console.log(response.data))
+// .catch(error => console.error(error.response.data.message));
+
+
 
   return (
 
@@ -30,6 +64,10 @@ export default function FormularioCadastroDisfile2() {
           <MenuItem value={10}>27º CAMPINAS ANIME FEST</MenuItem>
           <MenuItem value={20}>26º PIRA ANIME FEST</MenuItem>
           <MenuItem value={30}>25º RIBEIRÃO PRETO ANIME FEST</MenuItem>
+          {/* <MenuItem value={40}>{myJSON}</MenuItem> */}
+ 
+        
+
         </Select>
       </FormControl>
       <h2 style={{ color: 'white' }}>Regras desfile cosplay:</h2>

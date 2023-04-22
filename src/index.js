@@ -11,6 +11,9 @@ import FomularioCadastroDesfile from './componentes/FomularioCadastroDesfile';
 import FormularioCadastroDesfile2 from './componentes/FormularioCadastroDesfile2';
 import FormularioCadastroDesfile3 from './componentes/FormularioCadastroDesfile3';
 
+import api from './Api.js';
+import axios from 'axios';
+
 
 const flag = 1;
 const flag_zero = 0;
@@ -18,10 +21,16 @@ const flag_zero = 0;
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+
+   {/* <Principal  flag={flag} /> */}
    {/* <Principal componenteUm={<Componente1 />} componenteDois={<Componente2 />} flag={flag} /> */}
-   {/* <Principal componenteUm={<Cadastro />} componenteDoisNew={<FomularioCadastroDesfile /> } flag={flag_zero} /> */}
+   <Principal componenteUm={<Cadastro />} componenteDoisNew={<FomularioCadastroDesfile /> } flag={flag_zero} />
    {/* <Principal componenteUm={<Cadastro />} componenteDoisNew={<FormularioCadastroDesfile2 /> } flag={flag_zero} /> */}
-   <Principal componenteUm={<Cadastro />} componenteDoisNew={<FormularioCadastroDesfile3 /> } flag={flag_zero} />
+   {/* <Principal componenteUm={<Cadastro />} componenteDoisNew={<FormularioCadastroDesfile3 /> } flag={flag_zero} /> */}
+
+
+
+
   </React.StrictMode>
 );
 
