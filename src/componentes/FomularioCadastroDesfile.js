@@ -6,6 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Button, Menu } from '@mui/material';
 import {useState, useEffect} from 'react'
+import {Link} from "react-router-dom";
 
 import api from '../Api.js';
 import axios from 'axios';
@@ -73,7 +74,9 @@ export default function FormularioCadastroDisfile2() {
       <h2 style={{ color: 'white' }}>Regras desfile cosplay:</h2>
       <p>TEXTO TEXTO TEXTO TEXTO</p>
       <div className='Botao' style={{ position: 'absolute', bottom: '5%', right: '5%',display: 'flex', justifyContent: 'flex-end'}}>
+         <Link to ={'/CadastroDesfile2'}>
          <Button variant="contained" size="large" sx={{ bgcolor: '#5C2863', width: '250px',  borderRadius: '50px', fontWeight: 'Bold'  }} >PROSSEGUIR</Button>
+         </Link>
         </div>
 
     </Box>

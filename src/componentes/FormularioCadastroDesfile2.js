@@ -7,7 +7,7 @@ import Select from '@mui/material/Select';
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
-
+import {Link} from "react-router-dom";
 
 export default function FormularioCadastroDesfile2() {
   const [Evento, setEvento] = React.useState('');
@@ -48,11 +48,15 @@ export default function FormularioCadastroDesfile2() {
 
       
       <div className='Botao' style={{ position: 'absolute', bottom: '5%', left: '5%',display: 'flex', justifyContent: 'flex-end'}}>
+        <Link to ={'/CadastroDesfile'}>
          <Button variant="contained" size="large" sx={{ bgcolor: '#5C2863', width: '250px',  borderRadius: '50px', fontWeight: 'Bold'  }} >VOLTAR</Button>
+         </Link>
         </div>
 
       <div className='Botao' style={{ position: 'absolute', bottom: '5%', right: '5%',display: 'flex', justifyContent: 'flex-end'}}>
+        <Link to ={'/CadastroDesfile3'}>
          <Button variant="contained" size="large" sx={{ bgcolor: '#5C2863', width: '250px',  borderRadius: '50px', fontWeight: 'Bold'  }} >PROSSEGUIR</Button>
+         </Link>
         </div>
 
     </Box>
