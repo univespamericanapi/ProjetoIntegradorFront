@@ -8,6 +8,9 @@ import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import {Link} from "react-router-dom";
+import api from '../Api.js';
+import axios from 'axios';
+import Autocomplete from '@mui/material/Autocomplete';
 
 export default function FormularioCadastroDesfile2() {
   const [Evento, setEvento] = React.useState('');
@@ -15,6 +18,61 @@ export default function FormularioCadastroDesfile2() {
   const handleChange = (event) => {
     setEvento(event.target.value);
   };
+
+  const [listaEstados, setListaEstados] = React.useState([]);
+
+  React.useEffect(() => {
+    api.get('http://localhost:8080/api/lista/estado')
+      .then(response => {
+        console.log(response.data)
+        const estados = response.data.map(estado => ({ ...estado, label: estado.est_desc }));
+        setListaEstados(estados);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+  
+  console.log(listaEstados);
+
+
+  const [listaCidades, setCidades] = React.useState([]);
+
+  const handleEstadoChange = (event, value) => {
+  
+    if (value) {
+      // fazer requisição para obter as cidades do estado selecionado
+        console.log(value.est_id)
+
+        axios.get('http://localhost:8080/api/lista/cidade', {
+          params: {
+            estado: value.est_id
+          }
+        })
+        .then(function (response) {
+          console.log(response.data);
+          const cidades = response.data.map(cidade => ({ ...cidade, label: cidade.cid_desc }));
+          console.log(cidades)
+          setCidades(cidades)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+    } else {
+      console.log("else")
+      setCidades([])
+    }
+  };
+
+  const top100Films = [
+    { label: 'The Shawshank Redemption', year: 1994 },
+    { label: 'The Godfather', year: 1972 },
+    { label: 'The Godfather: Part II', year: 1974 },
+ 
+  ];
+
+
 
   return (
 
@@ -37,9 +95,28 @@ export default function FormularioCadastroDesfile2() {
 
       <TextField id="outlined-basic" label="WHATSAPP" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '25%'  }} />
 
-      <TextField id="outlined-basic" label="ESTADO" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%' }} />
+      <Autocomplete
+      disablePortal
+      id="outlined-basic"
+      options={listaEstados}
+      sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%' }}
+      renderInput={(params) => <TextField {...params} label="ESTADO" />}
+      onChange={handleEstadoChange}
+      />
+
+      <Autocomplete
+      disablePortal
+      id="outlined-basic"
+      options={listaCidades}
+      sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%' }}
+      renderInput={(params) => <TextField {...params} label="CIDADE" />}
       
-      <TextField id="outlined-basic" label="CIDADE" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%' }} />
+      />
+
+
+      {/* <TextField id="outlined-basic" label="ESTADO" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%' }} /> */}
+      
+      {/* <TextField id="outlined-basic" label="CIDADE" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%' }} /> */}
 
       </Grid>
       </Grid>

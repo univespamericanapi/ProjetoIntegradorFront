@@ -35,18 +35,6 @@ export default function FormularioCadastroDisfile2() {
 
   // console.log( myJSON + 12)
 
-//   api.post('/api/auth/signin', {
-//   usuario_login: 'admin',
-//   usuario_senha: 'senha'
-// }, {
-//   headers: {
-//     'Content-Type': 'application/json'
-//   }
-// })
-// .then(response => console.log(response.data))
-// .catch(error => console.error(error.response.data.message));
-
-
 
   return (
 
