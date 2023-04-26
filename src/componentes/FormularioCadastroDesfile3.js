@@ -24,17 +24,17 @@ export default function FormularioCadastroDesfile3() {
 
       <Grid container spacing={2}>
       <Grid item xs={6}>
-      <TextField id="outlined-basic" label="NOME DO PERSONAGEM" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '25%'}} />
+      <TextField id="outlined-basic" label="NOME DO PERSONAGEM" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '25%','& .MuiOutlinedInput-root': {'& fieldset': {borderWidth: 0,},},}} />
       
-      <TextField id="outlined-basic" label="MÍDIA DE ORIGEM" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%' }} />
+      <TextField id="outlined-basic" label="MÍDIA DE ORIGEM" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%','& .MuiOutlinedInput-root': {'& fieldset': {borderWidth: 0,},}, }} />
 
       </Grid>
 
       <Grid item xs={6}>
 
-      <TextField id="outlined-basic" label="CATEGORIA" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '25%'  }} />
+      <TextField id="outlined-basic" label="CATEGORIA" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '25%','& .MuiOutlinedInput-root': {'& fieldset': {borderWidth: 0,},},  }} />
 
-      <TextField id="outlined-basic" label="REFERÊNCIA (Inserir Link)" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%' }} />
+      <TextField id="outlined-basic" label="REFERÊNCIA (Inserir Link)" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%','& .MuiOutlinedInput-root': {'& fieldset': {borderWidth: 0,},}, }} />
       
    
 

@@ -82,24 +82,25 @@ export default function FormularioCadastroDesfile2() {
 
       <Grid container spacing={2}>
       <Grid item xs={6}>
-      <TextField id="outlined-basic" label="NOME COMPLETO" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '25%'}} />
-      
-      <TextField id="outlined-basic" label="NOME SOCIAL/ARTÍSTICO" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%' }} />
 
-      <TextField id="outlined-basic" label="CPF" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%'  }} />
+      <TextField id="outlined-basic" label="NOME COMPLETO" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '25%','& .MuiOutlinedInput-root': {'& fieldset': {borderWidth: 0,},},}} />
       
-      <TextField id="outlined-basic" label="DATA DE NASCIMENTO" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%'  }} />
+      <TextField id="outlined-basic" label="NOME SOCIAL/ARTÍSTICO" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%','& .MuiOutlinedInput-root': {'& fieldset': {borderWidth: 0,},},}} />
+     
+      <TextField id="outlined-basic" label="CPF" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%','& .MuiOutlinedInput-root': {'& fieldset': {borderWidth: 0,},},}} />
+      
+      <TextField id="outlined-basic" label="DATA DE NASCIMENTO" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%','& .MuiOutlinedInput-root': {'& fieldset': {borderWidth: 0,},},}} />
       </Grid>
 
       <Grid item xs={6}>
 
-      <TextField id="outlined-basic" label="WHATSAPP" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '25%'  }} />
+      <TextField id="outlined-basic" label="WHATSAPP" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '25%','& .MuiOutlinedInput-root': {'& fieldset': {borderWidth: 0,},},}} />
 
       <Autocomplete
       disablePortal
       id="outlined-basic"
       options={listaEstados}
-      sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%' }}
+      sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%','& .MuiOutlinedInput-root': {'& fieldset': {borderWidth: 0,},}, }}
       renderInput={(params) => <TextField {...params} label="ESTADO" />}
       onChange={handleEstadoChange}
       />
@@ -108,7 +109,7 @@ export default function FormularioCadastroDesfile2() {
       disablePortal
       id="outlined-basic"
       options={listaCidades}
-      sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%' }}
+      sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%','& .MuiOutlinedInput-root': {'& fieldset': {borderWidth: 0,},}, }}
       renderInput={(params) => <TextField {...params} label="CIDADE" />}
       
       />

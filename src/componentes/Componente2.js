@@ -85,7 +85,7 @@ const Componente2 = () => {
         disablePortal
         id="outlined-basic"
         options={listaEventos}
-        sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%' }}
+        sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%','& .MuiOutlinedInput-root': {'& fieldset': {borderWidth: 0,},}, }}
         renderInput={(params) => <TextField {...params} label="EVENTO" />}
         onChange={handleEventoChange}
         />
@@ -97,7 +97,7 @@ const Componente2 = () => {
         disablePortal
         id="outlined-basic"
         options={listaModalidades}
-        sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%' }}
+        sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%','& .MuiOutlinedInput-root': {'& fieldset': {borderWidth: 0,},}, }}
         renderInput={(params) => <TextField {...params} label="MODALIDADE" />}
         
         />
