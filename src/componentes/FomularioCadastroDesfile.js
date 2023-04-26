@@ -39,31 +39,24 @@ export default function FormularioCadastroDisfile2() {
   return (
 
     <Box sx={{ minWidth: 130,border: '1px solid white', padding: '1rem', borderRadius: '30px', width: '60%', height: '60%',  backgroundColor: '#FF914D', position: 'relative'  }}>
-        <h2 style={{ color: 'white' }}>SELECIONE O EVENTO:</h2>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label" >Evento</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={Evento}
-          label="Evento"
-          onChange={handleChange}
-          sx={{ backgroundColor: '#ECECEC', borderRadius: '50px', width: '50%'}}
-        >
-          <MenuItem value={10}>27º CAMPINAS ANIME FEST</MenuItem>
-          <MenuItem value={20}>26º PIRA ANIME FEST</MenuItem>
-          <MenuItem value={30}>25º RIBEIRÃO PRETO ANIME FEST</MenuItem>
-          {/* <MenuItem value={40}>{myJSON}</MenuItem> */}
  
-        
 
-        </Select>
-      </FormControl>
-      <h2 style={{ color: 'white' }}>Regras desfile cosplay:</h2>
+
+      
+      <h2 style={{ color: 'white' }}>Regras do concurso:</h2>
       <p>TEXTO TEXTO TEXTO TEXTO</p>
+
+
+      <div className='Botao' style={{ position: 'absolute', bottom: '5%', left: '5%',display: 'flex', justifyContent: 'flex-end'}}>
+        <Link to ={'/'}>
+         <Button variant="contained" size="large" sx={{ bgcolor: '#5C2863', width: '250px',  borderRadius: '50px', fontWeight: 'Bold'  }} >CANCELAR</Button>
+         </Link>
+        </div>
+
+
       <div className='Botao' style={{ position: 'absolute', bottom: '5%', right: '5%',display: 'flex', justifyContent: 'flex-end'}}>
          <Link to ={'/CadastroDesfile2'}>
-         <Button variant="contained" size="large" sx={{ bgcolor: '#5C2863', width: '250px',  borderRadius: '50px', fontWeight: 'Bold'  }} >PROSSEGUIR</Button>
+         <Button variant="contained" size="large" sx={{ bgcolor: '#5C2863', width: '250px',  borderRadius: '50px', fontWeight: 'Bold'  }} >ACEITAR</Button>
          </Link>
         </div>
 

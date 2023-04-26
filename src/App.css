@@ -105,6 +105,24 @@ body,
 }
 
 
+.ImagemCadastro2 {
+  text-align: center;
+  margin-top: 35%;
+  border-bottom: 5px solid white; /* ou '15px solid white' se quiser uma linha mais grossa */
+  width: 100%;
+}
+
+
+
+.ImagemCadastro3 {
+  text-align: center;
+  margin-top: 70%;
+  border-bottom: 5px solid white; /* ou '15px solid white' se quiser uma linha mais grossa */
+  width: 100%;
+}
+
+
+
 
 .center-img2{
   padding-bottom: 15px;
@@ -114,6 +132,12 @@ body,
 
 .TituloCadastro2{
   color: #8C538B;
+  font-size: 30px;
+
+}
+
+.TituloCadastro3{
+  color: #e9e3e9;
   font-size: 30px;
 
 }

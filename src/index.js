@@ -7,6 +7,9 @@ import Componente2 from './componentes/Componente2';
 import Componente1 from './componentes/Componente1';
 import Principal from './componentes/Principal';
 import Cadastro from './componentes/Cadastro';
+import Cadastro2 from './componentes/Cadastro2';
+import Cadastro3 from './componentes/Cadastro3';
+
 import FomularioCadastroDesfile from './componentes/FomularioCadastroDesfile';
 import FormularioCadastroDesfile2 from './componentes/FormularioCadastroDesfile2';
 import FormularioCadastroDesfile3 from './componentes/FormularioCadastroDesfile3';
@@ -41,12 +44,12 @@ const router = createBrowserRouter([
 
   {
     path: "/CadastroDesfile2",
-    element:  <Principal componenteUm={<Cadastro />} componenteDoisNew={<FormularioCadastroDesfile2 /> } flag={flag_zero} />,
+    element:  <Principal componenteUm={<Cadastro2 />} componenteDoisNew={<FormularioCadastroDesfile2 /> } flag={flag_zero} />,
   },
 
   {
     path: "/CadastroDesfile3",
-    element: <Principal componenteUm={<Cadastro />} componenteDoisNew={<FormularioCadastroDesfile3 /> } flag={flag_zero} />,
+    element: <Principal componenteUm={<Cadastro3 />} componenteDoisNew={<FormularioCadastroDesfile3 /> } flag={flag_zero} />,
   },
 
 ]);
