@@ -8,6 +8,9 @@ import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import {Link} from "react-router-dom";
+import Autocomplete from '@mui/material/Autocomplete';
+
+import api from '../Api.js';
 
 export default function FormularioCadastroDesfile3() {
   const [Evento, setEvento] = React.useState('');
@@ -15,6 +18,32 @@ export default function FormularioCadastroDesfile3() {
   const handleChange = (event) => {
     setEvento(event.target.value);
   };
+
+  const top100Films = [
+    { label: 'The Shawshank Redemption', year: 1994 },
+    { label: 'The Godfather', year: 1972 },
+    { label: 'The Godfather: Part II', year: 1974 },
+ 
+  ];
+
+
+  const [listaCategorias, setCategorias] = React.useState([]);
+
+  React.useEffect(() => {
+    api.get('http://localhost:8080/api/lista/categoria')
+      .then(response => {
+        console.log(response.data)
+        const categorias = response.data.map(categoria => ({ ...categoria, label: categoria.categ_nome }));
+        setCategorias(categorias);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+  
+  console.log(listaCategorias);
+
+
 
   return (
 
@@ -32,7 +61,15 @@ export default function FormularioCadastroDesfile3() {
 
       <Grid item xs={6}>
 
-      <TextField id="outlined-basic" label="CATEGORIA" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '25%','& .MuiOutlinedInput-root': {'& fieldset': {borderWidth: 0,},},  }} />
+      <Autocomplete
+      disablePortal
+      id="outlined-basic"
+      options={listaCategorias}
+      sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '25%','& .MuiOutlinedInput-root': {'& fieldset': {borderWidth: 0,},}, }}
+      renderInput={(params) => <TextField {...params} label="CATEGORIA" />}
+      />
+
+      {/* <TextField id="outlined-basic" label="CATEGORIA" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '25%','& .MuiOutlinedInput-root': {'& fieldset': {borderWidth: 0,},},  }} /> */}
 
       <TextField id="outlined-basic" label="REFERÊNCIA (Inserir Link)" variant="outlined" sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%','& .MuiOutlinedInput-root': {'& fieldset': {borderWidth: 0,},}, }} />
       
