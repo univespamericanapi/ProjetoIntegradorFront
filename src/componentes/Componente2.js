@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import imagemlogo from '../Imagens/anime_fest.png'
 import { Button } from '@mui/material'
 import {Link} from "react-router-dom";
@@ -27,6 +27,8 @@ const Componente2 = () => {
   const [listaEventos, setListaEventos] = React.useState([]);
   const [listaModalidades, setModalidades] = React.useState([]);
 
+  
+
   console.log("iniciado")
 
 
@@ -37,6 +39,7 @@ const Componente2 = () => {
         console.log(response.data)
         const eventos = response.data.map(evento => ({ ...evento, label: evento.event_ed_nome }));
         setListaEventos(eventos);
+
       })
       .catch(error => {
         console.error(error);
@@ -56,6 +59,13 @@ const Componente2 = () => {
           const modalidades = response.data.map(modalidades => ({ ...modalidades, label: modalidades.conc_nome }));
 
           setModalidades(modalidades)
+          console.log(value)
+          console.log("joguei no local storage")
+
+          localStorage.setItem('event_id', value.event_id);
+          localStorage.setItem('event_ed_nome', value.event_ed_nome);
+  
+
 
         })
         .catch(function (error) {
@@ -66,6 +76,21 @@ const Componente2 = () => {
       console.log("else")
     }
   };
+
+
+  const handleEventoChange2 = (event, value) => {
+
+    localStorage.setItem('conc_id', value.conc_id);
+    localStorage.setItem('conc_nome', value.conc_nome);
+
+    console.log(localStorage.getItem('event_id'));
+    console.log(localStorage.getItem('event_ed_nome'));
+    console.log(localStorage.getItem('conc_id'));
+    console.log(localStorage.getItem('conc_nome'));
+
+  };
+
+
 
 
   return (
@@ -99,6 +124,8 @@ const Componente2 = () => {
         options={listaModalidades}
         sx={{ width: '100%', borderRadius: '50px', backgroundColor: 'white', marginTop: '10%','& .MuiOutlinedInput-root': {'& fieldset': {borderWidth: 0,},}, }}
         renderInput={(params) => <TextField {...params} label="MODALIDADE" />}
+
+        onChange={handleEventoChange2}
         
         />
 

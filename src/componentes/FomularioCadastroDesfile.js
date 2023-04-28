@@ -25,7 +25,6 @@ export default function FormularioCadastroDisfile2() {
   //   })
   // }, [])
 
-
   const teste = api.get('').then(res =>console.log(res.data.message));
 
   console.log( teste)
@@ -36,6 +35,21 @@ export default function FormularioCadastroDisfile2() {
   // console.log( myJSON + 12)
 
 
+  const [nomeAceite, setAceite] = useState(false);
+
+
+  const handleAceite = (event, value) => {
+
+    setAceite('true');
+
+    console.log("entrei")
+    
+    localStorage.setItem('part_aceit_regul', true);
+
+    console.log(localStorage.getItem('part_aceit_regul'));
+
+  };
+  
   return (
 
     <Box sx={{ minWidth: 130,border: '1px solid white', padding: '1rem', borderRadius: '30px', width: '60%', height: '60%',  backgroundColor: '#FF914D', position: 'relative'  }}>
@@ -56,7 +70,7 @@ export default function FormularioCadastroDisfile2() {
 
       <div className='Botao' style={{ position: 'absolute', bottom: '5%', right: '5%',display: 'flex', justifyContent: 'flex-end'}}>
          <Link to ={'/CadastroDesfile2'}>
-         <Button variant="contained" size="large" sx={{ bgcolor: '#5C2863', width: '250px',  borderRadius: '50px', fontWeight: 'Bold'  }} >ACEITAR</Button>
+         <Button variant="contained" size="large" sx={{ bgcolor: '#5C2863', width: '250px',  borderRadius: '50px', fontWeight: 'Bold'  }} onClick = {handleAceite} >ACEITAR</Button>
          </Link>
         </div>
 
