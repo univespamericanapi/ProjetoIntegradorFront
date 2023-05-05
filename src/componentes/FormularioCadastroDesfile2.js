@@ -131,7 +131,7 @@ export default function FormularioCadastroDesfile2() {
     console.log(localStorage.getItem('comp_nome'));
   
   }
-
+ 
   const handleNomeSocial = (event) => {
     localStorage.setItem('comp_nome_social', event.target.value);
     console.log(localStorage.getItem('comp_nome_social'));
