@@ -47,7 +47,7 @@ body,
 
 
 .center-img {
-  margin-top: -50%;
+  margin-top: -20%;
   width: 90%; /* Substitua 50% pelo tamanho desejado */
   height: auto; /* Para manter a proporção da imagem */
 }

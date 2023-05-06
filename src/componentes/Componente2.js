@@ -4,21 +4,11 @@ import { Button } from '@mui/material'
 import {Link} from "react-router-dom";
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-
+import { NavLink } from 'react-router-dom';
 
 import api from '../Api.js';
 import axios from 'axios';
 
-api.post('/api/auth/login', {
-  usuario_login: 'admin',
-  usuario_senha: 'senha'
-}, {
-  headers: {
-    'Content-Type': 'application/json'
-  }
-})
-.then(response =>  console.log(response.data))
-.catch(error => console.error(error.response.data.message));
 
 
 const Componente2 = () => {
@@ -91,6 +81,11 @@ const Componente2 = () => {
   };
 
 
+  console.log(localStorage.getItem('accessToken'));
+
+
+ 
+
 
 
   return (
@@ -136,6 +131,22 @@ const Componente2 = () => {
         </Link>
 
         </div>
+
+        
+        <div className='Botao'>
+
+        <Link to ={'/CadastroEvento'}>
+        <Button variant="contained" size="large" sx={{ bgcolor: '#5C2863', width: '250px',  borderRadius: '50px', fontWeight: 'Bold', marginTop: '10%'  }} >Cadastrar Evento</Button>
+        </Link>
+
+        {/* <Link to ={'/CadastroEvento'}>
+        <Button variant="contained" size="large" sx={{ bgcolor: '#5C2863', width: '250px',  borderRadius: '50px', fontWeight: 'Bold', marginTop: '10%'  }} onClick = {handleCadastrarEvento} >Cadastrar Evento</Button>
+        </Link> */}
+
+
+
+        </div>
+
 
     </div>
   )

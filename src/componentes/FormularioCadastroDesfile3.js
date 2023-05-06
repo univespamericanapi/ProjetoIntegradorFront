@@ -179,12 +179,16 @@ export default function FormularioCadastroDesfile3() {
       <div className='Botao' style={{ position: 'absolute', bottom: '5%', left: '5%',display: 'flex', justifyContent: 'flex-end'}}>
       <Link to ={'/CadastroDesfile2'}>
          <Button variant="contained" size="large" sx={{ bgcolor: '#5C2863', width: '250px',  borderRadius: '50px', fontWeight: 'Bold'  }} >VOLTAR</Button>
-      </Link>
+      </Link >
         </div>
 
+
+        <Link to ={'/'}>
       <div className='Botao' style={{ position: 'absolute', bottom: '5%', right: '5%',display: 'flex', justifyContent: 'flex-end'}}>
          <Button variant="contained" size="large" sx={{ bgcolor: '#5C2863', width: '250px',  borderRadius: '50px', fontWeight: 'Bold'  }} onClick = {criarDesfile}>CONCLUIR CADASTRO</Button>
         </div>
+
+        </Link >
 
 
 

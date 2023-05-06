@@ -13,6 +13,15 @@ import Cadastro3 from './componentes/Cadastro3';
 import FomularioCadastroDesfile from './componentes/FomularioCadastroDesfile';
 import FormularioCadastroDesfile2 from './componentes/FormularioCadastroDesfile2';
 import FormularioCadastroDesfile3 from './componentes/FormularioCadastroDesfile3';
+
+import FormularioEvento from './componentes/FormularioEvento'
+import CadastroEvento from './componentes/CadastroEvento'
+
+import FormularioEvento2 from './componentes/FormularioEvento2'
+import CadastroEvento2 from './componentes/CadastroEvento2'
+
+
+
 import api from './Api.js';
 import axios from 'axios';
 import {
@@ -50,6 +59,17 @@ const router = createBrowserRouter([
   {
     path: "/CadastroDesfile3",
     element: <Principal componenteUm={<Cadastro3 />} componenteDoisNew={<FormularioCadastroDesfile3 /> } flag={flag_zero} />,
+  },
+
+  {
+    path: "/CadastroEvento",
+    element: <Principal componenteUm={<CadastroEvento />} componenteDoisNew={<FormularioEvento /> } flag={flag_zero} />,
+  },
+
+
+  {
+    path: "/CadastroEvento2",
+    element: <Principal componenteUm={<CadastroEvento2 />} componenteDoisNew={<FormularioEvento2 /> } flag={flag_zero} />,
   },
 
 ]);
