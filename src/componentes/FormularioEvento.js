@@ -1,9 +1,6 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
-import InputLabel from '@mui/material/InputLabel'
-import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
-import Select from '@mui/material/Select'
 import { Button } from '@mui/material'
 import TextField from '@mui/material/TextField'
 import Grid from '@mui/material/Grid'
@@ -15,18 +12,15 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DateField } from '@mui/x-date-pickers/DateField'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import dayjs from 'dayjs'
 
 export default function FormularioEvento() {
-
-
     const [listaEstados, setListaEstados] = React.useState([])
 
     React.useEffect(() => {
         api.get('http://localhost:8080/api/lista/estado')
             .then((response) => {
-                console.log(response.data)
                 const estados = response.data.map((estado) => ({
                     ...estado,
                     label: estado.est_desc,
@@ -38,14 +32,11 @@ export default function FormularioEvento() {
             })
     }, [])
 
-    console.log(listaEstados)
-
     const [listaCidades, setCidades] = React.useState([])
 
     const handleEstadoChange = (event, value) => {
         if (value) {
             // fazer requisição para obter as cidades do estado selecionado
-            console.log(value)
 
             localStorage.setItem('est_id', value.est_id)
             localStorage.setItem('est_sigla', value.est_sigla)
@@ -58,12 +49,11 @@ export default function FormularioEvento() {
                     },
                 })
                 .then(function (response) {
-                    console.log(response.data)
                     const cidades = response.data.map((cidade) => ({
                         ...cidade,
                         label: cidade.cid_desc,
                     }))
-                    console.log(cidades)
+
                     setCidades(cidades)
                 })
                 .catch(function (error) {
@@ -83,95 +73,62 @@ export default function FormularioEvento() {
 
     const handleNomeEvento = (event) => {
         localStorage.setItem('event_nome', event.target.value)
-        console.log(localStorage.getItem('event_nome'))
     }
 
     const handleLocalEvento = (event) => {
         localStorage.setItem('event_local', event.target.value)
-        console.log(localStorage.getItem('event_local'))
     }
 
     const handleEdicaoEvento = (event) => {
         localStorage.setItem('event_edicao', event.target.value)
-        console.log(localStorage.getItem('event_edicao'))
     }
 
     const handleDataNascimento = (event) => {
         localStorage.setItem('event_data', dayjs(event).format('DD-MM-YYYY'))
-        console.log('teste')
-        console.log(localStorage.getItem('event_data'))
     }
 
-console.log(localStorage.getItem('accessToken'))
-
-
-useEffect(() => {
-
-api.post('/api/auth/login', {
-    usuario_login: 'admin',
-    usuario_senha: 'senha'
-  }, {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  .then(response =>   localStorage.setItem('accessToken', response.data.accessToken) )
-  .catch(error => console.error(error.response.data.message));
-  console.log("entrei2222")
-  console.log(localStorage.getItem('accessToken'))
-}, []); // a lista de dependências está vazia para garantir que a função seja executada apenas uma vez
-
-
-
-
-
-
+    useEffect(() => {
+        api.post(
+            '/api/auth/login',
+            {
+                usuario_login: 'admin',
+                usuario_senha: 'senha',
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+        )
+            .then((response) =>
+                localStorage.setItem('accessToken', response.data.accessToken)
+            )
+            .catch((error) => console.error(error.response.data.message))
+    }, []) // a lista de dependências está vazia para garantir que a função seja executada apenas uma vez
 
     const criarEvento = async (event) => {
-
-  
-
-
-
-
-
-        console.log("teste22")
-        console.log(localStorage.getItem('accessToken'))
         const dataEvento = {
-                "event_nome": localStorage.getItem('event_nome'),
-                "event_local": localStorage.getItem('event_local'),
-                "event_edicao": localStorage.getItem('event_edicao'),
-                "event_cidade": localStorage.getItem('event_cidade'),
-                "event_data": localStorage.getItem('event_data'),
-              };
-
-    const token = "seu_token_de_login_aqui"; // substitua pelo seu token de login
-
-
+            event_nome: localStorage.getItem('event_nome'),
+            event_local: localStorage.getItem('event_local'),
+            event_edicao: localStorage.getItem('event_edicao'),
+            event_cidade: localStorage.getItem('event_cidade'),
+            event_data: localStorage.getItem('event_data'),
+        }
 
         try {
-          const response = await api.post('/api/admin/evento/criar', dataEvento, {
-            headers: {
-            'x-access-token': localStorage.getItem('accessToken')
-            }
-          });
-          console.log(response.data); // exibe a resposta do servidor
-
-    
+            const response = await api.post(
+                '/api/admin/evento/criar',
+                dataEvento,
+                {
+                    headers: {
+                        'x-access-token': localStorage.getItem('accessToken'),
+                    },
+                }
+            )
+            console.log(response.data) // exibe a resposta do servidor
         } catch (error) {
-          console.error(error); // exibe o erro, caso ocorra
+            console.error(error) // exibe o erro, caso ocorra
         }
-      };
-
-
-    const handleSalvarClick = () => {
-
-        console.log(localStorage.getItem('event_nome'))
-        console.log(localStorage.getItem('event_local'))
-        console.log(localStorage.getItem('event_edicao'))
-        console.log(localStorage.getItem('event_cidade'))
-        console.log(localStorage.getItem('event_data'))
-
     }
 
     return (
@@ -296,8 +253,6 @@ api.post('/api/auth/login', {
                                 />
                             </DemoContainer>
                         </LocalizationProvider>
-
-
                     </Grid>
                 </Grid>
             </FormControl>
