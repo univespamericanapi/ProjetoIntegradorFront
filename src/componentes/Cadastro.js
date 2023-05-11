@@ -7,7 +7,7 @@ const Cadastro = () => {
         <div className="LeftNavBar">
             <h1 className="TituloCadastro"> CADASTRO</h1>
 
-            <h2 className="TituloCadastro3"> REGRAS DO CONSURSO </h2>
+            <h2 className="TituloCadastro3"> REGRAS DO CONCURSO </h2>
 
             <h2 className="TituloCadastro2"> INFORMAÇÃO PESSOAL </h2>
 

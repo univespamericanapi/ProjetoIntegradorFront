@@ -104,6 +104,7 @@ export default function FormularioEvento() {
                 localStorage.setItem('accessToken', response.data.accessToken)
             )
             .catch((error) => console.error(error.response.data.message))
+        console.log(localStorage.getItem('accessToken'))
     }, []) // a lista de dependências está vazia para garantir que a função seja executada apenas uma vez
 
     const criarEvento = async (event) => {
