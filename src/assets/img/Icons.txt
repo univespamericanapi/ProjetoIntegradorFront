@@ -1,0 +1,4 @@
+<link rel="icon" href="https://animefest.com.br/wp-content/uploads/2020/10/cropped-Icon-Anime-Fest-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://animefest.com.br/wp-content/uploads/2020/10/cropped-Icon-Anime-Fest-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://animefest.com.br/wp-content/uploads/2020/10/cropped-Icon-Anime-Fest-180x180.png" />
+<meta name="msapplication-TileImage" content="https://animefest.com.br/wp-content/uploads/2020/10/cropped-Icon-Anime-Fest-270x270.png" />
