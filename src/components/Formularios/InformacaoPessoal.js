@@ -3,9 +3,10 @@ import { TextField, Button, Box, Autocomplete } from '@mui/material';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import api from '../../services/api';
+import validaCpf from '../../utils/validaCpf';
 
-const phoneRegExp = /^[1-9]{2}(?:[2-8]|9[1-9])\d{7}$/;
-const cpfRegExp = /^\d{11}$/;
+const phoneRegExp = /^(\(\d{2}\)\s)?\d{4,5}-?\d{4,5}$/;
+const cpfRegExp = /^\d{3}.?\d{3}.?\d{3}-?\d{2}/;
 
 export class InformacaoPessoal extends Component {
 	constructor(props) {
@@ -80,6 +81,27 @@ export class InformacaoPessoal extends Component {
 		}
 	};
 
+	handleChangeCpfMask = (e, handleChange) => {
+		const value = e.target.value
+			.replace(/\D/g, '') // remove caracteres não numéricos
+			.replace(/(\d{3})(\d)/, '$1.$2') // insere o primeiro ponto
+			.replace(/(\d{3})(\d)/, '$1.$2') // insere o segundo ponto
+			.replace(/(\d{3})(\d{1,2})/, '$1-$2') // insere o traço
+			.replace(/(-\d{2})\d$/, '$1'); // remove os dígitos excedentes
+		e.target.value = value;
+		handleChange(e);
+	};
+
+	handleChangeWhatsMask = (e, handleChange) => {
+		const value = e.target.value
+			.replace(/\D/g, '') // remove caracteres não numéricos
+			.replace(/(\d{2})(\d)/, '($1) $2') // insere o parêntese e espaço
+			.replace(/(\d{4,5})(\d{4})$/, '$1-$2'); // insere o traços
+		console.log(value);
+		e.target.value = value;
+		handleChange(e);
+	};
+
 	render() {
 		const {
 			comp_nome,
@@ -118,7 +140,7 @@ export class InformacaoPessoal extends Component {
 							.required('Campo requerido.')
 							.matches(
 								phoneRegExp,
-								'Deveser um número de telefone válido e somente dígitos (19999999999).'
+								'Deveser um número de telefone válido e somente dígitos ((19) 99999-9999).'
 							),
 						comp_nome_social: Yup.string(),
 						comp_cpf: Yup.string()
@@ -126,6 +148,9 @@ export class InformacaoPessoal extends Component {
 							.matches(
 								cpfRegExp,
 								'Deveser um número de CPF válido e somente dígitos (99999999999).'
+							)
+							.test('test-invalid-cpf', 'CPF inválido', (cpf) =>
+								validaCpf(cpf)
 							),
 						comp_email: Yup.string()
 							.required('Campo requerido.')
@@ -212,7 +237,9 @@ export class InformacaoPessoal extends Component {
 												placeholder="Entre com o número do seu Whatsapp, somente números."
 												variant="outlined"
 												value={values.comp_whats}
-												onChange={handleChange}
+												onChange={(e) => {
+													this.handleChangeWhatsMask(e, handleChange);
+												}}
 												onChangeCapture={this.props.handleChange('comp_whats')}
 												onBlur={handleBlur}
 												error={errors.comp_whats && touched.comp_whats}
@@ -272,7 +299,9 @@ export class InformacaoPessoal extends Component {
 												placeholder="Entre com o número do seu CPF, somente números."
 												variant="outlined"
 												value={values.comp_cpf}
-												onChange={handleChange}
+												onChange={(e) => {
+													this.handleChangeCpfMask(e, handleChange);
+												}}
 												onChangeCapture={this.props.handleChange('comp_cpf')}
 												onBlur={handleBlur}
 												error={errors.comp_cpf && touched.comp_cpf}

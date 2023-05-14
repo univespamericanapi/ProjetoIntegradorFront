@@ -23,9 +23,9 @@ export class Confirm extends Component {
 			comp_email: values.comp_email,
 			comp_nome: values.comp_nome,
 			comp_nome_social: values.comp_nome_social,
-			comp_cpf: values.comp_cpf,
+			comp_cpf: values.comp_cpf.replace(/\D/g, ''),
 			comp_nasc: values.comp_nasc,
-			comp_whats: values.comp_whats,
+			comp_whats: values.comp_whats.replace(/\D/g, ''),
 			comp_cidade: values.comp_cidade,
 		};
 		const apresentacao = {
