@@ -12,6 +12,8 @@ import EventBus from '../common/eventBus';
 import { withRouter } from '../common/withRouter';
 import { Card, CardActionArea, CardContent } from '@mui/material';
 import CadastrarUsuario from '../components/admin/cadastrarUsuario';
+import AlterarEvento from '../components/admin/alterarEvento';
+import AlterarUsuario from '../components/admin/alterarUsuario';
 
 class BoardAdmin extends Component {
 	constructor(props) {
@@ -167,10 +169,10 @@ class BoardAdmin extends Component {
 							<CadastrarUsuario {...this.props} setLogged={this.setLogged} />
 						</TabPanel>
 						<TabPanel value={value} index={4} style={{ width: '100%' }}>
-							Alterar Evento
+							<AlterarEvento {...this.props} setLogged={this.setLogged} />
 						</TabPanel>
 						<TabPanel value={value} index={5} style={{ width: '100%' }}>
-							Alterar Usuário
+							<AlterarUsuario {...this.props} setLogged={this.setLogged} />
 						</TabPanel>
 					</Box>
 				) : (

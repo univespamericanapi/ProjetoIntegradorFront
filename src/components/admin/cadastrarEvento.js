@@ -506,7 +506,7 @@ export class CadastrarEvento extends Component {
 											variant="contained"
 											disabled={!isValid}
 										>
-											Continuar
+											Salvar
 										</Button>
 									</Box>
 								</Box>

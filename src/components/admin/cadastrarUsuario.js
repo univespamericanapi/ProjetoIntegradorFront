@@ -9,7 +9,6 @@ import {
 	Typography,
 	FormControl,
 	InputLabel,
-	Input,
 	InputAdornment,
 	IconButton,
 	OutlinedInput,
@@ -333,7 +332,7 @@ export class CadastrarUsuario extends Component {
 											}}
 										>
 											<FormControl
-												sx={{ m: 1, marginBottom: '41px', width: '100%' }}
+												sx={{ marginBottom: '41px', width: '100%' }}
 												variant="outlined"
 												required
 											>
@@ -515,7 +514,7 @@ export class CadastrarUsuario extends Component {
 											variant="contained"
 											disabled={!isValid}
 										>
-											Confirmar
+											Salvar
 										</Button>
 									</Box>
 								</Box>

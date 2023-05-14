@@ -73,7 +73,7 @@ export class Login extends Component {
 					usuario_login: Yup.string().required('Login é requerido.'),
 					usuario_senha: Yup.string()
 						.required('Senha é requerida.')
-						.min(8, 'A senha contém no mínimo 8 caracteres.'),
+						.min(5, 'A senha contém no mínimo 5 caracteres.'),
 				})}
 				onSubmit={(values) => {
 					this.handleLogin(values);
