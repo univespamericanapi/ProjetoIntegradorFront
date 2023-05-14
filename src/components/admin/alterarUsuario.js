@@ -29,6 +29,7 @@ export class AlterarUsuario extends Component {
 			show_usuario_senha: false,
 			show_senha_confirm: false,
 			open: false,
+			openConfirm: false,
 			listaUsuarios: [],
 			listaCargos: [],
 			selectBoxStyle: { width: '45%', marginBottom: '41px' },
@@ -54,6 +55,22 @@ export class AlterarUsuario extends Component {
 				boxShadow: 24,
 				p: 4,
 				color: '#fff',
+				borderRadius: '20px',
+				display: 'flex',
+				flexDirection: 'column',
+				alignItems: 'center',
+				justifyContent: 'center',
+			},
+			styleConfirm: {
+				position: 'absolute',
+				top: '50%',
+				left: '50%',
+				transform: 'translate(-50%, -50%)',
+				width: 400,
+				bgcolor: 'background.paper',
+				border: '2px solid #000',
+				boxShadow: 24,
+				p: 4,
 				borderRadius: '20px',
 				display: 'flex',
 				flexDirection: 'column',
@@ -161,11 +178,59 @@ export class AlterarUsuario extends Component {
 		this.fetchUsuarios();
 	};
 
-	reset = (e) => {
+	handleOpenConfirm = () => {
+		this.setState({ openConfirm: true });
+	};
+
+	handleCloseConfirm = () => {
+		this.setState({ openConfirm: false });
+	};
+
+	deletar = async (e) => {
 		e.preventDefault();
+
+		const idUsuario = this.state.values.usuario_id;
+
+		try {
+			const response = await api.delete('admin/usuario/deletar/' + idUsuario);
+			this.setState({
+				successMsg: {
+					type: 'succcess',
+					title: 'Sucesso',
+					msg: response.data,
+				},
+				style: {
+					...this.state.style,
+					bgcolor: 'rgba(6, 68, 6, 0.8)',
+					border: '2px solid #0F0',
+				},
+			});
+			this.handleOpen();
+		} catch (error) {
+			console.error(error);
+			this.setState({
+				successMsg: {
+					type: 'error',
+					title: 'Erro na solicitação',
+					msg: error.response.data,
+				},
+				style: {
+					...this.state.style,
+					bgcolor: 'rgba(138, 22, 22, 0.8)',
+					border: '2px solid #F00',
+				},
+			});
+			this.handleOpen();
+		}
+
 		this.setState({
 			values: { ...this.state.initialValues },
 		});
+
+		this.setState({ listaUsuarios: [] });
+		this.fetchUsuarios();
+
+		this.handleCloseConfirm();
 	};
 
 	async fetchUsuarios() {
@@ -593,9 +658,9 @@ export class AlterarUsuario extends Component {
 												<Button
 													sx={{ margin: '10px', width: '120px' }}
 													variant="contained"
-													onClick={this.reset}
+													onClick={this.handleOpenConfirm}
 												>
-													Limpar
+													Deletar
 												</Button>
 												<Button
 													sx={{ margin: '10px', width: '120px' }}
@@ -628,6 +693,43 @@ export class AlterarUsuario extends Component {
 						<Typography id="modal-modal-description" sx={{ mt: 2 }}>
 							{this.state.successMsg.msg}
 						</Typography>
+					</Box>
+				</Modal>
+				<Modal
+					open={this.state.openConfirm}
+					onClose={this.handleCloseConfirm}
+					aria-labelledby="modal-confirm-title"
+					aria-describedby="modal-confirm-description"
+				>
+					<Box sx={this.state.styleConfirm}>
+						<Typography id="modal-confirm-title" variant="h5" component="h2">
+							Deletar
+						</Typography>
+						<Typography id="modal-confirm-description" sx={{ mt: 2 }}>
+							Você deseja realmente delertar o usuário selecionado?
+						</Typography>
+						<Box
+							sx={{
+								width: '100%',
+								display: 'flex',
+								justifyContent: 'space-around',
+							}}
+						>
+							<Button
+								sx={{ margin: '10px', width: '120px' }}
+								variant="contained"
+								onClick={this.handleCloseConfirm}
+							>
+								Cancelar
+							</Button>
+							<Button
+								sx={{ margin: '10px', width: '120px' }}
+								variant="contained"
+								onClick={this.deletar}
+							>
+								Confirmar
+							</Button>
+						</Box>
 					</Box>
 				</Modal>
 			</Box>

@@ -18,6 +18,7 @@ export class AlterarEvento extends Component {
 		super(props);
 		this.state = {
 			open: false,
+			openConfirm: false,
 			listaEventos: [],
 			listaEstados: [],
 			listaCidades: [],
@@ -26,8 +27,10 @@ export class AlterarEvento extends Component {
 				event_id: 0,
 				event_ed_nome: '',
 				event_nome: '',
+				event_nome_back: '',
 				event_local: '',
 				event_edicao: 0,
+				event_edicao_back: 0,
 				event_cidade: 0,
 				event_cidade_nome: '',
 				event_estado: 0,
@@ -47,6 +50,22 @@ export class AlterarEvento extends Component {
 				boxShadow: 24,
 				p: 4,
 				color: '#fff',
+				borderRadius: '20px',
+				display: 'flex',
+				flexDirection: 'column',
+				alignItems: 'center',
+				justifyContent: 'center',
+			},
+			styleConfirm: {
+				position: 'absolute',
+				top: '50%',
+				left: '50%',
+				transform: 'translate(-50%, -50%)',
+				width: 400,
+				bgcolor: 'background.paper',
+				border: '2px solid #000',
+				boxShadow: 24,
+				p: 4,
 				borderRadius: '20px',
 				display: 'flex',
 				flexDirection: 'column',
@@ -103,6 +122,15 @@ export class AlterarEvento extends Component {
 		delete data.event_id;
 		delete data.event_ed_nome;
 
+		if (!data.event_nome && !data.event_edicao) {
+			delete data.event_edicao;
+			delete data.event_nome;
+		} else if (!data.event_nome) {
+			data.event_nome = data.event_nome_back;
+		} else if (!data.event_edicao) {
+			data.event_edicao = data.event_edicao_back;
+		}
+
 		for (const key in data) {
 			if (!data[key]) {
 				delete data[key];
@@ -152,14 +180,61 @@ export class AlterarEvento extends Component {
 	handleClose = () => {
 		this.setState({ open: false });
 		this.fetchEventos();
-		window.location.reload();
 	};
 
-	reset = (e) => {
+	handleOpenConfirm = () => {
+		this.setState({ openConfirm: true });
+	};
+
+	handleCloseConfirm = () => {
+		this.setState({ openConfirm: false });
+	};
+
+	deletar = async (e) => {
 		e.preventDefault();
+
+		const idEvento = this.state.values.event_id;
+
+		try {
+			const response = await api.delete('admin/evento/deletar/' + idEvento);
+			this.setState({
+				successMsg: {
+					type: 'succcess',
+					title: 'Sucesso',
+					msg: response.data,
+				},
+				style: {
+					...this.state.style,
+					bgcolor: 'rgba(6, 68, 6, 0.8)',
+					border: '2px solid #0F0',
+				},
+			});
+			this.handleOpen();
+		} catch (error) {
+			console.error(error);
+			this.setState({
+				successMsg: {
+					type: 'error',
+					title: 'Erro na solicitação',
+					msg: error.response.data,
+				},
+				style: {
+					...this.state.style,
+					bgcolor: 'rgba(138, 22, 22, 0.8)',
+					border: '2px solid #F00',
+				},
+			});
+			this.handleOpen();
+		}
+
 		this.setState({
 			values: { ...this.state.initialValues },
 		});
+
+		this.setState({ listaEventos: [] });
+		this.fetchEventos();
+
+		this.handleCloseConfirm();
 	};
 
 	async fetchEventos() {
@@ -178,8 +253,10 @@ export class AlterarEvento extends Component {
 				event_id: response.data.event_id,
 				event_ed_nome: response.data.event_ed_nome,
 				event_nome: response.data.event_nome,
+				event_nome_back: response.data.event_nome,
 				event_local: response.data.event_local,
 				event_edicao: response.data.event_edicao,
+				event_edicao_back: response.data.event_edicao,
 				event_cidade: response.data.event_cidade,
 				event_cidade_nome: response.data.cidade.cid_desc,
 				event_estado: response.data.cidade.cid_estado,
@@ -601,9 +678,9 @@ export class AlterarEvento extends Component {
 												<Button
 													sx={{ margin: '10px', width: '120px' }}
 													variant="contained"
-													onClick={this.reset}
+													onClick={this.handleOpenConfirm}
 												>
-													Limpar
+													Deletar
 												</Button>
 												<Button
 													sx={{ margin: '10px', width: '120px' }}
@@ -611,7 +688,7 @@ export class AlterarEvento extends Component {
 													variant="contained"
 													disabled={!isValid}
 												>
-													Continuar
+													Salvar
 												</Button>
 											</Box>
 										</Box>
@@ -636,6 +713,43 @@ export class AlterarEvento extends Component {
 						<Typography id="modal-modal-description" sx={{ mt: 2 }}>
 							{this.state.successMsg.msg}
 						</Typography>
+					</Box>
+				</Modal>
+				<Modal
+					open={this.state.openConfirm}
+					onClose={this.handleCloseConfirm}
+					aria-labelledby="modal-confirm-title"
+					aria-describedby="modal-confirm-description"
+				>
+					<Box sx={this.state.styleConfirm}>
+						<Typography id="modal-confirm-title" variant="h5" component="h2">
+							Deletar
+						</Typography>
+						<Typography id="modal-confirm-description" sx={{ mt: 2 }}>
+							Você deseja realmente delertar o evento selecionado?
+						</Typography>
+						<Box
+							sx={{
+								width: '100%',
+								display: 'flex',
+								justifyContent: 'space-around',
+							}}
+						>
+							<Button
+								sx={{ margin: '10px', width: '120px' }}
+								variant="contained"
+								onClick={this.handleCloseConfirm}
+							>
+								Cancelar
+							</Button>
+							<Button
+								sx={{ margin: '10px', width: '120px' }}
+								variant="contained"
+								onClick={this.deletar}
+							>
+								Confirmar
+							</Button>
+						</Box>
 					</Box>
 				</Modal>
 			</Box>
