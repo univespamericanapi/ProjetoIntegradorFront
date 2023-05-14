@@ -8,7 +8,7 @@ export class CosplayDesfileRegras extends Component {
 				sx={{
 					textAlign: 'justify',
 					padding: '20px',
-					maxHeight: '41dvh',
+					maxHeight: '55dvh',
 					overflow: 'auto',
 				}}
 			>

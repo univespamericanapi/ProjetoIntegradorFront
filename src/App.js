@@ -37,6 +37,7 @@ import BoardStaff from './pages/staff';
 import CadastroPage from './pages/cadastro';
 
 import logoLinha from './assets/img/logo-circuito-roxo-02.png';
+import Footer from './components/Footer';
 
 export class App extends Component {
 	constructor(props) {
@@ -322,7 +323,7 @@ export class App extends Component {
 							</AppBar>
 						</ThemeProvider>
 						<ThemeProvider theme={deepOrangeTheme}>
-							<Box sx={{ width: '100%' }}>
+							<Box sx={{ width: '100%', minHeight: 'calc(100dvh - 140px)' }}>
 								<Routes>
 									<Route path="/" element={<Home />} />
 									<Route path="/cadastro" element={<CadastroPage />} />
@@ -335,6 +336,9 @@ export class App extends Component {
 										element={<BoardAdmin logOut={this.logOut} />}
 									/>
 								</Routes>
+							</Box>
+							<Box sx={{ width: '100%' }}>
+								<Footer />
 							</Box>
 							<AuthVerify logOut={this.logOut} />
 						</ThemeProvider>

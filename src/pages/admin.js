@@ -138,7 +138,7 @@ class BoardAdmin extends Component {
 									<CardActionArea>
 										<CardContent>
 											<Typography gutterBottom variant="h5" component="div">
-												Home
+												Admin Board
 											</Typography>
 											<Typography variant="body2" color="text.secondary">
 												{this.state.content}

@@ -181,53 +181,52 @@ class Banner extends Component {
 const items = [
 	{
 		Name: 'Concursos',
-		Caption: 'Participe dos vários concursos do Evento!',
+		Caption: 'FAÇA SUA INSCRIÇÃO E GARANTA SUA VAGA!',
 		contentPosition: 'left',
 		link: '/cadastro',
 		linkName: 'Cadastre-se',
 		Items: [
 			{
-				Name: 'Cosplay',
-				Image:
-					'https://multiversonoticias.com.br/wp-content/uploads/2023/05/goku-day.jpg',
+				Name: 'Desfile Cosplay',
+				Image: '/assets/img/banner001.png',
 			},
 			{
-				Name: 'Kpop',
-				Image: '../assets/img/banner002.png',
+				Name: 'Circuito Kpop',
+				Image: '/assets/img/banner002.png',
 			},
 		],
 	},
 	{
-		Name: 'Home Appliances',
-		Caption: 'Say no to manual home labour!',
+		Name: 'Pira Anime Fest',
+		Caption: '07 DE MAIO NO DOM BOSCO CIDADE ALTA',
 		contentPosition: 'middle',
-		link: '',
-		linkName: '',
+		link: 'https://animefest.com.br/piracicaba/',
+		linkName: 'Venha conhecer mais!',
 		Items: [
 			{
-				Name: 'Washing Machine WX9102',
-				Image: 'https://source.unsplash.com/featured/?washingmachine',
+				Name: 'PAF',
+				Image: '/assets/img/banner003.png',
 			},
 			{
-				Name: 'Learus Vacuum Cleaner',
-				Image: 'https://source.unsplash.com/featured/?vacuum,cleaner',
+				Name: 'DESFILE COSPLAY',
+				Image: '/assets/img/banner004.png',
 			},
 		],
 	},
 	{
-		Name: 'Decoratives',
-		Caption: 'Give style and color to your living room!',
+		Name: 'Campinas Anime Fest',
+		Caption: '20 DE AGOSTO NO LICEU SALESIANO',
 		contentPosition: 'right',
-		link: '',
-		linkName: '',
+		link: 'https://animefest.com.br/campinas/',
+		linkName: 'Venha conhecer mais!',
 		Items: [
 			{
-				Name: 'Living Room Lamp',
-				Image: 'https://source.unsplash.com/featured/?lamp',
+				Name: 'CAF',
+				Image: '/assets/img/banner005.png',
 			},
 			{
-				Name: 'Floral Vase',
-				Image: 'https://source.unsplash.com/featured/?vase',
+				Name: 'FEIRA GEEK PARK',
+				Image: '/assets/img/banner006.png',
 			},
 		],
 	},

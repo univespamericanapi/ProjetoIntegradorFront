@@ -41,7 +41,7 @@ export default class Profile extends Component {
 		return (
 			<Box sx={FlexBoxColumn}>
 				{this.state.userReady ? (
-					<Card sx={{ maxWidth: 750, marginTop: '30px' }}>
+					<Card sx={{ maxWidth: 750, margin: '60px' }}>
 						<CardActionArea sx={{ padding: '20px' }}>
 							<CardContent>
 								<Typography gutterBottom variant="h5" component="div">

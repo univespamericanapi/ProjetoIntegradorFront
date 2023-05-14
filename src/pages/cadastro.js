@@ -75,9 +75,14 @@ class CadastroPage extends Component {
 					value={value}
 					onChange={this.handleChange}
 					aria-label="Vertical tabs example"
-					sx={{ borderRight: 1, borderColor: 'divider', width: '200px' }}
+					sx={{
+						borderRight: 1,
+						borderColor: 'divider',
+						width: '200px',
+						color: '#fff',
+					}}
 				>
-					<Tab label="Cadastro" {...a11yProps(0)} />
+					<Tab label="Cadastro" sx={{ color: '#fff' }} {...a11yProps(0)} />
 				</Tabs>
 				<TabPanel value={value} index={0}>
 					<CadastroForm />

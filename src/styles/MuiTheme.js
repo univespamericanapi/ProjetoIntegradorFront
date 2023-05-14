@@ -1,10 +1,10 @@
 import { createTheme } from '@mui/material/styles';
-import { deepPurple, deepOrange } from '@mui/material/colors';
+import { deepOrange } from '@mui/material/colors';
 
 export const deepPurpleTheme = createTheme({
 	palette: {
 		primary: {
-			main: deepPurple[500],
+			main: '#572d7f',
 		},
 	},
 });
@@ -30,8 +30,7 @@ export const loginBox = {
 	width: '400px',
 	padding: '40px',
 	backgroundColor: '#f7f7f7',
-	margin: '0 auto 25px',
-	marginTop: '50px',
+	margin: '60px auto ',
 	borderRadius: '20px',
 	boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.3)',
 	position: 'relative',
