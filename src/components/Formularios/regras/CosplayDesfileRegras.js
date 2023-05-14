@@ -10,6 +10,7 @@ export class CosplayDesfileRegras extends Component {
 					padding: '20px',
 					maxHeight: '55dvh',
 					overflow: 'auto',
+					borderBottom: '1px solid #000',
 				}}
 			>
 				<h3>REGULAMENTO DO CONCURSO ANIME FEST DE DESFILE COSPLAY 2023</h3>

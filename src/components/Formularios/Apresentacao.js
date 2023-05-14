@@ -11,7 +11,10 @@ export class Apresentacao extends Component {
 		super(props);
 		this.state = {
 			listaCategorias: [],
-			selectBoxStyle: { width: '45%', marginBottom: '41px' },
+			selectBoxStyle: {
+				width: { xs: '100%', md: '45%' },
+				marginBottom: '41px',
+			},
 		};
 		this.CosplayDesfile = 'Cosplay Desfile';
 		this.CosplayCircuito = 'CosplayCircuito';
@@ -64,6 +67,7 @@ export class Apresentacao extends Component {
 							width: '100%',
 							display: 'flex',
 							justifyContent: 'space-around',
+							flexDirection: { xs: 'column', md: 'row' },
 						}}
 					>
 						<Autocomplete
@@ -177,11 +181,12 @@ export class Apresentacao extends Component {
 											width: '100%',
 											display: 'flex',
 											justifyContent: 'space-around',
+											flexDirection: { xs: 'column', md: 'row' },
 										}}
 									>
 										<Box
 											sx={{
-												width: '45%',
+												width: { xs: '100%', md: '45%' },
 												display: 'flex',
 												flexDirection: 'column',
 												alignItems: 'center',
@@ -204,7 +209,7 @@ export class Apresentacao extends Component {
 										</Box>
 										<Box
 											sx={{
-												width: '45%',
+												width: { xs: '100%', md: '45%' },
 												display: 'flex',
 												flexDirection: 'column',
 												alignItems: 'center',
@@ -238,7 +243,7 @@ export class Apresentacao extends Component {
 									>
 										<Box
 											sx={{
-												width: '95%',
+												width: { xs: '100%', md: '95%' },
 												display: 'flex',
 												flexDirection: 'column',
 												alignItems: 'center',

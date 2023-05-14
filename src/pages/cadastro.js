@@ -67,7 +67,7 @@ class CadastroPage extends Component {
 					width: '100%',
 					flexGrow: 1,
 					display: 'flex',
-					height: 'calc(100dvh - 140px)',
+					height: { xs: '100%', md: 'calc(100dvh - 140px)' },
 				}}
 			>
 				<StyledTabs

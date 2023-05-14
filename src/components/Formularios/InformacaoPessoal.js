@@ -14,7 +14,10 @@ export class InformacaoPessoal extends Component {
 		this.state = {
 			listaEstados: [],
 			listaCidades: [],
-			selectBoxStyle: { width: '45%', marginBottom: '41px' },
+			selectBoxStyle: {
+				width: { xs: '100%', md: '45%' },
+				marginBottom: '41px',
+			},
 		};
 		this.fetchEstados = this.fetchEstados.bind(this);
 		this.fetchCidades = this.fetchCidades.bind(this);
@@ -197,11 +200,12 @@ export class InformacaoPessoal extends Component {
 											width: '100%',
 											display: 'flex',
 											justifyContent: 'space-around',
+											flexDirection: { xs: 'column', md: 'row' },
 										}}
 									>
 										<Box
 											sx={{
-												width: '45%',
+												width: { xs: '100%', md: '45%' },
 												display: 'flex',
 												flexDirection: 'column',
 												alignItems: 'center',
@@ -224,7 +228,7 @@ export class InformacaoPessoal extends Component {
 										</Box>
 										<Box
 											sx={{
-												width: '45%',
+												width: { xs: '100%', md: '45%' },
 												display: 'flex',
 												flexDirection: 'column',
 												alignItems: 'center',
@@ -254,11 +258,12 @@ export class InformacaoPessoal extends Component {
 											width: '100%',
 											display: 'flex',
 											justifyContent: 'space-around',
+											flexDirection: { xs: 'column', md: 'row' },
 										}}
 									>
 										<Box
 											sx={{
-												width: '45%',
+												width: { xs: '100%', md: '45%' },
 												display: 'flex',
 												flexDirection: 'column',
 												alignItems: 'center',
@@ -286,7 +291,7 @@ export class InformacaoPessoal extends Component {
 										</Box>
 										<Box
 											sx={{
-												width: '45%',
+												width: { xs: '100%', md: '45%' },
 												display: 'flex',
 												flexDirection: 'column',
 												alignItems: 'center',
@@ -316,11 +321,12 @@ export class InformacaoPessoal extends Component {
 											width: '100%',
 											display: 'flex',
 											justifyContent: 'space-around',
+											flexDirection: { xs: 'column', md: 'row' },
 										}}
 									>
 										<Box
 											sx={{
-												width: '45%',
+												width: { xs: '100%', md: '45%' },
 												display: 'flex',
 												flexDirection: 'column',
 												alignItems: 'center',
@@ -344,7 +350,7 @@ export class InformacaoPessoal extends Component {
 										</Box>
 										<Box
 											sx={{
-												width: '45%',
+												width: { xs: '100%', md: '45%' },
 												display: 'flex',
 												flexDirection: 'column',
 												alignItems: 'center',
@@ -372,6 +378,7 @@ export class InformacaoPessoal extends Component {
 											width: '100%',
 											display: 'flex',
 											justifyContent: 'space-around',
+											flexDirection: { xs: 'column', md: 'row' },
 										}}
 									>
 										<Autocomplete
