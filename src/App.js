@@ -17,6 +17,7 @@ import {
 	Avatar,
 	Box,
 	Button,
+	CardMedia,
 	Container,
 	CssBaseline,
 	IconButton,
@@ -34,6 +35,8 @@ import Profile from './pages/profile';
 import BoardAdmin from './pages/admin';
 import BoardStaff from './pages/staff';
 import CadastroPage from './pages/cadastro';
+
+import logoLinha from './assets/img/logo-circuito-roxo-02.png';
 
 export class App extends Component {
 	constructor(props) {
@@ -116,26 +119,27 @@ export class App extends Component {
 							<AppBar position="static">
 								<Container maxWidth="xl">
 									<Toolbar disableGutters>
-										<img
-											src="./assets/img/logo-circuito-roxo-02.png"
+										{/* <img
+											src={logoLinha}
 											alt="Logo da Avalon Eventos"
-										/>
-										<Typography
-											variant="h6"
-											noWrap
-											sx={{
-												mr: 2,
-												display: { xs: 'none', md: 'flex' },
-												fontFamily: 'monospace',
-												fontWeight: 700,
-												color: 'inherit',
-												textDecoration: 'none',
-											}}
-											component={Link}
-											to="/"
-										>
-											Avalon Eventos
-										</Typography>
+											style={{ width: '180px' }}
+										/> */}
+										<Link to={'/'}>
+											<CardMedia
+												component="img"
+												image={logoLinha}
+												alt="Logo Avalon"
+												sx={{
+													display: { xs: 'none', md: 'flex' },
+													flexGrow: 1,
+													width: '200px',
+													marginRight: '16px',
+													':hover': {
+														filter: 'drop-shadow(1px 1px 2px #FFFFFF)',
+													},
+												}}
+											/>
+										</Link>
 										<Box
 											sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
 										>
@@ -204,7 +208,6 @@ export class App extends Component {
 												)}
 											</Menu>
 										</Box>
-										{/* TODO colocar logo aqui */}
 										<Typography
 											variant="h5"
 											noWrap
