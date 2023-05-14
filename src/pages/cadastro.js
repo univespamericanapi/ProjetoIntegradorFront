@@ -36,7 +36,7 @@ class CadastroPage extends Component {
 				id={`vertical-tabpanel-${index}`}
 				aria-labelledby={`vertical-tab-${index}`}
 				{...other}
-				style={{ width: '100%', padding: '30px' }}
+				style={{ width: '100%', padding: '1.875rem' }}
 			>
 				{value === index && <Box sx={{ p: 3 }}>{children}</Box>}
 			</div>
@@ -67,7 +67,6 @@ class CadastroPage extends Component {
 					width: '100%',
 					flexGrow: 1,
 					display: 'flex',
-					minHeight: { xs: '100%', md: 'calc(100dvh - 140px)' },
 				}}
 			>
 				<StyledTabs
@@ -81,9 +80,9 @@ class CadastroPage extends Component {
 					sx={{
 						borderRight: 1,
 						borderColor: 'divider',
-						width: '300px',
+						width: '18.75rem',
 						bgcolor: deepOrange[500],
-						height: '100%',
+						minHeight: '100dvh',
 					}}
 				>
 					<StyledTab label="Cadastro" {...a11yProps(0)} />

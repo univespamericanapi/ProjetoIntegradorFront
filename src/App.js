@@ -120,11 +120,6 @@ export class App extends Component {
 							<AppBar position="static">
 								<Container maxWidth="xl">
 									<Toolbar disableGutters>
-										{/* <img
-											src={logoLinha}
-											alt="Logo da Avalon Eventos"
-											style={{ width: '180px' }}
-										/> */}
 										<Link to={'/'}>
 											<CardMedia
 												component="img"
@@ -133,8 +128,8 @@ export class App extends Component {
 												sx={{
 													display: { xs: 'none', md: 'flex' },
 													flexGrow: 1,
-													width: '200px',
-													marginRight: '16px',
+													width: '12.5rem',
+													marginRight: '1rem',
 													':hover': {
 														filter: 'drop-shadow(1px 1px 2px #FFFFFF)',
 													},
@@ -289,7 +284,7 @@ export class App extends Component {
 												</Button>
 											)}
 											<Menu
-												sx={{ mt: '45px' }}
+												sx={{ mt: '2.875rem' }}
 												id="menu-appbar"
 												anchorEl={anchorElUser}
 												anchorOrigin={{
@@ -323,7 +318,7 @@ export class App extends Component {
 							</AppBar>
 						</ThemeProvider>
 						<ThemeProvider theme={deepOrangeTheme}>
-							<Box sx={{ width: '100%', minHeight: 'calc(100dvh - 140px)' }}>
+							<Box sx={{ width: '100%', minHeight: 'calc(100dvh - 8.75rem)' }}>
 								<Routes>
 									<Route path="/" element={<Home />} />
 									<Route path="/cadastro" element={<CadastroPage />} />

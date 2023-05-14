@@ -46,7 +46,7 @@ export class ConfigurarConcurso extends Component {
 				boxShadow: 24,
 				p: 4,
 				color: '#fff',
-				borderRadius: '20px',
+				borderRadius: '1.25rem',
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
@@ -269,7 +269,7 @@ export class ConfigurarConcurso extends Component {
 					<Box
 						sx={{
 							width: '100%',
-							marginTop: '30px',
+							marginTop: '1.875rem',
 							display: 'flex',
 							flexDirection: 'column',
 							justifyContent: 'center',
@@ -316,20 +316,20 @@ export class ConfigurarConcurso extends Component {
 								>
 									<TableHead>
 										<TableRow>
-											<TableCell sx={{ padding: '8px' }}>Id</TableCell>
-											<TableCell sx={{ padding: '8px' }} align="right">
+											<TableCell sx={{ padding: '.5rem' }}>Id</TableCell>
+											<TableCell sx={{ padding: '.5rem' }} align="right">
 												Nome
 											</TableCell>
-											<TableCell sx={{ padding: '8px' }} align="right">
+											<TableCell sx={{ padding: '.5rem' }} align="right">
 												Limite de Inscritos
 											</TableCell>
-											<TableCell sx={{ padding: '8px' }} align="right">
+											<TableCell sx={{ padding: '.5rem' }} align="right">
 												Limite de Espera
 											</TableCell>
-											<TableCell sx={{ padding: '8px' }} align="right">
+											<TableCell sx={{ padding: '.5rem' }} align="right">
 												Ativo?
 											</TableCell>
-											<TableCell sx={{ padding: '8px' }} align="right">
+											<TableCell sx={{ padding: '.5rem' }} align="right">
 												Salvar
 											</TableCell>
 										</TableRow>
@@ -345,18 +345,18 @@ export class ConfigurarConcurso extends Component {
 												}}
 											>
 												<TableCell
-													sx={{ padding: '8px' }}
+													sx={{ padding: '.5rem' }}
 													component="th"
 													scope="row"
 												>
 													{row.conc_id}
 												</TableCell>
-												<TableCell sx={{ padding: '8px' }} align="right">
+												<TableCell sx={{ padding: '.5rem' }} align="right">
 													{row.conc_nome}
 												</TableCell>
-												<TableCell sx={{ padding: '8px' }} align="right">
+												<TableCell sx={{ padding: '.5rem' }} align="right">
 													<TextField
-														sx={{ width: '50px' }}
+														sx={{ width: '3.125rem' }}
 														name={'conc_limit_inscr+' + row.conc_id}
 														id={'conc_limit_inscr+' + row.conc_id}
 														type="number"
@@ -365,9 +365,9 @@ export class ConfigurarConcurso extends Component {
 														onChange={this.handleChange}
 													/>
 												</TableCell>
-												<TableCell sx={{ padding: '8px' }} align="right">
+												<TableCell sx={{ padding: '.5rem' }} align="right">
 													<TextField
-														sx={{ width: '50px' }}
+														sx={{ width: '3.125rem' }}
 														name={'conc_limit_espera+' + row.conc_id}
 														id={'conc_limit_espera+' + row.conc_id}
 														type="number"
@@ -376,7 +376,7 @@ export class ConfigurarConcurso extends Component {
 														onChange={this.handleChange}
 													/>
 												</TableCell>
-												<TableCell sx={{ padding: '8px' }} align="right">
+												<TableCell sx={{ padding: '.5rem' }} align="right">
 													<FormControlLabel
 														name={'conc_ativo+' + row.conc_id}
 														id={'conc_ativo+' + row.conc_id}
@@ -385,7 +385,7 @@ export class ConfigurarConcurso extends Component {
 														checked={row.conc_ativo}
 													/>
 												</TableCell>
-												<TableCell sx={{ padding: '8px' }} align="right">
+												<TableCell sx={{ padding: '.5rem' }} align="right">
 													<Button
 														variant="contained"
 														onClick={(e) => {
@@ -408,7 +408,7 @@ export class ConfigurarConcurso extends Component {
 								}}
 							>
 								<Button
-									sx={{ margin: '20px' }}
+									sx={{ margin: '1.25rem' }}
 									variant="contained"
 									onClick={(e) => {
 										this.saveAll(e);

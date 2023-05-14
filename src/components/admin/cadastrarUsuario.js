@@ -30,7 +30,7 @@ export class CadastrarUsuario extends Component {
 			show_senha_confirm: false,
 			open: false,
 			listaCargos: [],
-			selectBoxStyle: { width: '45%', marginBottom: '41px' },
+			selectBoxStyle: { width: '45%', marginBottom: '2.625rem' },
 			values: {
 				usuario_login: '',
 				usuario_senha: '',
@@ -52,7 +52,7 @@ export class CadastrarUsuario extends Component {
 				boxShadow: 24,
 				p: 4,
 				color: '#fff',
-				borderRadius: '20px',
+				borderRadius: '1.25rem',
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
@@ -254,7 +254,7 @@ export class CadastrarUsuario extends Component {
 								<Box
 									sx={{
 										width: '100%',
-										marginTop: '30px',
+										marginTop: '1.875rem',
 										display: 'flex',
 										flexDirection: 'column',
 										justifyContent: 'center',
@@ -277,7 +277,7 @@ export class CadastrarUsuario extends Component {
 											}}
 										>
 											<TextField
-												sx={{ marginBottom: '41px', width: '100%' }}
+												sx={{ marginBottom: '2.625rem', width: '100%' }}
 												id="usuario_login"
 												label="Login"
 												variant="outlined"
@@ -301,7 +301,7 @@ export class CadastrarUsuario extends Component {
 											}}
 										>
 											<TextField
-												sx={{ marginBottom: '41px', width: '100%' }}
+												sx={{ marginBottom: '2.625rem', width: '100%' }}
 												id="usuario_nome"
 												label="Nome"
 												variant="outlined"
@@ -332,7 +332,7 @@ export class CadastrarUsuario extends Component {
 											}}
 										>
 											<FormControl
-												sx={{ marginBottom: '41px', width: '100%' }}
+												sx={{ marginBottom: '2.625rem', width: '100%' }}
 												variant="outlined"
 												required
 											>
@@ -384,7 +384,7 @@ export class CadastrarUsuario extends Component {
 										>
 											<FormControl
 												variant="outlined"
-												sx={{ marginBottom: '41px', width: '100%' }}
+												sx={{ marginBottom: '2.625rem', width: '100%' }}
 												required
 											>
 												<InputLabel htmlFor="usuario_senha_confirm">
@@ -502,14 +502,14 @@ export class CadastrarUsuario extends Component {
 										}}
 									>
 										<Button
-											sx={{ margin: '10px', width: '120px' }}
+											sx={{ margin: '.625rem', width: '7.5rem' }}
 											variant="contained"
 											onClick={this.reset}
 										>
 											Limpar
 										</Button>
 										<Button
-											sx={{ margin: '10px', width: '120px' }}
+											sx={{ margin: '.625rem', width: '7.5rem' }}
 											type="submit"
 											variant="contained"
 											disabled={!isValid}

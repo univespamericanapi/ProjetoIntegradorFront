@@ -20,7 +20,7 @@ export class CadastrarEvento extends Component {
 			open: false,
 			listaEstados: [],
 			listaCidades: [],
-			selectBoxStyle: { width: '45%', marginBottom: '41px' },
+			selectBoxStyle: { width: '45%', marginBottom: '2.625rem' },
 			values: {
 				event_nome: '',
 				event_local: '',
@@ -44,7 +44,7 @@ export class CadastrarEvento extends Component {
 				boxShadow: 24,
 				p: 4,
 				color: '#fff',
-				borderRadius: '20px',
+				borderRadius: '1.25rem',
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
@@ -264,7 +264,7 @@ export class CadastrarEvento extends Component {
 								<Box
 									sx={{
 										width: '100%',
-										marginTop: '30px',
+										marginTop: '1.875rem',
 										display: 'flex',
 										flexDirection: 'column',
 										justifyContent: 'center',
@@ -287,7 +287,7 @@ export class CadastrarEvento extends Component {
 											}}
 										>
 											<TextField
-												sx={{ marginBottom: '41px', width: '100%' }}
+												sx={{ marginBottom: '2.625rem', width: '100%' }}
 												id="event_nome"
 												label="Nome do Evento"
 												placeholder="Mega Campinas Anime Fest"
@@ -310,7 +310,7 @@ export class CadastrarEvento extends Component {
 											}}
 										>
 											<TextField
-												sx={{ marginBottom: '41px', width: '100%' }}
+												sx={{ marginBottom: '2.625rem', width: '100%' }}
 												id="event_edicao"
 												label="Edição"
 												type="number"
@@ -342,7 +342,7 @@ export class CadastrarEvento extends Component {
 											}}
 										>
 											<TextField
-												sx={{ marginBottom: '41px', width: '100%' }}
+												sx={{ marginBottom: '2.625rem', width: '100%' }}
 												id="event_local"
 												label="Local do Evento"
 												placeholder="Liceu Salesiano"
@@ -365,7 +365,7 @@ export class CadastrarEvento extends Component {
 											}}
 										>
 											<TextField
-												sx={{ marginBottom: '41px', width: '100%' }}
+												sx={{ marginBottom: '2.625rem', width: '100%' }}
 												id="event_data"
 												label="Data do Evento"
 												InputLabelProps={{ shrink: true }}
@@ -494,14 +494,14 @@ export class CadastrarEvento extends Component {
 										}}
 									>
 										<Button
-											sx={{ margin: '10px', width: '120px' }}
+											sx={{ margin: '.625rem', width: '7.5rem' }}
 											variant="contained"
 											onClick={this.reset}
 										>
 											Limpar
 										</Button>
 										<Button
-											sx={{ margin: '10px', width: '120px' }}
+											sx={{ margin: '.625rem', width: '7.5rem' }}
 											type="submit"
 											variant="contained"
 											disabled={!isValid}

@@ -10,7 +10,7 @@ export class EventoConcurso extends Component {
 		this.state = {
 			listaEventos: [],
 			listaConcursos: [],
-			selectBoxStyle: { width: { xs: '90%', md: '45%' }, margin: '20px' },
+			selectBoxStyle: { width: { xs: '90%', md: '45%' }, margin: '1.25rem' },
 		};
 		this.fetchEventos = this.fetchEventos.bind(this);
 		this.fetchConcursos = this.fetchConcursos.bind(this);
@@ -101,7 +101,7 @@ export class EventoConcurso extends Component {
 								<Box
 									sx={{
 										width: '100%',
-										marginTop: '30px',
+										marginTop: '1.875rem',
 										display: 'flex',
 										flexDirection: 'column',
 										justifyContent: 'center',
@@ -210,7 +210,7 @@ export class EventoConcurso extends Component {
 										}}
 									>
 										<Button
-											sx={{ margin: '10px', width: '120px' }}
+											sx={{ margin: '.625rem', width: '7.5rem' }}
 											variant="contained"
 											onClick={this.back}
 											disabled
@@ -218,7 +218,7 @@ export class EventoConcurso extends Component {
 											Voltar
 										</Button>
 										<Button
-											sx={{ margin: '10px', width: '120px' }}
+											sx={{ margin: '.625rem', width: '7.5rem' }}
 											type="submit"
 											variant="contained"
 											disabled={!isValid}

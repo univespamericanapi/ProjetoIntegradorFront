@@ -16,7 +16,7 @@ export class InformacaoPessoal extends Component {
 			listaCidades: [],
 			selectBoxStyle: {
 				width: { xs: '100%', md: '45%' },
-				marginBottom: '41px',
+				marginBottom: '2.625rem',
 			},
 		};
 		this.fetchEstados = this.fetchEstados.bind(this);
@@ -188,7 +188,7 @@ export class InformacaoPessoal extends Component {
 								<Box
 									sx={{
 										width: '100%',
-										marginTop: '30px',
+										marginTop: '1.875rem',
 										display: 'flex',
 										flexDirection: 'column',
 										justifyContent: 'center',
@@ -212,7 +212,7 @@ export class InformacaoPessoal extends Component {
 											}}
 										>
 											<TextField
-												sx={{ marginBottom: '41px', width: '100%' }}
+												sx={{ marginBottom: '2.625rem', width: '100%' }}
 												id="comp_nome"
 												label="Nome Completo"
 												placeholder="Entre com seu nome completo"
@@ -235,7 +235,7 @@ export class InformacaoPessoal extends Component {
 											}}
 										>
 											<TextField
-												sx={{ marginBottom: '41px', width: '100%' }}
+												sx={{ marginBottom: '2.625rem', width: '100%' }}
 												id="comp_whats"
 												label="Whatsapp"
 												placeholder="Entre com o número do seu Whatsapp, somente números."
@@ -270,7 +270,7 @@ export class InformacaoPessoal extends Component {
 											}}
 										>
 											<TextField
-												sx={{ marginBottom: '41px', width: '100%' }}
+												sx={{ marginBottom: '2.625rem', width: '100%' }}
 												id="comp_nome_social"
 												label="Nome Social / Artístico"
 												placeholder="Entre com seu nome social ou artístico"
@@ -298,7 +298,7 @@ export class InformacaoPessoal extends Component {
 											}}
 										>
 											<TextField
-												sx={{ marginBottom: '41px', width: '100%' }}
+												sx={{ marginBottom: '2.625rem', width: '100%' }}
 												id="comp_cpf"
 												label="CPF"
 												placeholder="Entre com o número do seu CPF, somente números."
@@ -333,7 +333,7 @@ export class InformacaoPessoal extends Component {
 											}}
 										>
 											<TextField
-												sx={{ marginBottom: '41px', width: '100%' }}
+												sx={{ marginBottom: '2.625rem', width: '100%' }}
 												id="comp_nasc"
 												label="Data de Nascimento"
 												InputLabelProps={{ shrink: true }}
@@ -357,7 +357,7 @@ export class InformacaoPessoal extends Component {
 											}}
 										>
 											<TextField
-												sx={{ marginBottom: '41px', width: '100%' }}
+												sx={{ marginBottom: '2.625rem', width: '100%' }}
 												id="comp_email"
 												label="E-mail"
 												placeholder="Entre com o seu e-mail."
@@ -484,14 +484,14 @@ export class InformacaoPessoal extends Component {
 										}}
 									>
 										<Button
-											sx={{ margin: '10px', width: '120px' }}
+											sx={{ margin: '.625rem', width: '7.5rem' }}
 											variant="contained"
 											onClick={this.back}
 										>
 											Voltar
 										</Button>
 										<Button
-											sx={{ margin: '10px', width: '120px' }}
+											sx={{ margin: '.625rem', width: '7.5rem' }}
 											type="submit"
 											variant="contained"
 											disabled={!isValid}

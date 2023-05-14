@@ -18,7 +18,7 @@ export class Success extends Component {
 			<React.Fragment>
 				<Box
 					sx={{
-						margin: '20px',
+						margin: '1.25rem',
 						display: 'flex',
 						justifyContent: 'center',
 						alignItems: 'center',
@@ -32,7 +32,7 @@ export class Success extends Component {
 									flexDirection: 'column',
 									alignItems: 'center',
 									justifyContent: 'center',
-									margin: '30px',
+									margin: '1.875rem',
 								}}
 							>
 								<strong>
@@ -66,7 +66,7 @@ export class Success extends Component {
 									flexDirection: 'column',
 									alignItems: 'center',
 									justifyContent: 'center',
-									margin: '30px',
+									margin: '1.875rem',
 								}}
 							>
 								<strong>
@@ -97,14 +97,14 @@ export class Success extends Component {
 					}}
 				>
 					<Button
-						sx={{ margin: '10px', width: '120px' }}
+						sx={{ margin: '.625rem', width: '7.5rem' }}
 						variant="contained"
 						onClick={this.back}
 					>
 						Voltar
 					</Button>
 					<Button
-						sx={{ margin: '10px', width: '120px' }}
+						sx={{ margin: '.625rem', width: '7.5rem' }}
 						variant="contained"
 						onClick={this.reset}
 					>

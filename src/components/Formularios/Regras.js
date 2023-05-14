@@ -57,7 +57,7 @@ export class Regras extends Component {
 								<Box
 									sx={{
 										width: '100%',
-										marginTop: '30px',
+										marginTop: '1.875rem',
 										display: 'flex',
 										flexDirection: 'column',
 										justifyContent: 'center',
@@ -84,7 +84,7 @@ export class Regras extends Component {
 												onChange={this.handleCheckChange}
 												onBlur={handleBlur}
 												checked={part_aceit_regul}
-												sx={{ margin: '8px' }}
+												sx={{ margin: '.5rem' }}
 											/>
 										</Box>
 									</Box>
@@ -97,14 +97,14 @@ export class Regras extends Component {
 										}}
 									>
 										<Button
-											sx={{ margin: '10px', width: '120px' }}
+											sx={{ margin: '.625rem', width: '7.5rem' }}
 											variant="contained"
 											onClick={this.reset}
 										>
 											Cancelar
 										</Button>
 										<Button
-											sx={{ margin: '10px', width: '120px' }}
+											sx={{ margin: '.625rem', width: '7.5rem' }}
 											type="submit"
 											variant="contained"
 											disabled={!isValid}

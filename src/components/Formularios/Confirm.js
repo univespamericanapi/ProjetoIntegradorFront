@@ -89,7 +89,7 @@ export class Confirm extends Component {
 				<Box
 					sx={{
 						width: '90%',
-						marginTop: '30px',
+						marginTop: '1.875rem',
 						display: 'flex',
 						flexDirection: 'column',
 						justifyContent: 'center',
@@ -261,14 +261,14 @@ export class Confirm extends Component {
 						}}
 					>
 						<Button
-							sx={{ margin: '10px', width: '120px' }}
+							sx={{ margin: '.625rem', width: '7.5rem' }}
 							variant="contained"
 							onClick={this.back}
 						>
 							Voltar
 						</Button>
 						<Button
-							sx={{ margin: '10px', width: '120px' }}
+							sx={{ margin: '.625rem', width: '7.5rem' }}
 							variant="contained"
 							onClick={this.continue}
 						>

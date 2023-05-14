@@ -41,8 +41,8 @@ export default class Profile extends Component {
 		return (
 			<Box sx={FlexBoxColumn}>
 				{this.state.userReady ? (
-					<Card sx={{ maxWidth: 750, margin: '60px' }}>
-						<CardActionArea sx={{ padding: '20px' }}>
+					<Card sx={{ maxWidth: 750, margin: '3.75rem' }}>
+						<CardActionArea sx={{ padding: '1.25rem' }}>
 							<CardContent>
 								<Typography gutterBottom variant="h5" component="div">
 									Perfil de <strong>{currentUser.usuario_nome}</strong>

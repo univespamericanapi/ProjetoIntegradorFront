@@ -7,7 +7,7 @@ export class CosplayDesfileRegras extends Component {
 			<Box
 				sx={{
 					textAlign: 'justify',
-					padding: '20px',
+					padding: '1.25rem',
 					maxHeight: '55dvh',
 					overflow: 'auto',
 					borderBottom: '1px solid #000',

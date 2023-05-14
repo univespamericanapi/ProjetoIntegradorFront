@@ -91,7 +91,7 @@ class BoardAdmin extends Component {
 	render() {
 		const { value, logged } = this.state;
 		const AdminFlexBoxColumn = { ...FlexBoxColumn };
-		AdminFlexBoxColumn.padding = '40px';
+		AdminFlexBoxColumn.padding = '2.5rem';
 
 		this.TabPanel.propTypes = {
 			children: PropTypes.node,
@@ -116,7 +116,6 @@ class BoardAdmin extends Component {
 							width: '100%',
 							flexGrow: 1,
 							display: 'flex',
-							height: 'calc(100dvh - 140px)',
 						}}
 					>
 						<StyledTabs
@@ -130,9 +129,9 @@ class BoardAdmin extends Component {
 							sx={{
 								borderRight: 1,
 								borderColor: 'divider',
-								width: '300px',
+								width: '18.75rem',
 								bgcolor: deepOrange[500],
-								height: '100%',
+								minHeight: '100dvh',
 							}}
 						>
 							<StyledTab label="Início" {...a11yProps(0)} />

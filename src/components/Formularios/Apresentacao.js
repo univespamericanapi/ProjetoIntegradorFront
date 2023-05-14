@@ -13,7 +13,7 @@ export class Apresentacao extends Component {
 			listaCategorias: [],
 			selectBoxStyle: {
 				width: { xs: '100%', md: '45%' },
-				marginBottom: '41px',
+				marginBottom: '2.625rem',
 			},
 		};
 		this.CosplayDesfile = 'Cosplay Desfile';
@@ -169,7 +169,7 @@ export class Apresentacao extends Component {
 								<Box
 									sx={{
 										width: '100%',
-										marginTop: '30px',
+										marginTop: '1.875rem',
 										display: 'flex',
 										flexDirection: 'column',
 										justifyContent: 'center',
@@ -193,7 +193,7 @@ export class Apresentacao extends Component {
 											}}
 										>
 											<TextField
-												sx={{ marginBottom: '41px', width: '100%' }}
+												sx={{ marginBottom: '2.625rem', width: '100%' }}
 												id="apres_nome"
 												label="Nome do Personagem / Música"
 												placeholder="Entre com o nome do personagem ou música a ser apresentada."
@@ -216,7 +216,7 @@ export class Apresentacao extends Component {
 											}}
 										>
 											<TextField
-												sx={{ marginBottom: '41px', width: '100%' }}
+												sx={{ marginBottom: '2.625rem', width: '100%' }}
 												id="apres_origem"
 												label="Origem do Personagem / Música"
 												placeholder="Entre com a origem do personagem ou música a ser apresentada."
@@ -250,7 +250,7 @@ export class Apresentacao extends Component {
 											}}
 										>
 											<TextField
-												sx={{ marginBottom: '41px', width: '100%' }}
+												sx={{ marginBottom: '2.625rem', width: '100%' }}
 												id="apres_link_ref"
 												label="Link de Referência"
 												placeholder="Entre com o link contendo imagem / vídeo / música de referência do personagem ou música a ser apresentada."
@@ -280,14 +280,14 @@ export class Apresentacao extends Component {
 										}}
 									>
 										<Button
-											sx={{ margin: '10px', width: '120px' }}
+											sx={{ margin: '.625rem', width: '7.5rem' }}
 											variant="contained"
 											onClick={this.back}
 										>
 											Voltar
 										</Button>
 										<Button
-											sx={{ margin: '10px', width: '120px' }}
+											sx={{ margin: '.625rem', width: '7.5rem' }}
 											type="submit"
 											variant="contained"
 											disabled={!isValid}

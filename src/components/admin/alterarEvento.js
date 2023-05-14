@@ -22,7 +22,7 @@ export class AlterarEvento extends Component {
 			listaEventos: [],
 			listaEstados: [],
 			listaCidades: [],
-			selectBoxStyle: { width: '45%', marginBottom: '41px' },
+			selectBoxStyle: { width: '45%', marginBottom: '2.625rem' },
 			values: {
 				event_id: 0,
 				event_ed_nome: '',
@@ -50,7 +50,7 @@ export class AlterarEvento extends Component {
 				boxShadow: 24,
 				p: 4,
 				color: '#fff',
-				borderRadius: '20px',
+				borderRadius: '1.25rem',
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
@@ -66,7 +66,7 @@ export class AlterarEvento extends Component {
 				border: '2px solid #000',
 				boxShadow: 24,
 				p: 4,
-				borderRadius: '20px',
+				borderRadius: '1.25rem',
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
@@ -388,7 +388,7 @@ export class AlterarEvento extends Component {
 								<Box
 									sx={{
 										width: '100%',
-										marginTop: '30px',
+										marginTop: '1.875rem',
 										display: 'flex',
 										flexDirection: 'column',
 										justifyContent: 'center',
@@ -398,7 +398,7 @@ export class AlterarEvento extends Component {
 									<Box
 										sx={{
 											width: '100%',
-											marginTop: '30px',
+											marginTop: '1.875rem',
 											display: 'flex',
 											flexDirection: 'column',
 											justifyContent: 'center',
@@ -411,7 +411,7 @@ export class AlterarEvento extends Component {
 												`${listaEventos.event_ed_nome}`
 											}
 											options={listaEventos}
-											sx={{ width: '95%', marginBottom: '41px' }}
+											sx={{ width: '95%', marginBottom: '2.625rem' }}
 											isOptionEqualToValue={(option, value) =>
 												option.event_ed_nome === value.event_ed_nome
 											}
@@ -461,7 +461,7 @@ export class AlterarEvento extends Component {
 													}}
 												>
 													<TextField
-														sx={{ marginBottom: '41px', width: '100%' }}
+														sx={{ marginBottom: '2.625rem', width: '100%' }}
 														id="event_nome"
 														label="Nome do Evento"
 														placeholder="Mega Campinas Anime Fest"
@@ -483,7 +483,7 @@ export class AlterarEvento extends Component {
 													}}
 												>
 													<TextField
-														sx={{ marginBottom: '41px', width: '100%' }}
+														sx={{ marginBottom: '2.625rem', width: '100%' }}
 														id="event_edicao"
 														label="Edição"
 														type="number"
@@ -516,7 +516,7 @@ export class AlterarEvento extends Component {
 													}}
 												>
 													<TextField
-														sx={{ marginBottom: '41px', width: '100%' }}
+														sx={{ marginBottom: '2.625rem', width: '100%' }}
 														id="event_local"
 														label="Local do Evento"
 														placeholder="Liceu Salesiano"
@@ -540,7 +540,7 @@ export class AlterarEvento extends Component {
 													}}
 												>
 													<TextField
-														sx={{ marginBottom: '41px', width: '100%' }}
+														sx={{ marginBottom: '2.625rem', width: '100%' }}
 														id="event_data"
 														label="Data do Evento"
 														InputLabelProps={{ shrink: true }}
@@ -676,14 +676,14 @@ export class AlterarEvento extends Component {
 												}}
 											>
 												<Button
-													sx={{ margin: '10px', width: '120px' }}
+													sx={{ margin: '.625rem', width: '7.5rem' }}
 													variant="contained"
 													onClick={this.handleOpenConfirm}
 												>
 													Deletar
 												</Button>
 												<Button
-													sx={{ margin: '10px', width: '120px' }}
+													sx={{ margin: '.625rem', width: '7.5rem' }}
 													type="submit"
 													variant="contained"
 													disabled={!isValid}
@@ -736,14 +736,14 @@ export class AlterarEvento extends Component {
 							}}
 						>
 							<Button
-								sx={{ margin: '10px', width: '120px' }}
+								sx={{ margin: '.625rem', width: '7.5rem' }}
 								variant="contained"
 								onClick={this.handleCloseConfirm}
 							>
 								Cancelar
 							</Button>
 							<Button
-								sx={{ margin: '10px', width: '120px' }}
+								sx={{ margin: '.625rem', width: '7.5rem' }}
 								variant="contained"
 								onClick={this.deletar}
 							>

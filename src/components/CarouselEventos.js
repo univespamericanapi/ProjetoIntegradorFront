@@ -62,7 +62,7 @@ class Banner extends Component {
 						height: '100%',
 						position: 'relative',
 						cursor: 'pointer',
-						padding: '30px',
+						padding: '1.875rem',
 						transition: '300ms',
 						':hover': { backgroundColor: '#3F1F52' },
 						':active': { backgroundColor: '#3F1F52' },
@@ -70,7 +70,7 @@ class Banner extends Component {
 				>
 					<Typography
 						sx={{
-							fontSize: '30px',
+							fontSize: '1.875rem',
 							fontWeight: '500',
 							color: 'white',
 						}}
@@ -80,8 +80,8 @@ class Banner extends Component {
 
 					<Typography
 						sx={{
-							marginTop: '10px',
-							fontSize: '18px',
+							marginTop: '0.625rem',
+							fontSize: '1.125rem',
 							color: 'white',
 						}}
 					>
@@ -91,9 +91,9 @@ class Banner extends Component {
 					<Button
 						variant="outlined"
 						sx={{
-							marginTop: '40px',
+							marginTop: '2.5rem',
 							color: 'white',
-							fontSize: '25px',
+							fontSize: '1.5rem',
 							border: '3px solid white',
 							textTransform: 'uppercase',
 							transition: '200ms',
@@ -135,13 +135,13 @@ class Banner extends Component {
 							textOverflow: 'ellipsis',
 							position: 'absolute',
 							bottom: 0,
-							padding: '15px',
+							padding: '1rem',
 							backgroundColor: 'black',
 							color: 'white',
 							opacity: 0.6,
 							width: '100%',
 							height: '10%',
-							fontSize: '21px',
+							fontSize: '1.375rem',
 							fontWeight: 200,
 							transition: '300ms',
 							cursor: 'pointer',
@@ -165,7 +165,7 @@ class Banner extends Component {
 		}
 
 		return (
-			<Card raised sx={{ height: '400px', position: 'relative' }}>
+			<Card raised sx={{ height: '25rem', position: 'relative' }}>
 				<Grid
 					container
 					spacing={0}

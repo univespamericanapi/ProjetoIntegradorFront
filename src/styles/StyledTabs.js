@@ -26,7 +26,7 @@ export const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
 	({ theme }) => ({
 		textTransform: 'none',
 		width: '100%',
-		fontSize: theme.typography.pxToRem(15),
+		fontSize: '1rem',
 		marginRight: theme.spacing(1),
 		color: '#fff',
 		fontWeight: 700,

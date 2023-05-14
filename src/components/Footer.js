@@ -14,7 +14,7 @@ export class Footer extends Component {
 					justifyContent: 'center',
 					alignItems: 'center',
 					width: '100%',
-					padding: '60px 15px',
+					padding: '3.75rem 1rem',
 					color: '#fff',
 					backgroundColor: '#572d7f',
 				}}
@@ -26,8 +26,8 @@ export class Footer extends Component {
 						justifyContent: 'center',
 						alignItems: 'center',
 						textAlign: 'center',
-						width: '430px',
-						padding: '15px',
+						width: '26.875rem',
+						padding: '1rem',
 					}}
 				>
 					<Typography>Realização</Typography>
@@ -36,7 +36,7 @@ export class Footer extends Component {
 						image={logo}
 						alt="Logo Avalon"
 						sx={{
-							width: '200px',
+							width: '12.5rem',
 						}}
 					/>
 					<Typography>
@@ -55,32 +55,32 @@ export class Footer extends Component {
 							<Box
 								sx={{
 									display: 'flex',
-									padding: '8px',
+									padding: '.5rem',
 									borderRadius: '50%',
 									backgroundColor: 'transparent',
-									margin: '16px 8px',
+									margin: '1rem .5rem',
 									':hover': { backgroundColor: '#e119bd' },
 								}}
 							>
-								<InstagramIcon sx={{ color: '#fff', fontSize: '36px' }} />
+								<InstagramIcon sx={{ color: '#fff', fontSize: '2.25rem' }} />
 							</Box>
 						</a>
 						<a href="https://www.facebook.com/CircuitoAnimeFest/">
 							<Box
 								sx={{
 									display: 'flex',
-									padding: '8px',
+									padding: '.5rem',
 									borderRadius: '50%',
 									backgroundColor: 'transparent',
-									margin: '16px 8px',
+									margin: '1rem .5rem',
 									':hover': { backgroundColor: '#e119bd' },
 								}}
 							>
-								<FacebookIcon sx={{ color: '#fff', fontSize: '36px' }} />
+								<FacebookIcon sx={{ color: '#fff', fontSize: '2.25rem' }} />
 							</Box>
 						</a>
 					</Box>
-					<Typography sx={{ fontSize: '12px' }}>
+					<Typography sx={{ fontSize: '0.75rem' }}>
 						Copyright &copy; 2023 Avalon Eventos. Todos os direitos reservados.{' '}
 						<br />
 						Avalon Eventos LTDA. CPNJ: 99.999.999/9999-99
