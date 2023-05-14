@@ -97,7 +97,6 @@ export class CadastrarUsuario extends Component {
 
 	continue = async (e) => {
 		const data = this.state.values;
-		console.log(data);
 		try {
 			const response = await api.post('admin/usuario/criar', data);
 			this.setState({

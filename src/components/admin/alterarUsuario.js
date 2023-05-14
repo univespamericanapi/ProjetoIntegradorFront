@@ -19,6 +19,7 @@ import UserService from '../../services/user';
 import EventBus from '../../common/eventBus';
 import { inputLoginErrors } from '../../styles/MuiTheme';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import AuthService from '../../services/auth';
 
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 
@@ -191,28 +192,14 @@ export class AlterarUsuario extends Component {
 
 		const idUsuario = this.state.values.usuario_id;
 
-		try {
-			const response = await api.delete('admin/usuario/deletar/' + idUsuario);
-			this.setState({
-				successMsg: {
-					type: 'succcess',
-					title: 'Sucesso',
-					msg: response.data,
-				},
-				style: {
-					...this.state.style,
-					bgcolor: 'rgba(6, 68, 6, 0.8)',
-					border: '2px solid #0F0',
-				},
-			});
-			this.handleOpen();
-		} catch (error) {
-			console.error(error);
+		const usuarioAtual = AuthService.getCurrentUser();
+
+		if (usuarioAtual.usuario_id === idUsuario) {
 			this.setState({
 				successMsg: {
 					type: 'error',
 					title: 'Erro na solicitação',
-					msg: error.response.data,
+					msg: 'Você não pode deletar seu próprio usuário!',
 				},
 				style: {
 					...this.state.style,
@@ -220,7 +207,36 @@ export class AlterarUsuario extends Component {
 					border: '2px solid #F00',
 				},
 			});
-			this.handleOpen();
+		} else {
+			try {
+				const response = await api.delete('admin/usuario/deletar/' + idUsuario);
+				this.setState({
+					successMsg: {
+						type: 'succcess',
+						title: 'Sucesso',
+						msg: response.data,
+					},
+					style: {
+						...this.state.style,
+						bgcolor: 'rgba(6, 68, 6, 0.8)',
+						border: '2px solid #0F0',
+					},
+				});
+			} catch (error) {
+				console.error(error);
+				this.setState({
+					successMsg: {
+						type: 'error',
+						title: 'Erro na solicitação',
+						msg: error.response.data,
+					},
+					style: {
+						...this.state.style,
+						bgcolor: 'rgba(138, 22, 22, 0.8)',
+						border: '2px solid #F00',
+					},
+				});
+			}
 		}
 
 		this.setState({
@@ -229,6 +245,8 @@ export class AlterarUsuario extends Component {
 
 		this.setState({ listaUsuarios: [] });
 		this.fetchUsuarios();
+
+		this.handleOpen();
 
 		this.handleCloseConfirm();
 	};
