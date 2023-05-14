@@ -116,7 +116,10 @@ export class App extends Component {
 							<AppBar position="static">
 								<Container maxWidth="xl">
 									<Toolbar disableGutters>
-										{/* TODO colocar logo aqui */}
+										<img
+											src="./assets/img/logo-circuito-roxo-02.png"
+											alt="Logo da Avalon Eventos"
+										/>
 										<Typography
 											variant="h6"
 											noWrap
