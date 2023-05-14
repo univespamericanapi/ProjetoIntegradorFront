@@ -10,7 +10,7 @@ export class EventoConcurso extends Component {
 		this.state = {
 			listaEventos: [],
 			listaConcursos: [],
-			selectBoxStyle: { width: '45%', margin: '20px' },
+			selectBoxStyle: { width: { xs: '90%', md: '45%' }, margin: '20px' },
 		};
 		this.fetchEventos = this.fetchEventos.bind(this);
 		this.fetchConcursos = this.fetchConcursos.bind(this);

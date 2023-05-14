@@ -12,6 +12,7 @@ import {
 	Input,
 	InputAdornment,
 	IconButton,
+	OutlinedInput,
 } from '@mui/material';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -332,14 +333,14 @@ export class CadastrarUsuario extends Component {
 											}}
 										>
 											<FormControl
+												sx={{ m: 1, marginBottom: '41px', width: '100%' }}
 												variant="outlined"
-												sx={{ marginBottom: '41px', width: '100%' }}
+												required
 											>
 												<InputLabel htmlFor="usuario_senha">Senha</InputLabel>
-												<Input
+												<OutlinedInput
 													id="usuario_senha"
 													name="usuario_senha"
-													variant="outlined"
 													type={show_usuario_senha ? 'text' : 'password'}
 													placeholder="Entre com sua senha."
 													value={usuario_senha}
@@ -367,6 +368,7 @@ export class CadastrarUsuario extends Component {
 														</InputAdornment>
 													}
 													error={errors.usuario_senha && touched.usuario_senha}
+													label="Senha"
 												/>
 											</FormControl>
 											{errors.usuario_senha && touched.usuario_senha && (
@@ -384,14 +386,14 @@ export class CadastrarUsuario extends Component {
 											<FormControl
 												variant="outlined"
 												sx={{ marginBottom: '41px', width: '100%' }}
+												required
 											>
 												<InputLabel htmlFor="usuario_senha_confirm">
 													Confirme a Senha
 												</InputLabel>
-												<Input
+												<OutlinedInput
 													id="usuario_senha_confirm"
 													name="usuario_senha_confirm"
-													variant="outlined"
 													type={show_senha_confirm ? 'text' : 'password'}
 													placeholder="Entre com sua senha."
 													value={values.usuario_senha_confirm}
@@ -425,6 +427,7 @@ export class CadastrarUsuario extends Component {
 														errors.usuario_senha_confirm &&
 														touched.usuario_senha_confirm
 													}
+													label="Confirme a Senha"
 												/>
 											</FormControl>
 											{errors.usuario_senha_confirm &&

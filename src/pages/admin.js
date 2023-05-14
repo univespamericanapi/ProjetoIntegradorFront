@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import { StyledTab, StyledTabs } from '../styles/StyledTabs';
+import { deepOrange } from '@mui/material/colors';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import CadastrarEvento from '../components/admin/cadastrarEvento';
@@ -114,23 +114,32 @@ class BoardAdmin extends Component {
 							width: '100%',
 							flexGrow: 1,
 							display: 'flex',
+							height: 'calc(100dvh - 140px)',
 						}}
 					>
-						<Tabs
+						<StyledTabs
 							orientation="vertical"
 							variant="scrollable"
 							value={value}
+							textColor="primary"
+							indicatorColor="primary"
 							onChange={this.handleChange}
 							aria-label="Vertical tabs example"
-							sx={{ borderRight: 1, borderColor: 'divider', width: '200px' }}
+							sx={{
+								borderRight: 1,
+								borderColor: 'divider',
+								width: '300px',
+								bgcolor: deepOrange[500],
+								height: '100%',
+							}}
 						>
-							<Tab label="Início" {...a11yProps(0)} />
-							<Tab label="Cadastrar Evento" {...a11yProps(1)} />
-							<Tab label="Configurar Concursos" {...a11yProps(2)} />
-							<Tab label="Cadastrar Usuário" {...a11yProps(3)} />
-							<Tab label="Alterar Evento" {...a11yProps(4)} />
-							<Tab label="Alterar Usuário" {...a11yProps(5)} />
-						</Tabs>
+							<StyledTab label="Início" {...a11yProps(0)} />
+							<StyledTab label="Cadastrar Evento" {...a11yProps(1)} />
+							<StyledTab label="Configurar Concursos" {...a11yProps(2)} />
+							<StyledTab label="Cadastrar Usuário" {...a11yProps(3)} />
+							<StyledTab label="Alterar Evento" {...a11yProps(4)} />
+							<StyledTab label="Alterar Usuário" {...a11yProps(5)} />
+						</StyledTabs>
 
 						<TabPanel value={value} index={0} style={{ width: '100%' }}>
 							<Box sx={AdminFlexBoxColumn}>

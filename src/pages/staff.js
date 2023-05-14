@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import { StyledTab, StyledTabs } from '../styles/StyledTabs';
+import { deepOrange } from '@mui/material/colors';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
@@ -61,23 +61,30 @@ class BoardStaff extends Component {
 				sx={{
 					width: '100%',
 					flexGrow: 1,
-					bgcolor: 'background.paper',
 					display: 'flex',
-					height: 224,
+					height: 'calc(100dvh - 140px)',
 				}}
 			>
-				<Tabs
+				<StyledTabs
 					orientation="vertical"
 					variant="scrollable"
 					value={value}
+					textColor="primary"
+					indicatorColor="primary"
 					onChange={this.handleChange}
 					aria-label="Vertical tabs example"
-					sx={{ borderRight: 1, borderColor: 'divider', width: '200px' }}
+					sx={{
+						borderRight: 1,
+						borderColor: 'divider',
+						width: '300px',
+						bgcolor: deepOrange[500],
+						height: '100%',
+					}}
 				>
-					<Tab label="Item One" {...a11yProps(0)} />
-					<Tab label="Item Two" {...a11yProps(1)} />
-					<Tab label="Item Three" {...a11yProps(2)} />
-				</Tabs>
+					<StyledTab label="Item One" {...a11yProps(0)} />
+					<StyledTab label="Item Two" {...a11yProps(1)} />
+					<StyledTab label="Item Three" {...a11yProps(2)} />
+				</StyledTabs>
 				<TabPanel value={value} index={0}>
 					Item One
 				</TabPanel>

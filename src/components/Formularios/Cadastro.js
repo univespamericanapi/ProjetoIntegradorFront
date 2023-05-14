@@ -179,13 +179,22 @@ export class CadastroForm extends Component {
 
 		return (
 			<Box sx={{ width: '100%' }}>
-				<Stepper activeStep={step}>
+				<Stepper activeStep={step} alternativeLabel>
 					{steps.map((label, index) => {
 						const stepProps = {};
 						const labelProps = {};
 						return (
 							<Step key={label} {...stepProps}>
-								<StepLabel {...labelProps}>{label}</StepLabel>
+								<StepLabel {...labelProps}>
+									<Box
+										sx={{
+											display: { xs: 'none', md: 'flex' },
+											justifyContent: 'center',
+										}}
+									>
+										{label}
+									</Box>
+								</StepLabel>
 							</Step>
 						);
 					})}
@@ -196,7 +205,6 @@ export class CadastroForm extends Component {
 							All steps completed - you&apos;re finished
 						</Typography>
 						<Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-							<Box sx={{ flex: '1 1 auto' }} />
 							<Button onClick={this.resetAll}>Reset</Button>
 						</Box>
 					</React.Fragment>

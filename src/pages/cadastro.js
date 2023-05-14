@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import CadastroForm from '../components/Formularios/Cadastro';
+import { deepOrange } from '@mui/material/colors';
+import { StyledTab, StyledTabs } from '../styles/StyledTabs';
 
 class CadastroPage extends Component {
 	constructor(props) {
@@ -67,23 +67,27 @@ class CadastroPage extends Component {
 					width: '100%',
 					flexGrow: 1,
 					display: 'flex',
+					height: 'calc(100dvh - 140px)',
 				}}
 			>
-				<Tabs
+				<StyledTabs
 					orientation="vertical"
 					variant="scrollable"
 					value={value}
+					textColor="primary"
+					indicatorColor="primary"
 					onChange={this.handleChange}
 					aria-label="Vertical tabs example"
 					sx={{
 						borderRight: 1,
 						borderColor: 'divider',
-						width: '200px',
-						color: '#fff',
+						width: '300px',
+						bgcolor: deepOrange[500],
+						height: '100%',
 					}}
 				>
-					<Tab label="Cadastro" sx={{ color: '#fff' }} {...a11yProps(0)} />
-				</Tabs>
+					<StyledTab label="Cadastro" {...a11yProps(0)} />
+				</StyledTabs>
 				<TabPanel value={value} index={0}>
 					<CadastroForm />
 				</TabPanel>
