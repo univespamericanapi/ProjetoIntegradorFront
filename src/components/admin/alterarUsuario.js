@@ -27,6 +27,7 @@ export class AlterarUsuario extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			usuarioAtual: AuthService.getCurrentUser(),
 			show_usuario_senha: false,
 			show_senha_confirm: false,
 			open: false,
@@ -192,7 +193,7 @@ export class AlterarUsuario extends Component {
 
 		const idUsuario = this.state.values.usuario_id;
 
-		const usuarioAtual = AuthService.getCurrentUser();
+		const usuarioAtual = this.state.usuarioAtual;
 
 		if (usuarioAtual.usuario_id === idUsuario) {
 			this.setState({
@@ -346,6 +347,7 @@ export class AlterarUsuario extends Component {
 			selectBoxStyle,
 			show_usuario_senha,
 			show_senha_confirm,
+			usuarioAtual,
 		} = this.state;
 
 		return (
@@ -474,6 +476,10 @@ export class AlterarUsuario extends Component {
 														helperText={
 															touched.usuario_nome && errors.usuario_nome
 														}
+														disabled={
+															usuario_login === 'dev' &&
+															usuarioAtual.usuario_login !== 'dev'
+														}
 													/>
 												</Box>
 												<Autocomplete
@@ -527,6 +533,10 @@ export class AlterarUsuario extends Component {
 														usuario_cargo_nome: usuario_cargo_nome,
 													}}
 													disableClearable
+													disabled={
+														usuario_cargo_nome === 'admin' &&
+														usuarioAtual.usuario_login !== 'dev'
+													}
 												/>
 											</Box>
 
@@ -587,6 +597,10 @@ export class AlterarUsuario extends Component {
 																errors.usuario_senha && touched.usuario_senha
 															}
 															label="Senha"
+															disabled={
+																usuario_login === 'dev' &&
+																usuarioAtual.usuario_login !== 'dev'
+															}
 														/>
 													</FormControl>
 													{errors.usuario_senha && touched.usuario_senha && (
@@ -647,6 +661,10 @@ export class AlterarUsuario extends Component {
 																touched.usuario_senha_confirm
 															}
 															label="Confirme a Senha"
+															disabled={
+																usuario_login === 'dev' &&
+																usuarioAtual.usuario_login !== 'dev'
+															}
 														/>
 													</FormControl>
 													{errors.usuario_senha_confirm &&
