@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextField, Button, Box, Autocomplete } from '@mui/material';
+import { TextField, Button, Box, Autocomplete, Tooltip } from '@mui/material';
 import api from '../../services/api';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -108,99 +108,103 @@ export class EventoConcurso extends Component {
 										alignItems: 'center',
 									}}
 								>
-									<Autocomplete
-										id="cad-select-evento"
-										getOptionLabel={(listaEventos) =>
-											`${listaEventos.part_event_nome}`
-										}
-										options={listaEventos}
-										sx={selectBoxStyle}
-										isOptionEqualToValue={(option, value) =>
-											option.part_event_nome === value.part_event_nome
-										}
-										noOptionsText={'Nenhum evento está disponível.'}
-										renderOption={(props, listaEventos) => (
-											<Box
-												component="li"
-												{...props}
-												key={listaEventos.part_event}
-											>
-												{listaEventos.part_event_nome}
-											</Box>
-										)}
-										renderInput={(params) => (
-											<TextField
-												{...params}
-												label="Evento"
-												error={
-													touched.part_event_nome &&
-													Boolean(errors.part_event_nome)
-												}
-												helperText={
-													touched.part_event_nome && errors.part_event_nome
-												}
-												required
-												variant="outlined"
-											/>
-										)}
-										onChange={(event, values, select, option) => {
-											this.eventoSelecionado(event, values, select, option);
-											handleChange(event, values, select, option);
-										}}
-										onBlur={handleBlur}
-										value={{
-											part_event: part_event,
-											part_event_nome: part_event_nome,
-										}}
-										disableClearable
-									/>
+									<Tooltip title="Selecione o evento que participará de algum concurso.">
+										<Autocomplete
+											id="cad-select-evento"
+											getOptionLabel={(listaEventos) =>
+												`${listaEventos.part_event_nome}`
+											}
+											options={listaEventos}
+											sx={selectBoxStyle}
+											isOptionEqualToValue={(option, value) =>
+												option.part_event_nome === value.part_event_nome
+											}
+											noOptionsText={'Nenhum evento está disponível.'}
+											renderOption={(props, listaEventos) => (
+												<Box
+													component="li"
+													{...props}
+													key={listaEventos.part_event}
+												>
+													{listaEventos.part_event_nome}
+												</Box>
+											)}
+											renderInput={(params) => (
+												<TextField
+													{...params}
+													label="Evento"
+													error={
+														touched.part_event_nome &&
+														Boolean(errors.part_event_nome)
+													}
+													helperText={
+														touched.part_event_nome && errors.part_event_nome
+													}
+													required
+													variant="outlined"
+												/>
+											)}
+											onChange={(event, values, select, option) => {
+												this.eventoSelecionado(event, values, select, option);
+												handleChange(event, values, select, option);
+											}}
+											onBlur={handleBlur}
+											value={{
+												part_event: part_event,
+												part_event_nome: part_event_nome,
+											}}
+											disableClearable
+										/>
+									</Tooltip>
 
-									<Autocomplete
-										id="cad-select-concurso"
-										getOptionLabel={(listaConcursos) =>
-											`${listaConcursos.part_conc_nome}`
-										}
-										options={listaConcursos}
-										sx={selectBoxStyle}
-										isOptionEqualToValue={(option, value) =>
-											option.part_conc_nome === value.part_conc_nome
-										}
-										noOptionsText={'Nenhum concurso está disponível.'}
-										renderOption={(props, listaConcursos) => (
-											<Box
-												component="li"
-												{...props}
-												key={listaConcursos.part_conc}
-											>
-												{listaConcursos.part_conc_nome}
-											</Box>
-										)}
-										renderInput={(params) => (
-											<TextField
-												{...params}
-												label="Concurso"
-												error={
-													touched.part_conc_nome &&
-													Boolean(errors.part_conc_nome)
-												}
-												helperText={
-													touched.part_conc_nome && errors.part_conc_nome
-												}
-												required
-												variant="outlined"
-											/>
-										)}
-										onChange={(event, values, select, option) => {
-											this.concursoSelecionado(event, values, select, option);
-											handleChange(event, values, select, option);
-										}}
-										onBlur={handleBlur}
-										value={{
-											part_conc: part_conc,
-											part_conc_nome: part_conc_nome,
-										}}
-										disableClearable
-									/>
+									<Tooltip title="Selecione o concurso ao qual irá competir.">
+										<Autocomplete
+											id="cad-select-concurso"
+											getOptionLabel={(listaConcursos) =>
+												`${listaConcursos.part_conc_nome}`
+											}
+											options={listaConcursos}
+											sx={selectBoxStyle}
+											isOptionEqualToValue={(option, value) =>
+												option.part_conc_nome === value.part_conc_nome
+											}
+											noOptionsText={'Nenhum concurso está disponível.'}
+											renderOption={(props, listaConcursos) => (
+												<Box
+													component="li"
+													{...props}
+													key={listaConcursos.part_conc}
+												>
+													{listaConcursos.part_conc_nome}
+												</Box>
+											)}
+											renderInput={(params) => (
+												<TextField
+													{...params}
+													label="Concurso"
+													error={
+														touched.part_conc_nome &&
+														Boolean(errors.part_conc_nome)
+													}
+													helperText={
+														touched.part_conc_nome && errors.part_conc_nome
+													}
+													required
+													variant="outlined"
+												/>
+											)}
+											onChange={(event, values, select, option) => {
+												this.concursoSelecionado(event, values, select, option);
+												handleChange(event, values, select, option);
+											}}
+											onBlur={handleBlur}
+											value={{
+												part_conc: part_conc,
+												part_conc_nome: part_conc_nome,
+											}}
+											disableClearable
+										/>
+									</Tooltip>
 
 									<Box
 										sx={{

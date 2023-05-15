@@ -524,7 +524,10 @@ export class CadastrarEvento extends Component {
 						<Typography id="modal-modal-title" variant="h5" component="h2">
 							{this.state.successMsg.title}
 						</Typography>
-						<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+						<Typography
+							id="modal-modal-description"
+							sx={{ mt: 2, textAlign: 'center' }}
+						>
 							{this.state.successMsg.msg}
 						</Typography>
 					</Box>

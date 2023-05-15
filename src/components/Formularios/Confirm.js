@@ -97,8 +97,10 @@ export class Confirm extends Component {
 					}}
 				>
 					<h1>Informações Para Confirmação</h1>
-					<TableContainer>
-						<Table sx={{ width: '100%' }} aria-label="simple table">
+					<TableContainer
+						sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+					>
+						<Table sx={{ maxWidth: '600px' }} aria-label="simple table">
 							<TableHead>
 								<TableRow>
 									<TableCell>Campo</TableCell>

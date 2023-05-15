@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextField, Button, Box, Autocomplete } from '@mui/material';
+import { TextField, Button, Box, Autocomplete, Tooltip } from '@mui/material';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import api from '../../services/api';
@@ -211,20 +211,22 @@ export class InformacaoPessoal extends Component {
 												alignItems: 'center',
 											}}
 										>
-											<TextField
-												sx={{ marginBottom: '2.625rem', width: '100%' }}
-												id="comp_nome"
-												label="Nome Completo"
-												placeholder="Entre com seu nome completo"
-												variant="outlined"
-												value={values.comp_nome}
-												onChange={handleChange}
-												onChangeCapture={this.props.handleChange('comp_nome')}
-												onBlur={handleBlur}
-												error={errors.comp_nome && touched.comp_nome}
-												helperText={touched.comp_nome && errors.comp_nome}
-												required
-											/>
+											<Tooltip title="Digite seu nome completo.">
+												<TextField
+													sx={{ marginBottom: '2.625rem', width: '100%' }}
+													id="comp_nome"
+													label="Nome Completo"
+													placeholder="João da Silva"
+													variant="outlined"
+													value={values.comp_nome}
+													onChange={handleChange}
+													onChangeCapture={this.props.handleChange('comp_nome')}
+													onBlur={handleBlur}
+													error={errors.comp_nome && touched.comp_nome}
+													helperText={touched.comp_nome && errors.comp_nome}
+													required
+												/>
+											</Tooltip>
 										</Box>
 										<Box
 											sx={{
@@ -234,22 +236,26 @@ export class InformacaoPessoal extends Component {
 												alignItems: 'center',
 											}}
 										>
-											<TextField
-												sx={{ marginBottom: '2.625rem', width: '100%' }}
-												id="comp_whats"
-												label="Whatsapp"
-												placeholder="Entre com o número do seu Whatsapp, somente números."
-												variant="outlined"
-												value={values.comp_whats}
-												onChange={(e) => {
-													this.handleChangeWhatsMask(e, handleChange);
-												}}
-												onChangeCapture={this.props.handleChange('comp_whats')}
-												onBlur={handleBlur}
-												error={errors.comp_whats && touched.comp_whats}
-												helperText={touched.comp_whats && errors.comp_whats}
-												required
-											/>
+											<Tooltip title="Digite seu número de Whastapp no formato (99) 99999-9999.">
+												<TextField
+													sx={{ marginBottom: '2.625rem', width: '100%' }}
+													id="comp_whats"
+													label="Whatsapp"
+													placeholder="(99) 99999-9999"
+													variant="outlined"
+													value={values.comp_whats}
+													onChange={(e) => {
+														this.handleChangeWhatsMask(e, handleChange);
+													}}
+													onChangeCapture={this.props.handleChange(
+														'comp_whats'
+													)}
+													onBlur={handleBlur}
+													error={errors.comp_whats && touched.comp_whats}
+													helperText={touched.comp_whats && errors.comp_whats}
+													required
+												/>
+											</Tooltip>
 										</Box>
 									</Box>
 
@@ -269,211 +275,227 @@ export class InformacaoPessoal extends Component {
 												alignItems: 'center',
 											}}
 										>
-											<TextField
-												sx={{ marginBottom: '2.625rem', width: '100%' }}
-												id="comp_nome_social"
-												label="Nome Social / Artístico"
-												placeholder="Entre com seu nome social ou artístico"
-												variant="outlined"
-												value={values.comp_nome_social}
-												onChange={handleChange}
-												onChangeCapture={this.props.handleChange(
-													'comp_nome_social'
+											<Tooltip title="Digite seu nome social, ou artístico, ou apelido.">
+												<TextField
+													sx={{ marginBottom: '2.625rem', width: '100%' }}
+													id="comp_nome_social"
+													label="Nome Social / Artístico"
+													placeholder="Jão"
+													variant="outlined"
+													value={values.comp_nome_social}
+													onChange={handleChange}
+													onChangeCapture={this.props.handleChange(
+														'comp_nome_social'
+													)}
+													onBlur={handleBlur}
+													error={
+														errors.comp_nome_social && touched.comp_nome_social
+													}
+													helperText={
+														touched.comp_nome_social && errors.comp_nome_social
+													}
+												/>
+											</Tooltip>
+										</Box>
+										<Box
+											sx={{
+												width: { xs: '100%', md: '45%' },
+												display: 'flex',
+												flexDirection: 'column',
+												alignItems: 'center',
+											}}
+										>
+											<Tooltip title="Diggite seu CPF no formato 999.999.999-99.">
+												<TextField
+													sx={{ marginBottom: '2.625rem', width: '100%' }}
+													id="comp_cpf"
+													label="CPF"
+													placeholder="999.999.999-99"
+													variant="outlined"
+													value={values.comp_cpf}
+													onChange={(e) => {
+														this.handleChangeCpfMask(e, handleChange);
+													}}
+													onChangeCapture={this.props.handleChange('comp_cpf')}
+													onBlur={handleBlur}
+													error={errors.comp_cpf && touched.comp_cpf}
+													helperText={touched.comp_cpf && errors.comp_cpf}
+													required
+												/>
+											</Tooltip>
+										</Box>
+									</Box>
+
+									<Box
+										sx={{
+											width: '100%',
+											display: 'flex',
+											justifyContent: 'space-around',
+											flexDirection: { xs: 'column', md: 'row' },
+										}}
+									>
+										<Box
+											sx={{
+												width: { xs: '100%', md: '45%' },
+												display: 'flex',
+												flexDirection: 'column',
+												alignItems: 'center',
+											}}
+										>
+											<Tooltip title="Digite sua data de nascimento no formato DD/MM/AAAA.">
+												<TextField
+													sx={{ marginBottom: '2.625rem', width: '100%' }}
+													id="comp_nasc"
+													label="Data de Nascimento"
+													InputLabelProps={{ shrink: true }}
+													type="date"
+													variant="outlined"
+													value={values.comp_nasc}
+													onChange={handleChange}
+													onChangeCapture={this.props.handleChange('comp_nasc')}
+													onBlur={handleBlur}
+													error={errors.comp_nasc && touched.comp_nasc}
+													helperText={touched.comp_nasc && errors.comp_nasc}
+													required
+												/>
+											</Tooltip>
+										</Box>
+										<Box
+											sx={{
+												width: { xs: '100%', md: '45%' },
+												display: 'flex',
+												flexDirection: 'column',
+												alignItems: 'center',
+											}}
+										>
+											<Tooltip title="Digite um e-mail válido, lembre que iremos verificar se o e-mail está ativo.">
+												<TextField
+													sx={{ marginBottom: '2.625rem', width: '100%' }}
+													id="comp_email"
+													label="E-mail"
+													placeholder="joao.silva@gmail.com"
+													variant="outlined"
+													value={values.comp_email}
+													onChange={handleChange}
+													onChangeCapture={this.props.handleChange(
+														'comp_email'
+													)}
+													onBlur={handleBlur}
+													error={errors.comp_email && touched.comp_email}
+													helperText={touched.comp_email && errors.comp_email}
+													required
+												/>
+											</Tooltip>
+										</Box>
+									</Box>
+
+									<Box
+										sx={{
+											width: '100%',
+											display: 'flex',
+											justifyContent: 'space-around',
+											flexDirection: { xs: 'column', md: 'row' },
+										}}
+									>
+										<Tooltip title="Selecione seu estado.">
+											<Autocomplete
+												id="cad-select-estado"
+												getOptionLabel={(listaEstados) =>
+													`${listaEstados.comp_estado_nome}`
+												}
+												options={listaEstados}
+												sx={selectBoxStyle}
+												isOptionEqualToValue={(option, value) =>
+													option.comp_estado_nome === value.comp_estado_nome
+												}
+												noOptionsText={'Nenhum estado está disponível.'}
+												renderOption={(props, listaEstados) => (
+													<Box
+														component="li"
+														{...props}
+														key={listaEstados.comp_estado}
+													>
+														{listaEstados.comp_estado_nome}
+													</Box>
 												)}
-												onBlur={handleBlur}
-												error={
-													errors.comp_nome_social && touched.comp_nome_social
-												}
-												helperText={
-													touched.comp_nome_social && errors.comp_nome_social
-												}
-											/>
-										</Box>
-										<Box
-											sx={{
-												width: { xs: '100%', md: '45%' },
-												display: 'flex',
-												flexDirection: 'column',
-												alignItems: 'center',
-											}}
-										>
-											<TextField
-												sx={{ marginBottom: '2.625rem', width: '100%' }}
-												id="comp_cpf"
-												label="CPF"
-												placeholder="Entre com o número do seu CPF, somente números."
-												variant="outlined"
-												value={values.comp_cpf}
-												onChange={(e) => {
-													this.handleChangeCpfMask(e, handleChange);
+												renderInput={(params) => (
+													<TextField
+														{...params}
+														label="Estado"
+														error={
+															touched.comp_estado_nome &&
+															Boolean(errors.comp_estado_nome)
+														}
+														helperText={
+															touched.comp_estado_nome &&
+															errors.comp_estado_nome
+														}
+														required
+														variant="outlined"
+													/>
+												)}
+												onChange={(event, values, select, option) => {
+													this.estadoSelecionado(event, values, select, option);
+													handleChange(event, values, select, option);
 												}}
-												onChangeCapture={this.props.handleChange('comp_cpf')}
 												onBlur={handleBlur}
-												error={errors.comp_cpf && touched.comp_cpf}
-												helperText={touched.comp_cpf && errors.comp_cpf}
-												required
+												value={{
+													comp_estado: comp_estado,
+													comp_estado_nome: comp_estado_nome,
+												}}
+												disableClearable
 											/>
-										</Box>
-									</Box>
+										</Tooltip>
 
-									<Box
-										sx={{
-											width: '100%',
-											display: 'flex',
-											justifyContent: 'space-around',
-											flexDirection: { xs: 'column', md: 'row' },
-										}}
-									>
-										<Box
-											sx={{
-												width: { xs: '100%', md: '45%' },
-												display: 'flex',
-												flexDirection: 'column',
-												alignItems: 'center',
-											}}
-										>
-											<TextField
-												sx={{ marginBottom: '2.625rem', width: '100%' }}
-												id="comp_nasc"
-												label="Data de Nascimento"
-												InputLabelProps={{ shrink: true }}
-												type="date"
-												variant="outlined"
-												value={values.comp_nasc}
-												onChange={handleChange}
-												onChangeCapture={this.props.handleChange('comp_nasc')}
+										<Tooltip title="Selecione a sua cidade.">
+											<Autocomplete
+												id="cad-select-cidade"
+												getOptionLabel={(listaCidades) =>
+													`${listaCidades.comp_cidade_nome}`
+												}
+												options={listaCidades}
+												sx={selectBoxStyle}
+												isOptionEqualToValue={(option, value) =>
+													option.comp_cidade_nome === value.comp_cidade_nome
+												}
+												noOptionsText={'Nenhuma cidade está disponível.'}
+												renderOption={(props, listaCidades) => (
+													<Box
+														component="li"
+														{...props}
+														key={listaCidades.comp_cidade}
+													>
+														{listaCidades.comp_cidade_nome}
+													</Box>
+												)}
+												renderInput={(params) => (
+													<TextField
+														{...params}
+														label="Cidade"
+														error={
+															touched.comp_cidade_nome &&
+															Boolean(errors.comp_cidade_nome)
+														}
+														helperText={
+															touched.comp_cidade_nome &&
+															errors.comp_cidade_nome
+														}
+														required
+														variant="outlined"
+													/>
+												)}
+												onChange={(event, values, select, option) => {
+													this.cidadeSelecionada(event, values, select, option);
+													handleChange(event, values, select, option);
+												}}
 												onBlur={handleBlur}
-												error={errors.comp_nasc && touched.comp_nasc}
-												helperText={touched.comp_nasc && errors.comp_nasc}
-												required
+												value={{
+													comp_cidade: comp_cidade,
+													comp_cidade_nome: comp_cidade_nome,
+												}}
+												disableClearable
 											/>
-										</Box>
-										<Box
-											sx={{
-												width: { xs: '100%', md: '45%' },
-												display: 'flex',
-												flexDirection: 'column',
-												alignItems: 'center',
-											}}
-										>
-											<TextField
-												sx={{ marginBottom: '2.625rem', width: '100%' }}
-												id="comp_email"
-												label="E-mail"
-												placeholder="Entre com o seu e-mail."
-												variant="outlined"
-												value={values.comp_email}
-												onChange={handleChange}
-												onChangeCapture={this.props.handleChange('comp_email')}
-												onBlur={handleBlur}
-												error={errors.comp_email && touched.comp_email}
-												helperText={touched.comp_email && errors.comp_email}
-												required
-											/>
-										</Box>
-									</Box>
-
-									<Box
-										sx={{
-											width: '100%',
-											display: 'flex',
-											justifyContent: 'space-around',
-											flexDirection: { xs: 'column', md: 'row' },
-										}}
-									>
-										<Autocomplete
-											id="cad-select-estado"
-											getOptionLabel={(listaEstados) =>
-												`${listaEstados.comp_estado_nome}`
-											}
-											options={listaEstados}
-											sx={selectBoxStyle}
-											isOptionEqualToValue={(option, value) =>
-												option.comp_estado_nome === value.comp_estado_nome
-											}
-											noOptionsText={'Nenhum estado está disponível.'}
-											renderOption={(props, listaEstados) => (
-												<Box
-													component="li"
-													{...props}
-													key={listaEstados.comp_estado}
-												>
-													{listaEstados.comp_estado_nome}
-												</Box>
-											)}
-											renderInput={(params) => (
-												<TextField
-													{...params}
-													label="Estado"
-													error={
-														touched.comp_estado_nome &&
-														Boolean(errors.comp_estado_nome)
-													}
-													helperText={
-														touched.comp_estado_nome && errors.comp_estado_nome
-													}
-													required
-													variant="outlined"
-												/>
-											)}
-											onChange={(event, values, select, option) => {
-												this.estadoSelecionado(event, values, select, option);
-												handleChange(event, values, select, option);
-											}}
-											onBlur={handleBlur}
-											value={{
-												comp_estado: comp_estado,
-												comp_estado_nome: comp_estado_nome,
-											}}
-											disableClearable
-										/>
-
-										<Autocomplete
-											id="cad-select-cidade"
-											getOptionLabel={(listaCidades) =>
-												`${listaCidades.comp_cidade_nome}`
-											}
-											options={listaCidades}
-											sx={selectBoxStyle}
-											isOptionEqualToValue={(option, value) =>
-												option.comp_cidade_nome === value.comp_cidade_nome
-											}
-											noOptionsText={'Nenhuma cidade está disponível.'}
-											renderOption={(props, listaCidades) => (
-												<Box
-													component="li"
-													{...props}
-													key={listaCidades.comp_cidade}
-												>
-													{listaCidades.comp_cidade_nome}
-												</Box>
-											)}
-											renderInput={(params) => (
-												<TextField
-													{...params}
-													label="Cidade"
-													error={
-														touched.comp_cidade_nome &&
-														Boolean(errors.comp_cidade_nome)
-													}
-													helperText={
-														touched.comp_cidade_nome && errors.comp_cidade_nome
-													}
-													required
-													variant="outlined"
-												/>
-											)}
-											onChange={(event, values, select, option) => {
-												this.cidadeSelecionada(event, values, select, option);
-												handleChange(event, values, select, option);
-											}}
-											onBlur={handleBlur}
-											value={{
-												comp_cidade: comp_cidade,
-												comp_cidade_nome: comp_cidade_nome,
-											}}
-											disableClearable
-										/>
+										</Tooltip>
 									</Box>
 
 									<Box

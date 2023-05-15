@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextField, Button, Box, Autocomplete } from '@mui/material';
+import { TextField, Button, Box, Autocomplete, Tooltip } from '@mui/material';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import api from '../../services/api';
@@ -70,53 +70,55 @@ export class Apresentacao extends Component {
 							flexDirection: { xs: 'column', md: 'row' },
 						}}
 					>
-						<Autocomplete
-							id="cad-select-estado"
-							getOptionLabel={(listaCategorias) =>
-								`${listaCategorias.extra_categ_nome}`
-							}
-							options={listaCategorias}
-							sx={selectBoxStyle}
-							isOptionEqualToValue={(option, value) =>
-								option.extra_categ_nome === value.extra_categ_nome
-							}
-							noOptionsText={'Nenhuma categoria está disponível.'}
-							renderOption={(props, listaCategorias) => (
-								<Box
-									component="li"
-									{...props}
-									key={listaCategorias.extra_categ}
-								>
-									{listaCategorias.extra_categ_nome}
-								</Box>
-							)}
-							renderInput={(params) => (
-								<TextField
-									{...params}
-									label="Categoria"
-									error={
-										props.touched.extra_categ_nome &&
-										Boolean(props.errors.extra_categ_nome)
-									}
-									helperText={
-										props.touched.extra_categ_nome &&
-										props.errors.extra_categ_nome
-									}
-									required
-									variant="outlined"
-								/>
-							)}
-							onChange={(event, values, select, option) => {
-								this.categoriaSelecionada(event, values, select, option);
-								props.handleChange(event, values, select, option);
-							}}
-							onBlur={props.handleBlur}
-							value={{
-								extra_categ: extra_categ,
-								extra_categ_nome: extra_categ_nome,
-							}}
-							disableClearable
-						/>
+						<Tooltip title="Selecione a categoria a qual irá competir.">
+							<Autocomplete
+								id="cad-select-estado"
+								getOptionLabel={(listaCategorias) =>
+									`${listaCategorias.extra_categ_nome}`
+								}
+								options={listaCategorias}
+								sx={selectBoxStyle}
+								isOptionEqualToValue={(option, value) =>
+									option.extra_categ_nome === value.extra_categ_nome
+								}
+								noOptionsText={'Nenhuma categoria está disponível.'}
+								renderOption={(props, listaCategorias) => (
+									<Box
+										component="li"
+										{...props}
+										key={listaCategorias.extra_categ}
+									>
+										{listaCategorias.extra_categ_nome}
+									</Box>
+								)}
+								renderInput={(params) => (
+									<TextField
+										{...params}
+										label="Categoria"
+										error={
+											props.touched.extra_categ_nome &&
+											Boolean(props.errors.extra_categ_nome)
+										}
+										helperText={
+											props.touched.extra_categ_nome &&
+											props.errors.extra_categ_nome
+										}
+										required
+										variant="outlined"
+									/>
+								)}
+								onChange={(event, values, select, option) => {
+									this.categoriaSelecionada(event, values, select, option);
+									props.handleChange(event, values, select, option);
+								}}
+								onBlur={props.handleBlur}
+								value={{
+									extra_categ: extra_categ,
+									extra_categ_nome: extra_categ_nome,
+								}}
+								disableClearable
+							/>
+						</Tooltip>
 					</Box>
 				);
 			case this.CosplayCircuito:
@@ -192,20 +194,24 @@ export class Apresentacao extends Component {
 												alignItems: 'center',
 											}}
 										>
-											<TextField
-												sx={{ marginBottom: '2.625rem', width: '100%' }}
-												id="apres_nome"
-												label="Nome do Personagem / Música"
-												placeholder="Entre com o nome do personagem ou música a ser apresentada."
-												variant="outlined"
-												value={values.apres_nome}
-												onChange={handleChange}
-												onChangeCapture={this.props.handleChange('apres_nome')}
-												onBlur={handleBlur}
-												error={errors.apres_nome && touched.apres_nome}
-												helperText={touched.apres_nome && errors.apres_nome}
-												required
-											/>
+											<Tooltip title="Digite o nome do personagem ou música que irá apresentar.">
+												<TextField
+													sx={{ marginBottom: '2.625rem', width: '100%' }}
+													id="apres_nome"
+													label="Nome do Personagem / Música"
+													placeholder="Goku"
+													variant="outlined"
+													value={values.apres_nome}
+													onChange={handleChange}
+													onChangeCapture={this.props.handleChange(
+														'apres_nome'
+													)}
+													onBlur={handleBlur}
+													error={errors.apres_nome && touched.apres_nome}
+													helperText={touched.apres_nome && errors.apres_nome}
+													required
+												/>
+											</Tooltip>
 										</Box>
 										<Box
 											sx={{
@@ -215,22 +221,26 @@ export class Apresentacao extends Component {
 												alignItems: 'center',
 											}}
 										>
-											<TextField
-												sx={{ marginBottom: '2.625rem', width: '100%' }}
-												id="apres_origem"
-												label="Origem do Personagem / Música"
-												placeholder="Entre com a origem do personagem ou música a ser apresentada."
-												variant="outlined"
-												value={values.apres_origem}
-												onChange={handleChange}
-												onChangeCapture={this.props.handleChange(
-													'apres_origem'
-												)}
-												onBlur={handleBlur}
-												error={errors.apres_origem && touched.apres_origem}
-												helperText={touched.apres_origem && errors.apres_origem}
-												required
-											/>
+											<Tooltip title="Digite a origem do seu personage (Dragon Ball Z, Cavaleiros dos Zodiácos, etc) ou música (Blackpink, BTS, etc).">
+												<TextField
+													sx={{ marginBottom: '2.625rem', width: '100%' }}
+													id="apres_origem"
+													label="Origem do Personagem / Música"
+													placeholder="Dragon Ball Z"
+													variant="outlined"
+													value={values.apres_origem}
+													onChange={handleChange}
+													onChangeCapture={this.props.handleChange(
+														'apres_origem'
+													)}
+													onBlur={handleBlur}
+													error={errors.apres_origem && touched.apres_origem}
+													helperText={
+														touched.apres_origem && errors.apres_origem
+													}
+													required
+												/>
+											</Tooltip>
 										</Box>
 									</Box>
 
@@ -249,24 +259,28 @@ export class Apresentacao extends Component {
 												alignItems: 'center',
 											}}
 										>
-											<TextField
-												sx={{ marginBottom: '2.625rem', width: '100%' }}
-												id="apres_link_ref"
-												label="Link de Referência"
-												placeholder="Entre com o link contendo imagem / vídeo / música de referência do personagem ou música a ser apresentada."
-												variant="outlined"
-												value={values.apres_link_ref}
-												onChange={handleChange}
-												onChangeCapture={this.props.handleChange(
-													'apres_link_ref'
-												)}
-												onBlur={handleBlur}
-												error={errors.apres_link_ref && touched.apres_link_ref}
-												helperText={
-													touched.apres_link_ref && errors.apres_link_ref
-												}
-												required
-											/>
+											<Tooltip title="Entre com o link contendo imagem / vídeo / música de referência do personagem ou música a ser apresentada.">
+												<TextField
+													sx={{ marginBottom: '2.625rem', width: '100%' }}
+													id="apres_link_ref"
+													label="Link de Referência"
+													placeholder="https://drive.google.com/file/d/12Pq84KiIRZphXmrdeG-slTM5LpyAin13/view?usp=sharing"
+													variant="outlined"
+													value={values.apres_link_ref}
+													onChange={handleChange}
+													onChangeCapture={this.props.handleChange(
+														'apres_link_ref'
+													)}
+													onBlur={handleBlur}
+													error={
+														errors.apres_link_ref && touched.apres_link_ref
+													}
+													helperText={
+														touched.apres_link_ref && errors.apres_link_ref
+													}
+													required
+												/>
+											</Tooltip>
 										</Box>
 									</Box>
 
