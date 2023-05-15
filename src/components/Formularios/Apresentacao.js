@@ -17,7 +17,7 @@ export class Apresentacao extends Component {
 			},
 		};
 		this.CosplayDesfile = 'Cosplay Desfile';
-		this.CosplayCircuito = 'CosplayCircuito';
+		this.CosplayCircuito = 'Cosplay Circuito';
 		this.fetchCategorias = this.fetchCategorias.bind(this);
 		this.categoriaSelecionada = this.categoriaSelecionada.bind(this);
 		this.fetchCategorias();
@@ -122,7 +122,7 @@ export class Apresentacao extends Component {
 					</Box>
 				);
 			case this.CosplayCircuito:
-				return <h1>Ainda sem regras... Aguarde...</h1>;
+				return <h1>Ainda sem Extra... Aguarde...</h1>;
 			default:
 				return;
 		}
