@@ -2,14 +2,21 @@ import React, { Component } from 'react';
 import { Button, Box, FormControlLabel, Checkbox } from '@mui/material';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import ErroRegras from './regras/ErroRegras';
-import CosplayDesfileRegras from './regras/CosplayDesfileRegras';
+import ErroRegras from '../regras/ErroRegras';
+import CosplayDesfileRegras from '../regras/CosplayDesfileRegras';
+import CosplayCircuitoRegras from '../regras/CosplayCircuitoRegras';
+import KaraokeRegras from '../regras/KaraokeRegras';
+import KpopCircuitoRegras from '../regras/KpopCircuitoRegras';
+import KpopSoloDuoRegras from '../regras/KpopSoloDuoRegras';
 
 export class Regras extends Component {
 	constructor(props) {
 		super(props);
+		this.CosplayCircuito = 'Cosplay Circuito';
 		this.CosplayDesfile = 'Cosplay Desfile';
-		this.CosplayCircuito = 'CosplayCircuito';
+		this.Karaoke = 'Karaoke';
+		this.KpopCircuito = 'Kpop Circuito';
+		this.KpopSoloDuo = 'Kpop Solo / Duo';
 	}
 
 	continue = (e) => {
@@ -28,10 +35,16 @@ export class Regras extends Component {
 
 	switchRegras = (concurso) => {
 		switch (concurso) {
+			case this.CosplayCircuito:
+				return <CosplayCircuitoRegras />;
 			case this.CosplayDesfile:
 				return <CosplayDesfileRegras />;
-			case this.CosplayCircuito:
-				return <h1>Ainda sem regras... Aguarde...</h1>;
+			case this.Karaoke:
+				return <KaraokeRegras />;
+			case this.KpopCircuito:
+				return <KpopCircuitoRegras />;
+			case this.KpopSoloDuo:
+				return <KpopSoloDuoRegras />;
 			default:
 				return <ErroRegras />;
 		}

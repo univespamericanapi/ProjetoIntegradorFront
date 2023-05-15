@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import CadastroForm from '../components/Formularios/Cadastro';
+import CadastroForm from '../components/CadastroStepper';
 import { deepOrange } from '@mui/material/colors';
 import { StyledTab, StyledTabs } from '../styles/StyledTabs';
 

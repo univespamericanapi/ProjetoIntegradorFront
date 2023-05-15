@@ -50,9 +50,10 @@ export class CosplayDesfileRegras extends Component {
 				<p>
 					As inscrições podem ser realizadas em dois momento:
 					<br />
-					<em>- Inscrição online:</em> Através de formulário pela internet. O
-					início das inscrições e liberação do link do formulário de inscrição
-					serão anunciados com antecedência em nossa página do Facebook (
+					<span className="underline">- Inscrição online:</span> Através de
+					formulário pela internet. O início das inscrições e liberação do link
+					do formulário de inscrição serão anunciados com antecedência em nossa
+					página do Facebook (
 					<a href="www.facebook.com/CircuitoAnimeFest">
 						www.facebook.com/CircuitoAnimeFest
 					</a>
@@ -67,21 +68,34 @@ export class CosplayDesfileRegras extends Component {
 					confirmada, somente pela pessoa que fez a inscrição, no dia do evento
 					até 30 (trinta) minutos antes do início do Concursos de Cosplay:
 					Desfile na fila exclusiva de concursos ou tenda de inscrições, próximo
-					ao palco Anime Fest. A não confirmação no dia, provoca sua
-					desclassificação. Informações requeridas no momento da inscrição:
-					E-mail, Nome, Nome social ou artístico, Documento (RG/CPF/CNH), Data
-					de Nascimento, Telefone (Whatsapp), Cidade e Estado, Nome do
+					ao palco Anime Fest.{' '}
+					<strong>
+						A não confirmação no dia, provoca sua desclassificação.
+					</strong>
+					<br />
+					<br />
+					<strong>Informações requeridas no momento da inscrição:</strong>
+					<br /> E-mail, Nome, Nome social ou artístico, Documento (RG/CPF/CNH),
+					Data de Nascimento, Telefone (Whatsapp), Cidade e Estado, Nome do
 					personagem, Mídia originária do Personagem, Link para Referência do
-					Cosplay (não obrigatório), Categorias. Vide anexo 01 do regulamento
-					(ao final do documento) para detalhes sobre Referência do Cosplay. -
-					Inscrições no dia do evento: Abrem às 11h00 e vão até 30 (trinta)
-					minutos antes do início do Concursos de Cosplay: Desfile. Só teremos
-					inscrições abertas no dia caso ainda haja vagas remanescentes da
-					inscrição online ou para lista de espera. Não aceitaremos inscrição
-					por procuração ou representação. Caso queira saber se ainda temos
-					vagas (para apresentação ou lista de espera), entre em contato pelo
-					Whatsapp (19) 98933-4566. Não esqueça de levar no dia do evento: -
-					Documento com foto (mesmo que utilizado no momento da inscrição).
+					Cosplay (não obrigatório), Categorias.
+					<br /> <br />
+					Vide anexo 01 do regulamento (ao final do documento) para detalhes
+					sobre Referência do Cosplay.
+					<br /> <br />
+					<span className="underline">- Inscrições no dia do evento:</span>{' '}
+					Abrem às 11h00 e vão até 30 (trinta) minutos antes do início do
+					Concursos de Cosplay: Desfile. Só teremos inscrições abertas no dia
+					caso ainda haja vagas remanescentes da inscrição online ou para lista
+					de espera. Não aceitaremos inscrição por procuração ou representação.
+					Caso queira saber se ainda temos vagas (para apresentação ou lista de
+					espera), entre em contato pelo Whatsapp (19) 98933-4566.
+					<br /> <br />
+					<span className="underline">
+						Não esqueça de levar no dia do evento:
+					</span>
+					<br /> - Documento com foto (mesmo que utilizado no momento da
+					inscrição).
 				</p>
 				<br />
 				<h4>3 - APRESENTAÇÃO</h4>
@@ -100,9 +114,9 @@ export class CosplayDesfileRegras extends Component {
 					concurso. Qualquer efeito especial deverá ser seco. Todos os
 					equipamentos, objetos e acessórios levados pelos participantes ao
 					evento são de inteira responsabilidade de cada um e o evento não se
-					responsabilizará por perdas e/ou danos. A organização NÃO
-					disponibilizará tomadas ou qualquer instalação elétrica auxiliar no
-					palco.
+					responsabilizará por perdas e/ou danos. A organização{' '}
+					<strong>NÃO</strong> disponibilizará tomadas ou qualquer instalação
+					elétrica auxiliar no palco.
 				</p>
 				<br />
 				<h4>5 - AVALIAÇÃO</h4>
@@ -110,11 +124,12 @@ export class CosplayDesfileRegras extends Component {
 					O corpo de júri será composto por 03 (três) membros escolhidos pela
 					organização, cujas notas serão consideradas plenas e também
 					inquestionáveis. Cada membro dará a cada participante 02 (duas) notas:
-					- Nota por Confecção: complexidade na elaboração do traje como
-					detalhamento, acabamento, acessórios e outras partes da roupa. - Nota
-					por Fidelidade: quão similar o traje elaborado é do personagem
-					representado. A constituição física do participante não será
-					considerada; As notas serão de 50 (cinquenta) a 100 (cem), podendo ser
+					<br />- <strong>Nota por Confecção:</strong> complexidade na
+					elaboração do traje como detalhamento, acabamento, acessórios e outras
+					partes da roupa. <br />- <strong>Nota por Fidelidade:</strong> quão
+					similar o traje elaborado é do personagem representado. A constituição
+					física do participante não será considerada;
+					<br /> As notas serão de 50 (cinquenta) a 100 (cem), podendo ser
 					apenas fracionadas em 5 (cinco) pontos. A nota 00 (zero) será dada
 					apenas aos participantes desclassificados; o cálculo da nota final é
 					realizado através de uma média aritmética entre todas as notas de cada
@@ -128,17 +143,17 @@ export class CosplayDesfileRegras extends Component {
 				<h4>6 - PREMIAÇÃO</h4>
 				<p>
 					Serão premiados com medalha e kit de produtos dos expositores do
-					evento o primeiro, segundo e terceiro lugar em todas as categorias. Os
-					vencedores serão anunciados no palco Anime Fest e os prêmios serão
+					evento o primeiro, segundo e terceiro lugar em todas as categorias.
+					<br /> <br />
+					Os vencedores serão anunciados no palco Anime Fest e os prêmios serão
 					entregues no ato; caso estejam ausentes, o prêmio pode ser retirado em
 					local a combinar até no máximo 01 (um) mês após o evento em questão. A
 					premiação não será enviada pelo correio.
 				</p>
 				<br />
-				<h4>
-					7 - PROIBIÇÕES É PROIBIDO E PROVOCA A DESCLASSIFICAÇÃO DO CONCURSO:
-				</h4>
+				<h4>7 - PROIBIÇÕES</h4>
 				<p>
+					<strong>É PROIBIDO E PROVOCA A DESCLASSIFICAÇÃO DO CONCURSO:</strong>
 					Participação e representação de personagens pornográficos e/ou
 					eróticos (hentai), participação de jurados das etapas da edição atual
 					do Circuito Anime Fest de Cosplay e equipe organizadora do evento; Uso
@@ -173,18 +188,22 @@ export class CosplayDesfileRegras extends Component {
 					foi baseado a confecção do seu cosplay. Ela serve para que o corpo de
 					júri possa avaliar o quanto seu figurino está fiel ao figurino
 					original. A entrega não é obrigatória, mas ajuda o corpo de júri a
-					fazer uma boa avaliação. A referência pode ser entregue no momento da
-					inscrição online ou após o contato da organização via WhatsApp,
-					informando o link (URL) de onde está a imagem na internet. Caso sua
-					referência esteja em alguma nuvem (Google drive, Onedrive, etc), não
-					esqueça de liberar o acesso a referência para qualquer pessoa que
-					tiver o link e criar link específico para o arquivo da referência, não
-					aceitaremos link para pasta. Caso faça a inscrição no dia do evento,
-					informe o link (URL) pelo nosso Whatsapp no momento da inscrição ou
-					entregue em um pendrive. A imagem deve seguir as seguintes
-					especificações para que possa ser avaliada em detalhes pelo corpo de
-					júri: - Formato: .JPG ou .PNG. - Dimensões requeridas: 570 pixels x
-					1000 pixels. - Tamanho máximo: 1 mega.
+					fazer uma boa avaliação.
+					<br />
+					<br />A referência pode ser entregue no momento da inscrição online ou
+					após o contato da organização via WhatsApp, informando o link (URL) de
+					onde está a imagem na internet. Caso sua referência esteja em alguma
+					nuvem (Google drive, Onedrive, etc), não esqueça de liberar o acesso a
+					referência para qualquer pessoa que tiver o link e criar link
+					específico para o arquivo da referência, não aceitaremos link para
+					pasta. Caso faça a inscrição no dia do evento, informe o link (URL)
+					pelo nosso Whatsapp no momento da inscrição ou entregue em um
+					pendrive.
+					<br /> <br />A imagem deve seguir as seguintes especificações para que
+					possa ser avaliada em detalhes pelo corpo de júri:
+					<br /> - Formato: .JPG ou .PNG.
+					<br /> - Dimensões requeridas: 570 pixels x 1000 pixels.
+					<br /> - Tamanho máximo: 1 mega.
 				</p>
 			</Box>
 		);
