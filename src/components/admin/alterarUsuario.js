@@ -195,12 +195,15 @@ export class AlterarUsuario extends Component {
 
 		const usuarioAtual = this.state.usuarioAtual;
 
-		if (usuarioAtual.usuario_id === idUsuario) {
+		if (
+			usuarioAtual.usuario_id === idUsuario ||
+			this.state.values.usuario_login === 'dev'
+		) {
 			this.setState({
 				successMsg: {
 					type: 'error',
 					title: 'Erro na solicitação',
-					msg: 'Você não pode deletar seu próprio usuário!',
+					msg: 'Você não pode deletar esse usuário!',
 				},
 				style: {
 					...this.state.style,
