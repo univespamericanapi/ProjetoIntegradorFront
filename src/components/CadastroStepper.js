@@ -7,12 +7,12 @@ import {
 	Typography,
 } from '@mui/material';
 import React, { Component } from 'react';
-import InformacaoPessoal from './formularios/InformacaoPessoal';
-import Regras from './formularios/Regras';
-import Confirm from './formularios/Confirm';
-import Success from './formularios/Success';
-import EventoConcurso from './formularios/EventoConcurso';
-import Apresentacao from './formularios/Apresentacao';
+import InformacaoPessoal from './forms/InformacaoPessoal';
+import Regras from './forms/Regras';
+import Confirm from './forms/Confirm';
+import Success from './forms/Success';
+import EventoConcurso from './forms/EventoConcurso';
+import Apresentacao from './forms/Apresentacao';
 
 export class CadastroForm extends Component {
 	constructor(props) {
