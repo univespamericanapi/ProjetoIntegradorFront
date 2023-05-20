@@ -86,9 +86,13 @@ class CadastroPage extends Component {
 					}}
 				>
 					<StyledTab label="Cadastro" {...a11yProps(0)} />
+					<StyledTab label="Alteração de E-Mail" {...a11yProps(1)} />
 				</StyledTabs>
 				<TabPanel value={value} index={0}>
 					<CadastroForm />
+				</TabPanel>
+				<TabPanel value={value} index={1}>
+					Em construção!
 				</TabPanel>
 			</Box>
 		);
