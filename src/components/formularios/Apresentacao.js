@@ -148,9 +148,10 @@ export class Apresentacao extends Component {
 						apres_origem: Yup.string()
 							.required('Campo requerido.')
 							.min(3, 'Deve conter no mínimo 3 caracteres.'),
-						apres_link_ref: Yup.string()
-							.matches(urlRegExp, 'Deve ser um link válido.')
-							.required('Campo requerido.'),
+						apres_link_ref: Yup.string().matches(
+							urlRegExp,
+							'Deve ser um link válido.'
+						),
 					})}
 					onSubmit={(values) => {
 						this.continue();
@@ -278,7 +279,6 @@ export class Apresentacao extends Component {
 													helperText={
 														touched.apres_link_ref && errors.apres_link_ref
 													}
-													required
 												/>
 											</Tooltip>
 										</Box>
