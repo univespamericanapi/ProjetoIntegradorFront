@@ -28,6 +28,7 @@ export class InformacaoPessoal extends Component {
 				width: '90%',
 			},
 			loading: false,
+			loadingCampo: false,
 		};
 		this.fetchEstados = this.fetchEstados.bind(this);
 		this.fetchCidades = this.fetchCidades.bind(this);
@@ -132,7 +133,13 @@ export class InformacaoPessoal extends Component {
 			comp_cidade,
 			comp_cidade_nome,
 		} = this.props.values;
-		const { listaEstados, listaCidades, selectBoxStyle, loading } = this.state;
+		const {
+			listaEstados,
+			listaCidades,
+			selectBoxStyle,
+			loading,
+			loadingCampo,
+		} = this.state;
 
 		return (
 			<React.Fragment>
@@ -595,6 +602,19 @@ export class InformacaoPessoal extends Component {
 													}}
 												/>
 											</Tooltip>
+											{loadingCampo && (
+												<CircularProgress
+													size={24}
+													sx={{
+														color: deepOrange[500],
+														position: 'absolute',
+														top: '50%',
+														left: '50%',
+														marginTop: '2rem',
+														marginLeft: '0',
+													}}
+												/>
+											)}
 										</Box>
 									</Box>
 

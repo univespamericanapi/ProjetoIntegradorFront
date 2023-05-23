@@ -22,6 +22,7 @@ export class EventoConcurso extends Component {
 			listaConcursos: [],
 			selectBoxStyle: { width: { xs: '90%', md: '45%' }, margin: '1.25rem' },
 			loading: false,
+			loadingCampo: false,
 		};
 		this.fetchEventos = this.fetchEventos.bind(this);
 		this.fetchConcursos = this.fetchConcursos.bind(this);
@@ -55,7 +56,7 @@ export class EventoConcurso extends Component {
 	}
 
 	async fetchConcursos(part_event) {
-		this.setState({ loading: true });
+		this.setState({ loadingConcurso: true });
 		try {
 			const response = await api.get('/lista/concurso/' + part_event);
 			const concursos = response.data.map((concurso) => ({
@@ -66,7 +67,7 @@ export class EventoConcurso extends Component {
 		} catch (error) {
 			console.error(error);
 		}
-		this.setState({ loading: false });
+		this.setState({ loadingConcurso: false });
 	}
 
 	eventoSelecionado = async (event, value) => {
@@ -91,8 +92,13 @@ export class EventoConcurso extends Component {
 	render() {
 		const { part_event, part_event_nome, part_conc, part_conc_nome } =
 			this.props.values;
-		const { listaEventos, listaConcursos, selectBoxStyle, loading } =
-			this.state;
+		const {
+			listaEventos,
+			listaConcursos,
+			selectBoxStyle,
+			loading,
+			loadingCampo,
+		} = this.state;
 
 		return (
 			<React.Fragment>
@@ -245,6 +251,19 @@ export class EventoConcurso extends Component {
 												sx={{ fontSize: '1.5rem', color: deepOrange[500] }}
 											/>
 										</Tooltip>
+										{loadingCampo && (
+											<CircularProgress
+												size={24}
+												sx={{
+													color: deepOrange[500],
+													position: 'absolute',
+													top: '50%',
+													left: '50%',
+													marginTop: '2rem',
+													marginLeft: '0',
+												}}
+											/>
+										)}
 									</Box>
 
 									<Box
