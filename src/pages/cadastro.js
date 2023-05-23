@@ -82,7 +82,7 @@ class CadastroPage extends Component {
 						borderColor: 'divider',
 						width: '18.75rem',
 						bgcolor: deepOrange[500],
-						minHeight: '100dvh',
+						minHeight: 'calc(100dvh - 4.25rem)',
 					}}
 				>
 					<StyledTab label="Cadastro" {...a11yProps(0)} />

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Box } from '@mui/material';
+import { Button, Box, CircularProgress, Typography } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,15 +7,20 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import api from '../../services/api';
+import { deepOrange } from '@mui/material/colors';
 
 export class Confirm extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			loading: false,
+		};
 		this.CosplayDesfile = 'Cosplay Desfile';
 		this.CosplayCircuito = 'CosplayCircuito';
 	}
 
 	continue = async (e) => {
+		this.setState({ loading: true });
 		e.preventDefault();
 
 		const { values } = this.props;
@@ -54,6 +59,7 @@ export class Confirm extends Component {
 		}
 
 		this.props.nextStep();
+		this.setState({ loading: false });
 	};
 
 	back = (e) => {
@@ -84,6 +90,7 @@ export class Confirm extends Component {
 
 	render() {
 		const { values } = this.props;
+		const { loading } = this.state;
 		return (
 			<React.Fragment>
 				<Box
@@ -96,6 +103,29 @@ export class Confirm extends Component {
 						alignItems: 'center',
 					}}
 				>
+					<Box
+						sx={{
+							width: '100%',
+							display: 'flex',
+							justifyContent: 'space-around',
+						}}
+					>
+						<Button
+							sx={{ margin: '.625rem', width: '7.5rem' }}
+							variant="contained"
+							onClick={this.back}
+						>
+							Voltar
+						</Button>
+						<Button
+							sx={{ margin: '.625rem', width: '7.5rem' }}
+							variant="contained"
+							onClick={this.continue}
+							disabled={loading}
+						>
+							Enviar
+						</Button>
+					</Box>
 					<h1>Informações Para Confirmação</h1>
 					<TableContainer
 						sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}
@@ -254,30 +284,42 @@ export class Confirm extends Component {
 							</TableBody>
 						</Table>
 					</TableContainer>
-
+				</Box>
+				{loading && (
 					<Box
 						sx={{
 							width: '100%',
+							height: '100%',
+							position: 'absolute',
+							top: '0',
+							left: '0',
+							backgroundColor: 'rgba(0, 0, 0, 0.9)',
 							display: 'flex',
-							justifyContent: 'space-around',
+							flexDirection: 'column',
+							justifyContent: 'center',
+							alignItems: 'center',
 						}}
 					>
-						<Button
-							sx={{ margin: '.625rem', width: '7.5rem' }}
-							variant="contained"
-							onClick={this.back}
+						<CircularProgress
+							size={36}
+							sx={{
+								color: deepOrange[500],
+								filter: 'drop-shadow(0 0 0.5rem #ffab91)',
+								margin: '2rem',
+							}}
+						/>
+						<Typography
+							sx={{
+								color: deepOrange[500],
+								margin: '2rem',
+							}}
+							variant="h4"
+							component="h4"
 						>
-							Voltar
-						</Button>
-						<Button
-							sx={{ margin: '.625rem', width: '7.5rem' }}
-							variant="contained"
-							onClick={this.continue}
-						>
-							Enviar
-						</Button>
+							Carregando, aguarde...
+						</Typography>
 					</Box>
-				</Box>
+				)}
 			</React.Fragment>
 		);
 	}

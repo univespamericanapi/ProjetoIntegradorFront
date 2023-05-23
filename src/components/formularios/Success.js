@@ -100,6 +100,7 @@ export class Success extends Component {
 						sx={{ margin: '.625rem', width: '7.5rem' }}
 						variant="contained"
 						onClick={this.back}
+						disabled
 					>
 						Voltar
 					</Button>

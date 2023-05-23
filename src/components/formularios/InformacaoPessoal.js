@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
-import { TextField, Button, Box, Autocomplete, Tooltip } from '@mui/material';
+import {
+	TextField,
+	Button,
+	Box,
+	Autocomplete,
+	Tooltip,
+	CircularProgress,
+	Typography,
+} from '@mui/material';
+import HelpIcon from '@mui/icons-material/Help';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import api from '../../services/api';
 import validaCpf from '../../utils/validaCpf';
+import { deepOrange } from '@mui/material/colors';
 
 const phoneRegExp = /^(\(\d{2}\)\s)?\d{4,5}-?\d{4,5}$/;
 const cpfRegExp = /^\d{3}.?\d{3}.?\d{3}-?\d{2}/;
@@ -15,9 +25,9 @@ export class InformacaoPessoal extends Component {
 			listaEstados: [],
 			listaCidades: [],
 			selectBoxStyle: {
-				width: { xs: '100%', md: '45%' },
-				marginBottom: '2.625rem',
+				width: '90%',
 			},
+			loading: false,
 		};
 		this.fetchEstados = this.fetchEstados.bind(this);
 		this.fetchCidades = this.fetchCidades.bind(this);
@@ -36,6 +46,7 @@ export class InformacaoPessoal extends Component {
 	};
 
 	async fetchEstados() {
+		this.setState({ loading: true });
 		try {
 			const response = await api.get('/lista/estado');
 			const estados = response.data.map((estado) => ({
@@ -46,9 +57,11 @@ export class InformacaoPessoal extends Component {
 		} catch (error) {
 			console.error(error);
 		}
+		this.setState({ loading: false });
 	}
 
 	async fetchCidades(comp_estado) {
+		this.setState({ loading: true });
 		try {
 			const response = await api.get('/lista/cidade', {
 				params: {
@@ -63,6 +76,7 @@ export class InformacaoPessoal extends Component {
 		} catch (error) {
 			console.error(error);
 		}
+		this.setState({ loading: false });
 	}
 
 	estadoSelecionado = async (event, value) => {
@@ -118,7 +132,7 @@ export class InformacaoPessoal extends Component {
 			comp_cidade,
 			comp_cidade_nome,
 		} = this.props.values;
-		const { listaEstados, listaCidades, selectBoxStyle } = this.state;
+		const { listaEstados, listaCidades, selectBoxStyle, loading } = this.state;
 
 		return (
 			<React.Fragment>
@@ -207,24 +221,33 @@ export class InformacaoPessoal extends Component {
 											sx={{
 												width: { xs: '100%', md: '45%' },
 												display: 'flex',
-												flexDirection: 'column',
+												justifyContent: 'center',
 												alignItems: 'center',
+												marginBottom: '2.625rem',
 											}}
 										>
+											<TextField
+												sx={{ width: '90%' }}
+												id="comp_nome"
+												label="Nome Completo"
+												placeholder="João da Silva"
+												variant="outlined"
+												value={values.comp_nome}
+												onChange={handleChange}
+												onChangeCapture={this.props.handleChange('comp_nome')}
+												onBlur={handleBlur}
+												error={errors.comp_nome && touched.comp_nome}
+												helperText={touched.comp_nome && errors.comp_nome}
+												required
+											/>
 											<Tooltip title="Digite seu nome completo.">
-												<TextField
-													sx={{ marginBottom: '2.625rem', width: '100%' }}
-													id="comp_nome"
-													label="Nome Completo"
-													placeholder="João da Silva"
-													variant="outlined"
-													value={values.comp_nome}
-													onChange={handleChange}
-													onChangeCapture={this.props.handleChange('comp_nome')}
-													onBlur={handleBlur}
-													error={errors.comp_nome && touched.comp_nome}
-													helperText={touched.comp_nome && errors.comp_nome}
-													required
+												<HelpIcon
+													sx={{
+														display: 'flex',
+														fontSize: '1.5rem',
+														color: deepOrange[500],
+														margin: '.625rem',
+													}}
 												/>
 											</Tooltip>
 										</Box>
@@ -232,28 +255,35 @@ export class InformacaoPessoal extends Component {
 											sx={{
 												width: { xs: '100%', md: '45%' },
 												display: 'flex',
-												flexDirection: 'column',
+												justifyContent: 'center',
 												alignItems: 'center',
+												marginBottom: '2.625rem',
 											}}
 										>
+											<TextField
+												sx={{ width: '90%' }}
+												id="comp_whats"
+												label="Whatsapp"
+												placeholder="(99) 99999-9999"
+												variant="outlined"
+												value={values.comp_whats}
+												onChange={(e) => {
+													this.handleChangeWhatsMask(e, handleChange);
+												}}
+												onChangeCapture={this.props.handleChange('comp_whats')}
+												onBlur={handleBlur}
+												error={errors.comp_whats && touched.comp_whats}
+												helperText={touched.comp_whats && errors.comp_whats}
+												required
+											/>
 											<Tooltip title="Digite seu número de Whastapp no formato (99) 99999-9999.">
-												<TextField
-													sx={{ marginBottom: '2.625rem', width: '100%' }}
-													id="comp_whats"
-													label="Whatsapp"
-													placeholder="(99) 99999-9999"
-													variant="outlined"
-													value={values.comp_whats}
-													onChange={(e) => {
-														this.handleChangeWhatsMask(e, handleChange);
+												<HelpIcon
+													sx={{
+														display: 'flex',
+														fontSize: '1.5rem',
+														color: deepOrange[500],
+														margin: '.625rem',
 													}}
-													onChangeCapture={this.props.handleChange(
-														'comp_whats'
-													)}
-													onBlur={handleBlur}
-													error={errors.comp_whats && touched.comp_whats}
-													helperText={touched.comp_whats && errors.comp_whats}
-													required
 												/>
 											</Tooltip>
 										</Box>
@@ -271,56 +301,74 @@ export class InformacaoPessoal extends Component {
 											sx={{
 												width: { xs: '100%', md: '45%' },
 												display: 'flex',
-												flexDirection: 'column',
+												justifyContent: 'center',
 												alignItems: 'center',
+												marginBottom: '2.625rem',
 											}}
 										>
+											<TextField
+												sx={{ width: '90%' }}
+												id="comp_nome_social"
+												label="Nome Social / Artístico"
+												placeholder="Jão"
+												variant="outlined"
+												value={values.comp_nome_social}
+												onChange={handleChange}
+												onChangeCapture={this.props.handleChange(
+													'comp_nome_social'
+												)}
+												onBlur={handleBlur}
+												error={
+													errors.comp_nome_social && touched.comp_nome_social
+												}
+												helperText={
+													touched.comp_nome_social && errors.comp_nome_social
+												}
+											/>
 											<Tooltip title="Digite seu nome social, ou artístico, ou apelido.">
-												<TextField
-													sx={{ marginBottom: '2.625rem', width: '100%' }}
-													id="comp_nome_social"
-													label="Nome Social / Artístico"
-													placeholder="Jão"
-													variant="outlined"
-													value={values.comp_nome_social}
-													onChange={handleChange}
-													onChangeCapture={this.props.handleChange(
-														'comp_nome_social'
-													)}
-													onBlur={handleBlur}
-													error={
-														errors.comp_nome_social && touched.comp_nome_social
-													}
-													helperText={
-														touched.comp_nome_social && errors.comp_nome_social
-													}
-												/>
-											</Tooltip>
-										</Box>
-										<Box
-											sx={{
-												width: { xs: '100%', md: '45%' },
-												display: 'flex',
-												flexDirection: 'column',
-												alignItems: 'center',
-											}}
-										>
-											<Tooltip title="Diggite seu CPF no formato 999.999.999-99.">
-												<TextField
-													sx={{ marginBottom: '2.625rem', width: '100%' }}
-													id="comp_cpf"
-													label="CPF"
-													placeholder="999.999.999-99"
-													variant="outlined"
-													value={values.comp_cpf}
-													onChange={(e) => {
-														this.handleChangeCpfMask(e, handleChange);
+												<HelpIcon
+													sx={{
+														display: 'flex',
+														fontSize: '1.5rem',
+														color: deepOrange[500],
+														margin: '.625rem',
 													}}
-													onChangeCapture={this.props.handleChange('comp_cpf')}
-													onBlur={handleBlur}
-													error={errors.comp_cpf && touched.comp_cpf}
-													helperText={touched.comp_cpf && errors.comp_cpf}
-													required
+												/>
+											</Tooltip>
+										</Box>
+										<Box
+											sx={{
+												width: { xs: '100%', md: '45%' },
+												display: 'flex',
+												justifyContent: 'center',
+												alignItems: 'center',
+												marginBottom: '2.625rem',
+											}}
+										>
+											<TextField
+												sx={{ width: '90%' }}
+												id="comp_cpf"
+												label="CPF"
+												placeholder="999.999.999-99"
+												variant="outlined"
+												value={values.comp_cpf}
+												onChange={(e) => {
+													this.handleChangeCpfMask(e, handleChange);
+												}}
+												onChangeCapture={this.props.handleChange('comp_cpf')}
+												onBlur={handleBlur}
+												error={errors.comp_cpf && touched.comp_cpf}
+												helperText={touched.comp_cpf && errors.comp_cpf}
+												required
+											/>
+											<Tooltip title="Diggite seu CPF no formato 999.999.999-99.">
+												<HelpIcon
+													sx={{
+														display: 'flex',
+														fontSize: '1.5rem',
+														color: deepOrange[500],
+														margin: '.625rem',
+													}}
 												/>
 											</Tooltip>
 										</Box>
@@ -338,25 +386,34 @@ export class InformacaoPessoal extends Component {
 											sx={{
 												width: { xs: '100%', md: '45%' },
 												display: 'flex',
-												flexDirection: 'column',
+												justifyContent: 'center',
 												alignItems: 'center',
+												marginBottom: '2.625rem',
 											}}
 										>
+											<TextField
+												sx={{ width: '90%' }}
+												id="comp_nasc"
+												label="Data de Nascimento"
+												InputLabelProps={{ shrink: true }}
+												type="date"
+												variant="outlined"
+												value={values.comp_nasc}
+												onChange={handleChange}
+												onChangeCapture={this.props.handleChange('comp_nasc')}
+												onBlur={handleBlur}
+												error={errors.comp_nasc && touched.comp_nasc}
+												helperText={touched.comp_nasc && errors.comp_nasc}
+												required
+											/>
 											<Tooltip title="Digite sua data de nascimento no formato DD/MM/AAAA.">
-												<TextField
-													sx={{ marginBottom: '2.625rem', width: '100%' }}
-													id="comp_nasc"
-													label="Data de Nascimento"
-													InputLabelProps={{ shrink: true }}
-													type="date"
-													variant="outlined"
-													value={values.comp_nasc}
-													onChange={handleChange}
-													onChangeCapture={this.props.handleChange('comp_nasc')}
-													onBlur={handleBlur}
-													error={errors.comp_nasc && touched.comp_nasc}
-													helperText={touched.comp_nasc && errors.comp_nasc}
-													required
+												<HelpIcon
+													sx={{
+														display: 'flex',
+														fontSize: '1.5rem',
+														color: deepOrange[500],
+														margin: '.625rem',
+													}}
 												/>
 											</Tooltip>
 										</Box>
@@ -364,26 +421,33 @@ export class InformacaoPessoal extends Component {
 											sx={{
 												width: { xs: '100%', md: '45%' },
 												display: 'flex',
-												flexDirection: 'column',
+												justifyContent: 'center',
 												alignItems: 'center',
+												marginBottom: '2.625rem',
 											}}
 										>
+											<TextField
+												sx={{ width: '90%' }}
+												id="comp_email"
+												label="E-mail"
+												placeholder="joao.silva@gmail.com"
+												variant="outlined"
+												value={values.comp_email}
+												onChange={handleChange}
+												onChangeCapture={this.props.handleChange('comp_email')}
+												onBlur={handleBlur}
+												error={errors.comp_email && touched.comp_email}
+												helperText={touched.comp_email && errors.comp_email}
+												required
+											/>
 											<Tooltip title="Digite um e-mail válido, lembre que iremos verificar se o e-mail está ativo.">
-												<TextField
-													sx={{ marginBottom: '2.625rem', width: '100%' }}
-													id="comp_email"
-													label="E-mail"
-													placeholder="joao.silva@gmail.com"
-													variant="outlined"
-													value={values.comp_email}
-													onChange={handleChange}
-													onChangeCapture={this.props.handleChange(
-														'comp_email'
-													)}
-													onBlur={handleBlur}
-													error={errors.comp_email && touched.comp_email}
-													helperText={touched.comp_email && errors.comp_email}
-													required
+												<HelpIcon
+													sx={{
+														display: 'flex',
+														fontSize: '1.5rem',
+														color: deepOrange[500],
+														margin: '.625rem',
+													}}
 												/>
 											</Tooltip>
 										</Box>
@@ -397,7 +461,15 @@ export class InformacaoPessoal extends Component {
 											flexDirection: { xs: 'column', md: 'row' },
 										}}
 									>
-										<Tooltip title="Selecione seu estado.">
+										<Box
+											sx={{
+												width: { xs: '100%', md: '45%' },
+												display: 'flex',
+												justifyContent: 'center',
+												alignItems: 'center',
+												marginBottom: '2.625rem',
+											}}
+										>
 											<Autocomplete
 												id="cad-select-estado"
 												getOptionLabel={(listaEstados) =>
@@ -445,9 +517,27 @@ export class InformacaoPessoal extends Component {
 												}}
 												disableClearable
 											/>
-										</Tooltip>
+											<Tooltip title="Selecione seu estado.">
+												<HelpIcon
+													sx={{
+														display: 'flex',
+														fontSize: '1.5rem',
+														color: deepOrange[500],
+														margin: '.625rem',
+													}}
+												/>
+											</Tooltip>
+										</Box>
 
-										<Tooltip title="Selecione a sua cidade.">
+										<Box
+											sx={{
+												width: { xs: '100%', md: '45%' },
+												display: 'flex',
+												justifyContent: 'center',
+												alignItems: 'center',
+												marginBottom: '2.625rem',
+											}}
+										>
 											<Autocomplete
 												id="cad-select-cidade"
 												getOptionLabel={(listaCidades) =>
@@ -495,7 +585,17 @@ export class InformacaoPessoal extends Component {
 												}}
 												disableClearable
 											/>
-										</Tooltip>
+											<Tooltip title="Selecione a sua cidade.">
+												<HelpIcon
+													sx={{
+														display: 'flex',
+														fontSize: '1.5rem',
+														color: deepOrange[500],
+														margin: '.625rem',
+													}}
+												/>
+											</Tooltip>
+										</Box>
 									</Box>
 
 									<Box
@@ -522,6 +622,41 @@ export class InformacaoPessoal extends Component {
 										</Button>
 									</Box>
 								</Box>
+								{loading && (
+									<Box
+										sx={{
+											width: '100%',
+											height: '100%',
+											position: 'absolute',
+											top: '0',
+											left: '0',
+											backgroundColor: 'rgba(0, 0, 0, 0.9)',
+											display: 'flex',
+											flexDirection: 'column',
+											justifyContent: 'center',
+											alignItems: 'center',
+										}}
+									>
+										<CircularProgress
+											size={36}
+											sx={{
+												color: deepOrange[500],
+												filter: 'drop-shadow(0 0 0.5rem #ffab91)',
+												margin: '2rem',
+											}}
+										/>
+										<Typography
+											sx={{
+												color: deepOrange[500],
+												margin: '2rem',
+											}}
+											variant="h4"
+											component="h4"
+										>
+											Carregando, aguarde...
+										</Typography>
+									</Box>
+								)}
 							</Form>
 						);
 					}}
