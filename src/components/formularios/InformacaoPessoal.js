@@ -62,7 +62,7 @@ export class InformacaoPessoal extends Component {
 	}
 
 	async fetchCidades(comp_estado) {
-		this.setState({ loading: true });
+		this.setState({ loadingCampo: true });
 		try {
 			const response = await api.get('/lista/cidade', {
 				params: {
@@ -73,7 +73,7 @@ export class InformacaoPessoal extends Component {
 				comp_cidade: cidade.cid_id,
 				comp_cidade_nome: cidade.cid_desc,
 			}));
-			this.setState({ listaCidades: cidades });
+			this.setState({ loadingCampo: cidades });
 		} catch (error) {
 			console.error(error);
 		}
