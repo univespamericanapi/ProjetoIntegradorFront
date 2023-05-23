@@ -194,6 +194,7 @@ export class EventoConcurso extends Component {
 
 									<Box
 										sx={{
+											position: 'relative',
 											display: 'flex',
 											justifyContent: 'center',
 											alignItems: 'center',
