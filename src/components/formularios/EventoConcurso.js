@@ -252,17 +252,24 @@ export class EventoConcurso extends Component {
 											/>
 										</Tooltip>
 										{loadingCampo && (
-											<CircularProgress
-												size={24}
+											<Box
 												sx={{
-													color: deepOrange[500],
 													position: 'absolute',
 													top: '50%',
-													left: '50%',
-													marginTop: '2rem',
-													marginLeft: '0',
+													left: '25%',
+													marginTop: '-.75rem',
+													display: 'flex',
 												}}
-											/>
+											>
+												<CircularProgress
+													size={24}
+													sx={{
+														color: deepOrange[500],
+														marginRight: '1rem',
+													}}
+												/>
+												<Typography>Carregando...</Typography>
+											</Box>
 										)}
 									</Box>
 

@@ -73,11 +73,11 @@ export class InformacaoPessoal extends Component {
 				comp_cidade: cidade.cid_id,
 				comp_cidade_nome: cidade.cid_desc,
 			}));
-			this.setState({ loadingCampo: cidades });
+			this.setState({ listaCidades: cidades });
 		} catch (error) {
 			console.error(error);
 		}
-		this.setState({ loading: false });
+		this.setState({ loadingCampo: false });
 	}
 
 	estadoSelecionado = async (event, value) => {
@@ -538,6 +538,7 @@ export class InformacaoPessoal extends Component {
 
 										<Box
 											sx={{
+												position: 'relative',
 												width: { xs: '100%', md: '45%' },
 												display: 'flex',
 												justifyContent: 'center',
@@ -603,17 +604,24 @@ export class InformacaoPessoal extends Component {
 												/>
 											</Tooltip>
 											{loadingCampo && (
-												<CircularProgress
-													size={24}
+												<Box
 													sx={{
-														color: deepOrange[500],
 														position: 'absolute',
 														top: '50%',
-														left: '50%',
-														marginTop: '2rem',
-														marginLeft: '0',
+														left: '25%',
+														marginTop: '-.75rem',
+														display: 'flex',
 													}}
-												/>
+												>
+													<CircularProgress
+														size={24}
+														sx={{
+															color: deepOrange[500],
+															marginRight: '1rem',
+														}}
+													/>
+													<Typography>Carregando...</Typography>
+												</Box>
 											)}
 										</Box>
 									</Box>
