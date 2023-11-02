@@ -22,6 +22,7 @@ export class Apresentacao extends Component {
 		this.state = {
 			listaCategorias: [],
 			listaEstilos: [],
+			listaModalidades: [],
 			selectBoxStyle: {
 				width: '90%',
 			},
@@ -41,6 +42,10 @@ export class Apresentacao extends Component {
 		this.fetchEstilos = this.fetchEstilos.bind(this);
 		this.estiloSelecionado = this.estiloSelecionado.bind(this);
 		this.fetchEstilos();
+
+		this.fetchModalidades = this.fetchModalidades.bind(this);
+		this.modalidadeSelecionado = this.modalidadeSelecionado.bind(this);
+		this.fetchModalidades();
 	}
 
 	continue = (e) => {
@@ -102,8 +107,33 @@ export class Apresentacao extends Component {
 		}
 	};
 
+	async fetchModalidades() {
+		this.setState({ loading: true });
+		try {
+			const response = await api.get('/lista/modalidade');
+			const modalidades = response.data.map((modalidade) => ({
+				extra_mod: modalidade.mod_id,
+				extra_mod_nome: modalidade.mod_nome,
+			}));
+			modalidades.push({ extra_mod: 0, extra_mod_nome: '' });
+			this.setState({ listaModalidades: modalidades });
+		} catch (error) {
+			console.error(error);
+		}
+		this.setState({ loading: false });
+	}
+
+	modalidadeSelecionado = async (event, value) => {
+		try {
+			const { handleChangeAutocomplete } = this.props;
+			await handleChangeAutocomplete(value);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	switchExtra = (concurso, props) => {
-		const { listaCategorias, listaEstilos, selectBoxStyle } = this.state;
+		const { listaCategorias, listaEstilos, listaModalidades, selectBoxStyle } = this.state;
 		const {
 			extra_categ,
 			extra_categ_nome,
@@ -111,6 +141,9 @@ export class Apresentacao extends Component {
 			extra_estil,
 			extra_estil_nome,
 			extra_link_av,
+			extra_mat,
+			extra_mod,
+			extra_mod_nome,
 		} = this.props.values;
 
 		switch (concurso) {
@@ -285,7 +318,6 @@ export class Apresentacao extends Component {
 									onBlur={props.handleBlur}
 									error={props.errors.extra_integ && props.touched.extra_integ}
 									helperText={props.touched.extra_integ && props.errors.extra_integ}
-									required
 								/>
 								<Tooltip title="Digite os nomes dos integrantes, caso tenha, separados por vírgula.">
 									<HelpIcon
@@ -347,11 +379,295 @@ export class Apresentacao extends Component {
 					</Box>
 				);
 			case this.Karaoke:
-				return <h1>Ainda sem Extra... Aguarde...</h1>;
+				return <Box></Box>;
 			case this.KpopCircuito:
-				return <h1>Ainda sem Extra... Aguarde...</h1>;
+				return (
+					<Box sx={{
+						width: '100%',
+					}}>
+						<Box
+							sx={{
+								width: '100%',
+								display: 'flex',
+								justifyContent: 'space-around',
+								flexDirection: { xs: 'column', md: 'row' },
+							}}
+						>
+							<Box
+								sx={{
+									width: { xs: '100%', md: '45%' },
+									display: 'flex',
+									justifyContent: 'center',
+									alignItems: 'center',
+									marginBottom: '2.625rem',
+								}}
+							>
+								<TextField
+									sx={{ width: '90%' }}
+									id="extra_integ"
+									label="Nome Integrantes"
+									placeholder="Marcos, Aline"
+									variant="outlined"
+									value={extra_integ}
+									onChange={props.handleChange}
+									onChangeCapture={this.props.handleChange('extra_integ')}
+									onBlur={props.handleBlur}
+									error={props.errors.extra_integ && props.touched.extra_integ}
+									helperText={props.touched.extra_integ && props.errors.extra_integ}
+								/>
+								<Tooltip title="Digite os nomes dos integrantes, caso tenha, separados por vírgula.">
+									<HelpIcon
+										sx={{
+											display: 'flex',
+											fontSize: '1.5rem',
+											color: deepOrange[500],
+											margin: '.625rem',
+										}}
+									/>
+								</Tooltip>
+							</Box>
+							<Box
+								sx={{
+									width: { xs: '100%', md: '45%' },
+									display: 'flex',
+									justifyContent: 'center',
+									alignItems: 'center',
+									marginBottom: '2.625rem',
+								}}
+							>
+								<TextField
+									sx={{ width: '90%' }}
+									id="extra_mat"
+									label="Material"
+									placeholder="Material"
+									variant="outlined"
+									value={extra_mat}
+									onChange={props.handleChange}
+									onChangeCapture={this.props.handleChange('extra_mat')}
+									onBlur={props.handleBlur}
+									error={props.errors.extra_mat && props.touched.extra_mat}
+									helperText={props.touched.extra_mat && props.errors.extra_mat}
+								/>
+								<Tooltip title="Material.">
+									<HelpIcon
+										sx={{
+											display: 'flex',
+											fontSize: '1.5rem',
+											color: deepOrange[500],
+											margin: '.625rem',
+										}}
+									/>
+								</Tooltip>
+							</Box>
+						</Box>
+						<Box
+							sx={{
+								width: '100%',
+								display: 'flex',
+								justifyContent: 'space-around',
+								flexDirection: { xs: 'column', md: 'row' },
+							}}
+						>
+							<Box
+								sx={{
+									width: '100%',
+									display: 'flex',
+									justifyContent: 'center',
+									alignItems: 'center',
+									marginBottom: '2.625rem',
+								}}
+							>
+								<TextField
+									sx={{ width: '90%' }}
+									id="extra_link_av"
+									label="Link do Áudio / Vídeo"
+									placeholder="https://www.youtube.com"
+									variant="outlined"
+									value={extra_link_av}
+									onChange={props.handleChange}
+									onChangeCapture={this.props.handleChange(
+										'extra_link_av'
+									)}
+									onBlur={props.handleBlur}
+									error={props.errors.extra_link_av && props.touched.extra_link_av}
+									helperText={props.touched.extra_link_av && props.errors.extra_link_av}
+									required
+								/>
+								<Tooltip title="Digite um link para o vídeo ou áudio que será utilizado na apresentação.">
+									<HelpIcon
+										sx={{
+											display: 'flex',
+											fontSize: '1.5rem',
+											color: deepOrange[500],
+											margin: '.625rem',
+										}}
+									/>
+								</Tooltip>
+							</Box>
+						</Box>
+					</Box>
+				);
 			case this.KpopSolo:
-				return <h1>Ainda sem Extra... Aguarde...</h1>;
+				return (
+					<Box sx={{
+						width: '100%',
+					}}>
+						<Box
+							sx={{
+								width: '100%',
+								display: 'flex',
+								justifyContent: 'space-around',
+								flexDirection: { xs: 'column', md: 'row' },
+							}}
+						>
+							<Box
+								sx={{
+									width: { xs: '100%', md: '45%' },
+									display: 'flex',
+									justifyContent: 'center',
+									alignItems: 'center',
+									marginBottom: '2.625rem',
+								}}
+							>
+								<Autocomplete
+									id="cad-select-modalidade"
+									getOptionLabel={(listaModalidades) =>
+										`${listaModalidades.extra_mod_nome}`
+									}
+									options={listaModalidades}
+									sx={selectBoxStyle}
+									isOptionEqualToValue={(option, value) =>
+										option.extra_mod_nome === value.extra_mod_nome
+									}
+									noOptionsText={'Nenhuma modalidade está disponível.'}
+									renderOption={(props, listaModalidades) => (
+										<Box
+											component="li"
+											{...props}
+											key={listaModalidades.extra_mod}
+										>
+											{listaModalidades.extra_mod_nome}
+										</Box>
+									)}
+									renderInput={(params) => (
+										<TextField
+											{...params}
+											label="Modalidade"
+											error={
+												props.touched.extra_mod_nome &&
+												Boolean(props.errors.extra_mod_nome)
+											}
+											helperText={
+												props.touched.extra_mod_nome &&
+												props.errors.extra_mod_nome
+											}
+											required
+											variant="outlined"
+										/>
+									)}
+									onChange={(event, values, select, option) => {
+										this.categoriaSelecionada(event, values, select, option);
+										props.handleChange(event, values, select, option);
+									}}
+									onBlur={props.handleBlur}
+									value={{
+										extra_mod: extra_mod,
+										extra_mod_nome: extra_mod_nome,
+									}}
+									disableClearable
+								/>
+								<Tooltip title="Selecione a modalidade ao qual irá competir.">
+									<HelpIcon
+										sx={{
+											display: 'flex',
+											fontSize: '1.5rem',
+											color: deepOrange[500],
+											margin: '.625rem',
+										}}
+									/>
+								</Tooltip>
+							</Box>
+							<Box
+								sx={{
+									width: { xs: '100%', md: '45%' },
+									display: 'flex',
+									justifyContent: 'center',
+									alignItems: 'center',
+									marginBottom: '2.625rem',
+								}}
+							>
+								<TextField
+									sx={{ width: '90%' }}
+									id="extra_integ"
+									label="Nome Integrantes"
+									placeholder="Marcos, Aline"
+									variant="outlined"
+									value={extra_integ}
+									onChange={props.handleChange}
+									onChangeCapture={this.props.handleChange('extra_integ')}
+									onBlur={props.handleBlur}
+									error={props.errors.extra_integ && props.touched.extra_integ}
+									helperText={props.touched.extra_integ && props.errors.extra_integ}
+								/>
+								<Tooltip title="Digite os nomes dos integrantes, caso tenha, separados por vírgula.">
+									<HelpIcon
+										sx={{
+											display: 'flex',
+											fontSize: '1.5rem',
+											color: deepOrange[500],
+											margin: '.625rem',
+										}}
+									/>
+								</Tooltip>
+							</Box>
+						</Box>
+						<Box
+							sx={{
+								width: '100%',
+								display: 'flex',
+								justifyContent: 'space-around',
+								flexDirection: { xs: 'column', md: 'row' },
+							}}
+						>
+							<Box
+								sx={{
+									width: '100%',
+									display: 'flex',
+									justifyContent: 'center',
+									alignItems: 'center',
+									marginBottom: '2.625rem',
+								}}
+							>
+								<TextField
+									sx={{ width: '90%' }}
+									id="extra_link_av"
+									label="Link do Áudio / Vídeo"
+									placeholder="https://www.youtube.com"
+									variant="outlined"
+									value={extra_link_av}
+									onChange={props.handleChange}
+									onChangeCapture={this.props.handleChange(
+										'extra_link_av'
+									)}
+									onBlur={props.handleBlur}
+									error={props.errors.extra_link_av && props.touched.extra_link_av}
+									helperText={props.touched.extra_link_av && props.errors.extra_link_av}
+									required
+								/>
+								<Tooltip title="Digite um link para o vídeo ou áudio que será utilizado na apresentação.">
+									<HelpIcon
+										sx={{
+											display: 'flex',
+											fontSize: '1.5rem',
+											color: deepOrange[500],
+											margin: '.625rem',
+										}}
+									/>
+								</Tooltip>
+							</Box>
+						</Box>
+					</Box>
+				);
 			default:
 				return;
 		}
