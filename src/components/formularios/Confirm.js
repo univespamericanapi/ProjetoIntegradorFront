@@ -15,8 +15,11 @@ export class Confirm extends Component {
 		this.state = {
 			loading: false,
 		};
+		this.CosplayCircuito = 'Cosplay Circuito';
 		this.CosplayDesfile = 'Cosplay Desfile';
-		this.CosplayCircuito = 'CosplayCircuito';
+		this.Karaoke = 'Karaoke';
+		this.KpopCircuito = 'Kpop Circuito';
+		this.KpopSolo = 'Kpop Solo / Duo';
 	}
 
 	continue = async (e) => {
@@ -43,13 +46,13 @@ export class Confirm extends Component {
 			part_conc: values.part_conc,
 			part_aceit_regul: values.part_aceit_regul,
 		};
-		const cospDesfile = {
+		const extra = {
 			extra_categ: values.extra_categ,
 		};
-		const data = { competidor, apresentacao, participacao, cospDesfile };
+		const data = { competidor, apresentacao, participacao, extra };
 
 		try {
-			const response = await api.post('cosplay/desfile/criar', data);
+			const response = await api.post('participante/cadastro/criar', data);
 			this.props.successMsgSave(response);
 		} catch (error) {
 			console.error(error);
@@ -82,7 +85,13 @@ export class Confirm extends Component {
 					</TableRow>
 				);
 			case this.CosplayCircuito:
-				return <h1>Ainda sem regras... Aguarde...</h1>;
+				return <h1>Ainda sem Extra... Aguarde...</h1>;
+			case this.Karaoke:
+				return <h1>Ainda sem Extra... Aguarde...</h1>;
+			case this.KpopCircuito:
+				return <h1>Ainda sem Extra... Aguarde...</h1>;
+			case this.KpopSolo:
+				return <h1>Ainda sem Extra... Aguarde...</h1>;
 			default:
 				return;
 		}
