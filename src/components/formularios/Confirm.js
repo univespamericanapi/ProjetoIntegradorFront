@@ -48,6 +48,9 @@ export class Confirm extends Component {
 		};
 		const extra = {
 			extra_categ: values.extra_categ,
+			extra_integ: values.extra_integ,
+			extra_estil: values.extra_estil,
+			extra_link_av: values.extra_link_av,
 		};
 		const data = { competidor, apresentacao, participacao, extra };
 
@@ -85,7 +88,37 @@ export class Confirm extends Component {
 					</TableRow>
 				);
 			case this.CosplayCircuito:
-				return <h1>Ainda sem Extra... Aguarde...</h1>;
+				return (
+					<React.Fragment>
+						<TableRow
+							key={'extra_integ'}
+							sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+						>
+							<TableCell component="th" scope="row">
+								{'Integrantes'}
+							</TableCell>
+							<TableCell align="right">{values.extra_integ}</TableCell>
+						</TableRow>
+						<TableRow
+							key={'extra_estil_nome'}
+							sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+						>
+							<TableCell component="th" scope="row">
+								{'Estilo'}
+							</TableCell>
+							<TableCell align="right">{values.extra_estil_nome}</TableCell>
+						</TableRow>
+						<TableRow
+							key={'extra_link_av'}
+							sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+						>
+							<TableCell component="th" scope="row">
+								{'Link Áudio / Vídeo'}
+							</TableCell>
+							<TableCell align="right">{values.extra_link_av}</TableCell>
+						</TableRow>
+					</React.Fragment>
+				);
 			case this.Karaoke:
 				return <h1>Ainda sem Extra... Aguarde...</h1>;
 			case this.KpopCircuito:

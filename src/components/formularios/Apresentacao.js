@@ -21,19 +21,26 @@ export class Apresentacao extends Component {
 		super(props);
 		this.state = {
 			listaCategorias: [],
+			listaEstilos: [],
 			selectBoxStyle: {
 				width: '90%',
 			},
 			loading: true,
 		};
+
 		this.CosplayCircuito = 'Cosplay Circuito';
 		this.CosplayDesfile = 'Cosplay Desfile';
 		this.Karaoke = 'Karaoke';
 		this.KpopCircuito = 'Kpop Circuito';
 		this.KpopSolo = 'Kpop Solo / Duo';
+
 		this.fetchCategorias = this.fetchCategorias.bind(this);
 		this.categoriaSelecionada = this.categoriaSelecionada.bind(this);
 		this.fetchCategorias();
+
+		this.fetchEstilos = this.fetchEstilos.bind(this);
+		this.estiloSelecionado = this.estiloSelecionado.bind(this);
+		this.fetchEstilos();
 	}
 
 	continue = (e) => {
@@ -70,9 +77,41 @@ export class Apresentacao extends Component {
 		}
 	};
 
+	async fetchEstilos() {
+		this.setState({ loading: true });
+		try {
+			const response = await api.get('/lista/estilo');
+			const estilos = response.data.map((estilo) => ({
+				extra_estil: estilo.estil_id,
+				extra_estil_nome: estilo.estil_nome,
+			}));
+			estilos.push({ extra_estil: 0, extra_estil_nome: '' });
+			this.setState({ listaEstilos: estilos });
+		} catch (error) {
+			console.error(error);
+		}
+		this.setState({ loading: false });
+	}
+
+	estiloSelecionado = async (event, value) => {
+		try {
+			const { handleChangeAutocomplete } = this.props;
+			await handleChangeAutocomplete(value);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	switchExtra = (concurso, props) => {
-		const { listaCategorias, selectBoxStyle } = this.state;
-		const { extra_categ, extra_categ_nome } = this.props.values;
+		const { listaCategorias, listaEstilos, selectBoxStyle } = this.state;
+		const {
+			extra_categ,
+			extra_categ_nome,
+			extra_integ,
+			extra_estil,
+			extra_estil_nome,
+			extra_link_av,
+		} = this.props.values;
 
 		switch (concurso) {
 			case this.CosplayDesfile:
@@ -87,7 +126,7 @@ export class Apresentacao extends Component {
 						}}
 					>
 						<Autocomplete
-							id="cad-select-estado"
+							id="cad-select-categoria"
 							getOptionLabel={(listaCategorias) =>
 								`${listaCategorias.extra_categ_nome}`
 							}
@@ -146,7 +185,167 @@ export class Apresentacao extends Component {
 					</Box>
 				);
 			case this.CosplayCircuito:
-				return <h1>Ainda sem Extra... Aguarde...</h1>;
+				return (
+					<Box sx={{
+						width: '100%',
+					}}>
+						<Box
+							sx={{
+								width: '100%',
+								display: 'flex',
+								justifyContent: 'space-around',
+								flexDirection: { xs: 'column', md: 'row' },
+							}}
+						>
+							<Box
+								sx={{
+									width: { xs: '100%', md: '45%' },
+									display: 'flex',
+									justifyContent: 'center',
+									alignItems: 'center',
+									marginBottom: '2.625rem',
+								}}
+							>
+								<Autocomplete
+									id="cad-select-estilo"
+									getOptionLabel={(listaEstilos) =>
+										`${listaEstilos.extra_estil_nome}`
+									}
+									options={listaEstilos}
+									sx={selectBoxStyle}
+									isOptionEqualToValue={(option, value) =>
+										option.extra_estil_nome === value.extra_estil_nome
+									}
+									noOptionsText={'Nenhum estilo está disponível.'}
+									renderOption={(props, listaEstilos) => (
+										<Box
+											component="li"
+											{...props}
+											key={listaEstilos.extra_estil}
+										>
+											{listaEstilos.extra_estil_nome}
+										</Box>
+									)}
+									renderInput={(params) => (
+										<TextField
+											{...params}
+											label="Estilo"
+											error={
+												props.touched.extra_estil_nome &&
+												Boolean(props.errors.extra_estil_nome)
+											}
+											helperText={
+												props.touched.extra_estil_nome &&
+												props.errors.extra_estil_nome
+											}
+											required
+											variant="outlined"
+										/>
+									)}
+									onChange={(event, values, select, option) => {
+										this.categoriaSelecionada(event, values, select, option);
+										props.handleChange(event, values, select, option);
+									}}
+									onBlur={props.handleBlur}
+									value={{
+										extra_estil: extra_estil,
+										extra_estil_nome: extra_estil_nome,
+									}}
+									disableClearable
+								/>
+								<Tooltip title="Selecione o estilo ao qual irá competir.">
+									<HelpIcon
+										sx={{
+											display: 'flex',
+											fontSize: '1.5rem',
+											color: deepOrange[500],
+											margin: '.625rem',
+										}}
+									/>
+								</Tooltip>
+							</Box>
+							<Box
+								sx={{
+									width: { xs: '100%', md: '45%' },
+									display: 'flex',
+									justifyContent: 'center',
+									alignItems: 'center',
+									marginBottom: '2.625rem',
+								}}
+							>
+								<TextField
+									sx={{ width: '90%' }}
+									id="extra_integ"
+									label="Nome Integrantes"
+									placeholder="Marcos, Aline"
+									variant="outlined"
+									value={extra_integ}
+									onChange={props.handleChange}
+									onChangeCapture={this.props.handleChange('extra_integ')}
+									onBlur={props.handleBlur}
+									error={props.errors.extra_integ && props.touched.extra_integ}
+									helperText={props.touched.extra_integ && props.errors.extra_integ}
+									required
+								/>
+								<Tooltip title="Digite os nomes dos integrantes, caso tenha, separados por vírgula.">
+									<HelpIcon
+										sx={{
+											display: 'flex',
+											fontSize: '1.5rem',
+											color: deepOrange[500],
+											margin: '.625rem',
+										}}
+									/>
+								</Tooltip>
+							</Box>
+						</Box>
+						<Box
+							sx={{
+								width: '100%',
+								display: 'flex',
+								justifyContent: 'space-around',
+								flexDirection: { xs: 'column', md: 'row' },
+							}}
+						>
+							<Box
+								sx={{
+									width: '100%',
+									display: 'flex',
+									justifyContent: 'center',
+									alignItems: 'center',
+									marginBottom: '2.625rem',
+								}}
+							>
+								<TextField
+									sx={{ width: '90%' }}
+									id="extra_link_av"
+									label="Link do Áudio / Vídeo"
+									placeholder="https://www.youtube.com"
+									variant="outlined"
+									value={extra_link_av}
+									onChange={props.handleChange}
+									onChangeCapture={this.props.handleChange(
+										'extra_link_av'
+									)}
+									onBlur={props.handleBlur}
+									error={props.errors.extra_link_av && props.touched.extra_link_av}
+									helperText={props.touched.extra_link_av && props.errors.extra_link_av}
+									required
+								/>
+								<Tooltip title="Digite um link para o vídeo ou áudio que será utilizado na apresentação.">
+									<HelpIcon
+										sx={{
+											display: 'flex',
+											fontSize: '1.5rem',
+											color: deepOrange[500],
+											margin: '.625rem',
+										}}
+									/>
+								</Tooltip>
+							</Box>
+						</Box>
+					</Box>
+				);
 			case this.Karaoke:
 				return <h1>Ainda sem Extra... Aguarde...</h1>;
 			case this.KpopCircuito:
