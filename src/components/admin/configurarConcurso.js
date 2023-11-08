@@ -71,9 +71,7 @@ export class ConfigurarConcurso extends Component {
 			(error) => {
 				this.setState({
 					content:
-						(error.response &&
-							error.response.data &&
-							error.response.data.message) ||
+						(error.response?.data?.message) ||
 						error.message ||
 						error.toString(),
 				});
@@ -99,31 +97,31 @@ export class ConfigurarConcurso extends Component {
 				'admin/concurso/atualizar/' + data.conc_id,
 				data
 			);
-			this.setState({
-				successMsg: {
-					type: 'succcess',
-					title: 'Sucesso',
-					msg: response.data,
-				},
-				style: {
-					...this.state.style,
-					bgcolor: 'rgba(6, 68, 6, 0.8)',
-					border: '2px solid #0F0',
-				},
+			this.setState((prevState, props) => { // função que recebe o estado anterior e as props como parâmetros
+				return { // retorna um objeto com as alterações de estado
+					successMsg: { type: 'succcess', title: 'Sucesso', msg: response.data, },
+					style: {
+						...prevState.style, // mantém o estilo anterior 
+						bgcolor: 'rgba(6, 68, 6, 0.8)', // muda a cor de fundo
+						border: '2px solid #0F0', // muda a borda
+					},
+				};
 			});
 		} catch (error) {
 			console.error(error);
-			this.setState({
-				successMsg: {
-					type: 'error',
-					title: 'Erro na solicitação',
-					msg: error.response.data,
-				},
-				style: {
-					...this.state.style,
-					bgcolor: 'rgba(138, 22, 22, 0.8)',
-					border: '2px solid #F00',
-				},
+			this.setState((prevState, props) => {
+				return {
+					successMsg: {
+						type: 'error',
+						title: 'Erro na solicitação',
+						msg: error.response.data,
+					},
+					style: {
+						...prevState.style,
+						bgcolor: 'rgba(138, 22, 22, 0.8)',
+						border: '2px solid #F00',
+					},
+				};
 			});
 		}
 		this.handleOpen();
@@ -139,31 +137,35 @@ export class ConfigurarConcurso extends Component {
 					'admin/concurso/atualizar/' + data.conc_id,
 					data
 				);
-				this.setState({
-					successMsg: {
-						type: 'succcess',
-						title: 'Sucesso',
-						msg: response.data,
-					},
-					style: {
-						...this.state.style,
-						bgcolor: 'rgba(6, 68, 6, 0.8)',
-						border: '2px solid #0F0',
-					},
+				this.setState((prevState, props) => {
+					return {
+						successMsg: {
+							type: 'succcess',
+							title: 'Sucesso',
+							msg: response.data,
+						},
+						style: {
+							...prevState.style,
+							bgcolor: 'rgba(6, 68, 6, 0.8)',
+							border: '2px solid #0F0',
+						},
+					};
 				});
 			} catch (error) {
 				console.error(error);
-				this.setState({
-					successMsg: {
-						type: 'error',
-						title: 'Erro na solicitação',
-						msg: error.response.data,
-					},
-					style: {
-						...this.state.style,
-						bgcolor: 'rgba(138, 22, 22, 0.8)',
-						border: '2px solid #F00',
-					},
+				this.setState((prevState, props) => {
+					return {
+						successMsg: {
+							type: 'error',
+							title: 'Erro na solicitação',
+							msg: error.response.data,
+						},
+						style: {
+							...prevState.style,
+							bgcolor: 'rgba(138, 22, 22, 0.8)',
+							border: '2px solid #F00',
+						},
+					};
 				});
 			}
 		});
@@ -181,30 +183,48 @@ export class ConfigurarConcurso extends Component {
 	//Lidar com a mudança
 	handleChange = (event, value) => {
 		const infos = event.target.name.split('+');
-		const listaConcursos = [...this.state.listaConcursos];
-		const indice = listaConcursos.findIndex(
-			(concurso) => concurso.conc_id === Number(infos[1])
-		);
-		listaConcursos[indice][infos[0]] = Number(event.target.value);
-		this.setState({ listaConcursos });
+		this.setState((prevState, props) => { // função que recebe o estado anterior e as props como parâmetros
+			return { // retorna um objeto com as alterações de estado
+				listaConcursos: prevState.listaConcursos.map((concurso) => { // mapeia a lista de concursos anterior
+					if (concurso.conc_id === Number(infos[1])) { // se o id do concurso for igual ao informado no evento
+						return {
+							...concurso, // mantém os outros atributos do concurso
+							[infos[0]]: Number(event.target.value), // muda o atributo especificado no evento
+						};
+					} else { // se o id do concurso for diferente do informado no evento
+						return concurso; // mantém o concurso sem alteração
+					}
+				}),
+			};
+		});
 	};
 
 	handleChangeCheckbox = (event, value) => {
 		const infos = event.target.name.split('+');
-		const listaConcursos = [...this.state.listaConcursos];
-		const indice = listaConcursos.findIndex(
-			(concurso) => concurso.conc_id === Number(infos[1])
-		);
-		listaConcursos[indice][infos[0]] = value;
-		this.setState({ listaConcursos });
+		this.setState((prevState, props) => { // função que recebe o estado anterior e as props como parâmetros
+			return { // retorna um objeto com as alterações de estado
+				listaConcursos: prevState.listaConcursos.map((concurso) => { // mapeia a lista de concursos anterior
+					if (concurso.conc_id === Number(infos[1])) { // se o id do concurso for igual ao informado no evento
+						return {
+							...concurso, // mantém os outros atributos do concurso
+							[infos[0]]: value, // muda o atributo especificado no evento
+						};
+					} else { // se o id do concurso for diferente do informado no evento
+						return concurso; // mantém o concurso sem alteração
+					}
+				}),
+			};
+		});
 	};
 
 	handleChangeAutocomplete = (value) => {
-		this.setState({
-			values: {
-				...this.state.values,
-				...value,
-			},
+		this.setState((prevState, props) => { // função que recebe o estado anterior e as props como parâmetros
+			return { // retorna um objeto com as alterações de estado
+				values: {
+					...prevState.values, // mantém os valores anteriores
+					...value, // adiciona ou atualiza um valor
+				},
+			};
 		});
 	};
 

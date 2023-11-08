@@ -33,15 +33,12 @@ export class KpopSoloDuoRegras extends Component {
 					<br />
 					<span className="underline">- Inscrição online:</span> Através de formulário pela internet. O início das
 					inscrições e liberação do link do formulário de inscrição serão
-					anunciados com antecedência em nossa página do Facebook(
-					<a href="www.facebook.com/CircuitoAnimeFest">
+					anunciados com antecedência em nossa página do
+					Facebook (<a href="www.facebook.com/CircuitoAnimeFest">
 						www.facebook.com/CircuitoAnimeFest
-					</a>	
-					) e Instagram(
-					<a href="https://www.instagram.com/animefest/">
+					</a>) e Instagram (<a href="https://www.instagram.com/animefest/">
 						https://www.instagram.com/animefest/
-					</a>	
-					). No cabeçalho do formulário será
+					</a>). No cabeçalho do formulário será
 					informado a quantidade máxima de vagas no concurso e data e horário
 					limite das inscrições online. Após a inscrição realizada, o participante
 					será contatado pelo Whatsapp informado na inscrição em até 48 horas. A
@@ -49,9 +46,9 @@ export class KpopSoloDuoRegras extends Component {
 					no dia do evento até 30 (trinta) minutos antes do início do Concursos
 					Kpop Solo e Duo na fila exclusiva de concursos ou tenda de inscrições,
 					próximo ao palco Anime Fest. <strong>A não confirmação no dia, provoca sua
-					desclassificação</strong>.
+						desclassificação</strong>.
 				</p>
-				<br />  
+				<br />
 				<p>
 					<strong>Dados necessários para efetuar a inscrição:</strong>
 					<br />
@@ -62,7 +59,7 @@ export class KpopSoloDuoRegras extends Component {
 				</p>
 				<br />
 				<p>
-				Vide anexo 01 do regulamento (ao final do documento) para detalhes sobre Referência de Figurino.
+					Vide anexo 01 do regulamento (ao final do documento) para detalhes sobre Referência de Figurino.
 				</p>
 				<br />
 				<p>
@@ -78,16 +75,16 @@ export class KpopSoloDuoRegras extends Component {
 				<p>
 					<span className="underline">Não esqueça de levar no dia do evento:</span>
 					<br />
-					 - Documento com foto (mesmo que utilizado no momento da inscrição). 
-					 - Pendrive ou celular contendo seu áudio (somente em MP3) a ser utilizado na apresentação.
+					- Documento com foto (mesmo que utilizado no momento da inscrição).
+					- Pendrive ou celular contendo seu áudio (somente em MP3) a ser utilizado na apresentação.
 				</p>
 				<br />
 				<h4>3. DA APRESENTAÇÃO</h4>
 				<p>
 					A sequência das apresentações no dia do
 					evento será correspondente ao recebimento das inscrições. Somente serão
-					permitidas apresentação de músicas do gênero pop coreano com no máximo
-					<strong>dois (02) minutos e trinta (30) segundos de duração</strong> (Introduções,
+					permitidas apresentação de músicas do gênero pop coreano com no
+					máximo <strong>dois (02) minutos e trinta (30) segundos de duração</strong> (Introduções,
 					pausas, complementos, modificações (remix), mashup ou encerramentos não
 					correspondentes às coreografias originais poderão ser feitos, desde que
 					não excedam a duração máxima da apresentação). Caso o arquivo de áudio
@@ -107,7 +104,7 @@ export class KpopSoloDuoRegras extends Component {
 				<p>
 					O corpo de júri será composto por 03 (três) membros escolhidos pela organização, cujas notas
 					serão consideradas plenas e também inquestionáveis. Cada membro dará a
-					cada apresentação 03 (três) notas: 
+					cada apresentação 03 (três) notas:
 					<br />
 					<strong>- Execução de passos/sincronia; Presença de palco/expressão artística e Figurino;</strong>
 					<br />
@@ -125,13 +122,13 @@ export class KpopSoloDuoRegras extends Component {
 				<br />
 				<h4>5. PREMIAÇÃO</h4>
 				<p>
-					As 03 (três) melhores apresentações Solo serão premiadas, sendo: 
+					As 03 (três) melhores apresentações Solo serão premiadas, sendo:
 					<br />
-					- Primeiro, segundo e terceiro lugar: Medalha e kit de produtos dos expositores do evento; 
+					- Primeiro, segundo e terceiro lugar: Medalha e kit de produtos dos expositores do evento;
 					<br />
 					As 03 (três) melhores apresentações Duo serão premiadas, sendo:
 					<br />
-					- Primeiro, segundo e terceiro lugar: Medalha e kit produtos dos expositores do evento; 
+					- Primeiro, segundo e terceiro lugar: Medalha e kit produtos dos expositores do evento;
 					<br /><br />
 					Os vencedores serão anunciados no palco Anime Fest e os prêmios serão entregues no
 					ato; caso estejam ausentes, o prêmio pode ser retirado em local a

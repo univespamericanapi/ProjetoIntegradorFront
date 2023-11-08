@@ -36,15 +36,11 @@ export class CosplayCircuitoRegras extends Component {
 					<br /> <span className="underline">- Inscrição online:</span> Através
 					de formulário pela internet. O início das inscrições e liberação do
 					link do formulário de inscrição serão anunciados com antecedência em
-					nossa página do Facebook (
-					<a href="www.facebook.com/CircuitoAnimeFest">
-						www.facebook.com/CircuitoAnimeFest
-					</a>
-					) e Instagram (
-					<a href="https://www.instagram.com/animefest/">
-						https://www.instagram.com/animefest/
-					</a>
-					). No cabeçalho do formulário será informado a quantidade máxima de
+					nossa página do Facebook (<a href="www.facebook.com/CircuitoAnimeFest">
+						www.facebook.com/CircuitoAnimeFest</a>)
+					e Instagram (<a href="https://www.instagram.com/animefest/">
+						https://www.instagram.com/animefest/</a>).
+					No cabeçalho do formulário será informado a quantidade máxima de
 					vagas no concurso e data e horário limite das inscrições online. Após
 					a inscrição realizada, o participante será contatado pelo Whatsapp
 					informado na inscrição em até 48 horas. A presença deve ser

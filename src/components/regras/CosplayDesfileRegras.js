@@ -40,10 +40,8 @@ export class CosplayDesfileRegras extends Component {
 					qualquer plataforma.
 					<br />
 					<strong>TV/Cinema:</strong> personagem originário da TV ou cinema.
-					<br />
-					<strong>Cosfun:</strong>
-					cosplay adaptada de roupas do dia a dia, com improvisações, “cosplay
-					de armário”. Aprovação necessária.
+					<br /><strong>Cosfun:</strong> cosplay adaptada de roupas do dia a dia,
+					com improvisações, “cosplay de armário”. Aprovação necessária.
 				</p>
 				<br />
 				<h4>2 - INSCRIÇÕES</h4>
@@ -53,15 +51,11 @@ export class CosplayDesfileRegras extends Component {
 					<span className="underline">- Inscrição online:</span> Através de
 					formulário pela internet. O início das inscrições e liberação do link
 					do formulário de inscrição serão anunciados com antecedência em nossa
-					página do Facebook (
-					<a href="www.facebook.com/CircuitoAnimeFest">
+					página do Facebook (<a href="www.facebook.com/CircuitoAnimeFest">
 						www.facebook.com/CircuitoAnimeFest
-					</a>
-					) e Instagram (
-					<a href="https://www.instagram.com/animefest/">
+					</a>) e Instagram (<a href="https://www.instagram.com/animefest/">
 						https://www.instagram.com/animefest/
-					</a>
-					). No cabeçalho do formulário será informado a quantidade máxima de
+					</a>). No cabeçalho do formulário será informado a quantidade máxima de
 					vagas no concurso e data e horário limite das inscrições online. Após
 					a inscrição realizada, o participante será contatado pelo Whatsapp
 					informado na inscrição em até 48 horas. A presença deve ser
@@ -153,8 +147,8 @@ export class CosplayDesfileRegras extends Component {
 				<br />
 				<h4>7 - PROIBIÇÕES</h4>
 				<p>
-					<strong>É PROIBIDO E PROVOCA A DESCLASSIFICAÇÃO DO CONCURSO:</strong>
-					Participação e representação de personagens pornográficos e/ou
+					<strong>É PROIBIDO E PROVOCA A DESCLASSIFICAÇÃO DO CONCURSO:</strong> Participação
+					e representação de personagens pornográficos e/ou
 					eróticos (hentai), participação de jurados das etapas da edição atual
 					do Circuito Anime Fest de Cosplay e equipe organizadora do evento; Uso
 					de qualquer tipo de ofensas, constrangimentos ou apelo sexual e que
