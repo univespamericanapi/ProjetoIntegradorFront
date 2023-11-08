@@ -118,7 +118,7 @@ export class Confirm extends Component {
 							<TableCell component="th" scope="row">
 								{'Link Áudio / Vídeo'}
 							</TableCell>
-							<TableCell align="right">{values.extra_link_av_short}</TableCell>
+							<TableCell align="right"><a href={'http://' + values.extra_link_av_short} target='_blank' rel="noreferrer">{'http://' + values.extra_link_av_short}</a></TableCell>
 						</TableRow>
 					</React.Fragment>
 				);
@@ -152,7 +152,7 @@ export class Confirm extends Component {
 							<TableCell component="th" scope="row">
 								{'Link Áudio / Vídeo'}
 							</TableCell>
-							<TableCell align="right">{values.extra_link_av_short}</TableCell>
+							<TableCell align="right"><a href={'http://' + values.extra_link_av_short} target='_blank' rel="noreferrer">{'http://' + values.extra_link_av_short}</a></TableCell>
 						</TableRow>
 					</React.Fragment>
 				);
@@ -184,9 +184,9 @@ export class Confirm extends Component {
 							<TableCell component="th" scope="row">
 								{'Link Áudio / Vídeo'}
 							</TableCell>
-							<TableCell align="right">{values.extra_link_av_short}</TableCell>
+							<TableCell align="right"><a href={'http://' + values.extra_link_av_short} target='_blank' rel="noreferrer">{'http://' + values.extra_link_av_short}</a></TableCell>
 						</TableRow>
-					</React.Fragment>
+					</React.Fragment >
 				);
 			default:
 				return;
@@ -362,7 +362,7 @@ export class Confirm extends Component {
 									<TableCell component="th" scope="row">
 										{'Link de Referência'}
 									</TableCell>
-									<TableCell align="right">{values.apres_link_ref_short}</TableCell>
+									<TableCell align="right"><a href={'http://' + values.apres_link_ref_short} target='_blank' rel="noreferrer">{'http://' + values.apres_link_ref_short}</a></TableCell>
 								</TableRow>
 
 								<TableRow

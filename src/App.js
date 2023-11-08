@@ -113,233 +113,231 @@ export class App extends Component {
 		AppFlexBoxColumn.padding = 0;
 
 		return (
-			<React.Fragment>
-				<Box sx={AppFlexBoxColumn}>
-					<CssBaseline>
-						<ThemeProvider theme={deepPurpleTheme}>
-							<AppBar position="static">
-								<Container maxWidth="xl">
-									<Toolbar disableGutters>
-										<Link to={'/'}>
-											<CardMedia
-												component="img"
-												image={logoLinha}
-												alt="Logo Avalon"
-												sx={{
-													display: { xs: 'none', md: 'flex' },
-													flexGrow: 1,
-													width: '12.5rem',
-													marginRight: '1rem',
-													':hover': {
-														filter: 'drop-shadow(1px 1px 2px #FFFFFF)',
-													},
-												}}
-											/>
-										</Link>
-										<Box
-											sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-										>
-											<IconButton
-												size="large"
-												aria-label="account of current user"
-												aria-controls="menu-appbar"
-												aria-haspopup="true"
-												onClick={this.handleOpenNavMenu}
-												color="inherit"
-											>
-												<MenuIcon />
-											</IconButton>
-											<Menu
-												id="menu-appbar"
-												anchorEl={anchorElNav}
-												anchorOrigin={{
-													vertical: 'bottom',
-													horizontal: 'left',
-												}}
-												keepMounted
-												transformOrigin={{
-													vertical: 'top',
-													horizontal: 'left',
-												}}
-												open={Boolean(anchorElNav)}
-												onClose={this.handleCloseNavMenu}
-												sx={{
-													display: { xs: 'block', md: 'none' },
-												}}
-											>
-												{/* Páginas tela pequena */}
-												<MenuItem
-													key={'cadastro'}
-													onClick={this.handleCloseNavMenu}
-													component={Link}
-													to="/cadastro"
-												>
-													<Typography textAlign="center">
-														{'Cadastro'}
-													</Typography>
-												</MenuItem>
-												{showStaffBoard && (
-													<MenuItem
-														key={'staff-board'}
-														onClick={this.handleCloseNavMenu}
-														component={Link}
-														to="/staff"
-													>
-														<Typography textAlign="center">
-															{'Staff Board'}
-														</Typography>
-													</MenuItem>
-												)}
-												{showAdminBoard && (
-													<MenuItem
-														key={'admin-board'}
-														onClick={this.handleCloseNavMenu}
-														component={Link}
-														to="/admin"
-													>
-														<Typography textAlign="center">
-															{'Admin Board'}
-														</Typography>
-													</MenuItem>
-												)}
-											</Menu>
-										</Box>
-										<Typography
-											variant="h5"
-											noWrap
+			<Box sx={AppFlexBoxColumn}>
+				<CssBaseline>
+					<ThemeProvider theme={deepPurpleTheme}>
+						<AppBar position="static">
+							<Container maxWidth="xl">
+								<Toolbar disableGutters>
+									<Link to={'/'}>
+										<CardMedia
+											component="img"
+											image={logoLinha}
+											alt="Logo Avalon"
 											sx={{
-												mr: 2,
-												display: { xs: 'flex', md: 'none' },
+												display: { xs: 'none', md: 'flex' },
 												flexGrow: 1,
-												fontFamily: 'monospace',
-												fontWeight: 700,
-												color: 'inherit',
-												textDecoration: 'none',
+												width: '12.5rem',
+												marginRight: '1rem',
+												':hover': {
+													filter: 'drop-shadow(1px 1px 2px #FFFFFF)',
+												},
 											}}
-											component={Link}
-											to="/"
+										/>
+									</Link>
+									<Box
+										sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+									>
+										<IconButton
+											size="large"
+											aria-label="account of current user"
+											aria-controls="menu-appbar"
+											aria-haspopup="true"
+											onClick={this.handleOpenNavMenu}
+											color="inherit"
 										>
-											Avalon Eventos
-										</Typography>
-										<Box
-											sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
+											<MenuIcon />
+										</IconButton>
+										<Menu
+											id="menu-appbar"
+											anchorEl={anchorElNav}
+											anchorOrigin={{
+												vertical: 'bottom',
+												horizontal: 'left',
+											}}
+											keepMounted
+											transformOrigin={{
+												vertical: 'top',
+												horizontal: 'left',
+											}}
+											open={Boolean(anchorElNav)}
+											onClose={this.handleCloseNavMenu}
+											sx={{
+												display: { xs: 'block', md: 'none' },
+											}}
 										>
-											{/* Páginas tela grande */}
-											<Button
+											{/* Páginas tela pequena */}
+											<MenuItem
 												key={'cadastro'}
 												onClick={this.handleCloseNavMenu}
-												sx={{ my: 2, color: 'white', display: 'block' }}
 												component={Link}
 												to="/cadastro"
 											>
-												{'cadastro'}
-											</Button>
-
+												<Typography textAlign="center">
+													{'Cadastro'}
+												</Typography>
+											</MenuItem>
 											{showStaffBoard && (
-												<Button
+												<MenuItem
 													key={'staff-board'}
 													onClick={this.handleCloseNavMenu}
-													sx={{ my: 2, color: 'white', display: 'block' }}
 													component={Link}
 													to="/staff"
 												>
-													{'Staff Board'}
-												</Button>
+													<Typography textAlign="center">
+														{'Staff Board'}
+													</Typography>
+												</MenuItem>
 											)}
-
 											{showAdminBoard && (
-												<Button
+												<MenuItem
 													key={'admin-board'}
 													onClick={this.handleCloseNavMenu}
-													sx={{ my: 2, color: 'white', display: 'block' }}
 													component={Link}
 													to="/admin"
 												>
-													{'Admin Board'}
-												</Button>
+													<Typography textAlign="center">
+														{'Admin Board'}
+													</Typography>
+												</MenuItem>
 											)}
-										</Box>
-										<Box sx={{ flexGrow: 0 }}>
-											{currentUser ? (
-												<Tooltip title="Open settings">
-													<IconButton
-														onClick={this.handleOpenUserMenu}
-														sx={{ p: 0 }}
-													>
-														<Avatar
-															alt={currentUser.usuario_nome}
-															src="/static/images/avatar/2.jpg"
-														/>
-													</IconButton>
-												</Tooltip>
-											) : (
-												<Button
-													key={'login'}
-													onClick={this.handleCloseNavMenu}
-													sx={{ my: 2, color: 'white', display: 'block' }}
-													component={Link}
-													to="/login"
-												>
-													{'Login'}
-												</Button>
-											)}
-											<Menu
-												sx={{ mt: '2.875rem' }}
-												id="menu-appbar"
-												anchorEl={anchorElUser}
-												anchorOrigin={{
-													vertical: 'top',
-													horizontal: 'right',
-												}}
-												keepMounted
-												transformOrigin={{
-													vertical: 'top',
-													horizontal: 'right',
-												}}
-												open={Boolean(anchorElUser)}
-												onClose={this.handleCloseUserMenu}
-												onClick={this.handleCloseUserMenu}
+										</Menu>
+									</Box>
+									<Typography
+										variant="h5"
+										noWrap
+										sx={{
+											mr: 2,
+											display: { xs: 'flex', md: 'none' },
+											flexGrow: 1,
+											fontFamily: 'monospace',
+											fontWeight: 700,
+											color: 'inherit',
+											textDecoration: 'none',
+										}}
+										component={Link}
+										to="/"
+									>
+										Avalon Eventos
+									</Typography>
+									<Box
+										sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
+									>
+										{/* Páginas tela grande */}
+										<Button
+											key={'cadastro'}
+											onClick={this.handleCloseNavMenu}
+											sx={{ my: 2, color: 'white', display: 'block' }}
+											component={Link}
+											to="/cadastro"
+										>
+											{'cadastro'}
+										</Button>
+
+										{showStaffBoard && (
+											<Button
+												key={'staff-board'}
+												onClick={this.handleCloseNavMenu}
+												sx={{ my: 2, color: 'white', display: 'block' }}
+												component={Link}
+												to="/staff"
 											>
-												<MenuItem key={'perfil'} component={Link} to="/profile">
-													<Typography textAlign="center">{'Perfil'}</Typography>
-												</MenuItem>
-												<MenuItem
-													key={'logout'}
-													onClick={this.logOut}
-													component={Link}
-													to="/"
+												{'Staff Board'}
+											</Button>
+										)}
+
+										{showAdminBoard && (
+											<Button
+												key={'admin-board'}
+												onClick={this.handleCloseNavMenu}
+												sx={{ my: 2, color: 'white', display: 'block' }}
+												component={Link}
+												to="/admin"
+											>
+												{'Admin Board'}
+											</Button>
+										)}
+									</Box>
+									<Box sx={{ flexGrow: 0 }}>
+										{currentUser ? (
+											<Tooltip title="Open settings">
+												<IconButton
+													onClick={this.handleOpenUserMenu}
+													sx={{ p: 0 }}
 												>
-													<Typography textAlign="center">{'Logout'}</Typography>
-												</MenuItem>
-											</Menu>
-										</Box>
-									</Toolbar>
-								</Container>
-							</AppBar>
-						</ThemeProvider>
-						<ThemeProvider theme={deepOrangeTheme}>
-							<Box sx={{ width: '100%', minHeight: 'calc(100dvh - 8.75rem)' }}>
-								<Routes>
-									<Route path="/" element={<Home />} />
-									<Route path="/cadastro" element={<CadastroPage />} />
-									<Route path="/login" element={<Login />} />
-									<Route path="/profile" element={<Profile />} />
-									{/* <Route path="/user" element={<BoardUser />} /> */}
-									<Route path="/staff" element={<BoardStaff />} />
-									<Route
-										path="/admin"
-										element={<BoardAdmin logOut={this.logOut} />}
-									/>
-								</Routes>
-							</Box>
-							<Box sx={{ width: '100%' }}>
-								<Footer />
-							</Box>
-							<AuthVerify logOut={this.logOut} />
-						</ThemeProvider>
-					</CssBaseline>
-				</Box>
-			</React.Fragment>
+													<Avatar
+														alt={currentUser.usuario_nome}
+														src="/static/images/avatar/2.jpg"
+													/>
+												</IconButton>
+											</Tooltip>
+										) : (
+											<Button
+												key={'login'}
+												onClick={this.handleCloseNavMenu}
+												sx={{ my: 2, color: 'white', display: 'block' }}
+												component={Link}
+												to="/login"
+											>
+												{'Login'}
+											</Button>
+										)}
+										<Menu
+											sx={{ mt: '2.875rem' }}
+											id="menu-appbar"
+											anchorEl={anchorElUser}
+											anchorOrigin={{
+												vertical: 'top',
+												horizontal: 'right',
+											}}
+											keepMounted
+											transformOrigin={{
+												vertical: 'top',
+												horizontal: 'right',
+											}}
+											open={Boolean(anchorElUser)}
+											onClose={this.handleCloseUserMenu}
+											onClick={this.handleCloseUserMenu}
+										>
+											<MenuItem key={'perfil'} component={Link} to="/profile">
+												<Typography textAlign="center">{'Perfil'}</Typography>
+											</MenuItem>
+											<MenuItem
+												key={'logout'}
+												onClick={this.logOut}
+												component={Link}
+												to="/"
+											>
+												<Typography textAlign="center">{'Logout'}</Typography>
+											</MenuItem>
+										</Menu>
+									</Box>
+								</Toolbar>
+							</Container>
+						</AppBar>
+					</ThemeProvider>
+					<ThemeProvider theme={deepOrangeTheme}>
+						<Box sx={{ width: '100%', minHeight: 'calc(100dvh - 8.75rem)' }}>
+							<Routes>
+								<Route path="/" element={<Home />} />
+								<Route path="/cadastro" element={<CadastroPage />} />
+								<Route path="/login" element={<Login />} />
+								<Route path="/profile" element={<Profile />} />
+								{/* <Route path="/user" element={<BoardUser />} /> */}
+								<Route path="/staff" element={<BoardStaff />} />
+								<Route
+									path="/admin"
+									element={<BoardAdmin logOut={this.logOut} />}
+								/>
+							</Routes>
+						</Box>
+						<Box sx={{ width: '100%' }}>
+							<Footer />
+						</Box>
+						<AuthVerify logOut={this.logOut} />
+					</ThemeProvider>
+				</CssBaseline>
+			</Box>
 		);
 	}
 }
