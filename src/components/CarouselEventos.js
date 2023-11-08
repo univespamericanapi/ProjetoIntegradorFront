@@ -1,78 +1,78 @@
 import React, { Component, createRef } from 'react';
 import Carousel from 'react-material-ui-carousel';
 import {
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  Grid,
-  Typography,
+	Button,
+	Card,
+	CardContent,
+	CardMedia,
+	Grid,
+	Typography,
 } from '@mui/material';
 
 class CarouselEventos extends Component {
-  constructor(props) {
-    super(props);
-    this.carouselRef = createRef();
-    this.state = {
-      settings: {
-        autoPlay: false,
-        animation: 'fade',
-        indicators: true,
-        duration: 500,
-        navButtonsAlwaysVisible: true,
-        navButtonsAlwaysInvisible: false,
-        cycleNavigation: true,
-        fullHeightHover: true,
-        swipe: true,
-        activeChild: 0, // Manter o controle do slide ativo
-      },
-    };
-  }
+	constructor(props) {
+		super(props);
+		this.carouselRef = createRef();
+		this.state = {
+			settings: {
+				autoPlay: false,
+				animation: 'fade',
+				indicators: true,
+				duration: 500,
+				navButtonsAlwaysVisible: true,
+				navButtonsAlwaysInvisible: false,
+				cycleNavigation: true,
+				fullHeightHover: true,
+				swipe: true,
+				activeChild: 0, // Manter o controle do slide ativo
+			},
+		};
+	}
 
-  handleKeyPress = (e) => {
-    if (e.key === 'ArrowLeft') {
-      // Define o slide anterior
-      this.setState((prevState) => ({
-        settings: {
-          ...prevState.settings,
-          activeChild: prevState.settings.activeChild - 1 < 0 ? items.length - 1 : prevState.settings.activeChild - 1,
-        },
-      }));
-    } else if (e.key === 'ArrowRight') {
-      // Define o próximo slide
-      this.setState((prevState) => ({
-        settings: {
-          ...prevState.settings,
-          activeChild: (prevState.settings.activeChild + 1) % items.length,
-        },
-      }));
-    }
-  };
+	handleKeyPress = (e) => {
+		if (e.key === 'ArrowLeft') {
+			// Define o slide anterior
+			this.setState((prevState) => ({
+				settings: {
+					...prevState.settings,
+					activeChild: prevState.settings.activeChild - 1 < 0 ? items.length - 1 : prevState.settings.activeChild - 1,
+				},
+			}));
+		} else if (e.key === 'ArrowRight') {
+			// Define o próximo slide
+			this.setState((prevState) => ({
+				settings: {
+					...prevState.settings,
+					activeChild: (prevState.settings.activeChild + 1) % items.length,
+				},
+			}));
+		}
+	};
 
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyPress);
-  }
+	componentDidMount() {
+		document.addEventListener('keydown', this.handleKeyPress);
+	}
 
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyPress);
-  }
+	componentWillUnmount() {
+		document.removeEventListener('keydown', this.handleKeyPress);
+	}
 
-  render() {
-    return (
-      <Carousel
-        ref={this.carouselRef}
-        index={this.state.settings.activeChild} // Controla o slide ativo
-        autoPlay={false}
-        navButtonsAlwaysVisible
-      >
-        {items.map((item, index) => {
-          return (
-            <Banner item={item} key={Number(index)} contentPosition={item.contentPosition} />
-          );
-        })}
-      </Carousel>
-    );
-  }
+	render() {
+		return (
+			<Carousel
+				ref={this.carouselRef}
+				index={this.state.settings.activeChild} // Controla o slide ativo
+				autoPlay={false}
+				navButtonsAlwaysVisible
+			>
+				{items.map((item, index) => {
+					return (
+						<Banner item={item} key={Number(index)} contentPosition={item.contentPosition} />
+					);
+				})}
+			</Carousel>
+		);
+	}
 }
 
 class Banner extends Component {
@@ -158,7 +158,7 @@ class Banner extends Component {
 							transition: '300ms',
 							cursor: 'pointer',
 							':hover': { filter: 'brightness(115%)' },
-							
+
 						}}
 						image={item.Image}
 						title={item.Name}

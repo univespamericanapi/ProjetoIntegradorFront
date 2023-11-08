@@ -54,83 +54,81 @@ export class Regras extends Component {
 		const { part_aceit_regul, part_conc_nome } = this.props.values;
 
 		return (
-			<React.Fragment>
-				<Formik
-					initialValues={{ part_aceit_regul }}
-					validationSchema={Yup.object().shape({})}
-					onSubmit={(values) => {
-						this.continue();
-					}}
-				>
-					{(props) => {
-						const { isValid, handleBlur } = props;
+			<Formik
+				initialValues={{ part_aceit_regul }}
+				validationSchema={Yup.object().shape({})}
+				onSubmit={(values) => {
+					this.continue();
+				}}
+			>
+				{(props) => {
+					const { isValid, handleBlur } = props;
 
-						return (
-							<Form style={{ width: '100%' }}>
+					return (
+						<Form style={{ width: '100%' }}>
+							<Box
+								sx={{
+									width: '100%',
+									marginTop: '1.875rem',
+									display: 'flex',
+									flexDirection: 'column',
+									justifyContent: 'center',
+									alignItems: 'center',
+								}}
+							>
 								<Box
 									sx={{
-										width: '100%',
-										marginTop: '1.875rem',
+										width: '90%',
 										display: 'flex',
 										flexDirection: 'column',
-										justifyContent: 'center',
 										alignItems: 'center',
 									}}
 								>
-									<Box
-										sx={{
-											width: '90%',
-											display: 'flex',
-											flexDirection: 'column',
-											alignItems: 'center',
-										}}
-									>
-										<Box>{this.switchRegras(part_conc_nome)}</Box>
+									<Box>{this.switchRegras(part_conc_nome)}</Box>
 
-										<Box>
-											<FormControlLabel
-												name="part_aceit_regul"
-												id="part_aceit_regul"
-												required
-												control={<Checkbox />}
-												label="Li e aceito as regras e termos descritos acima."
-												onChange={this.handleCheckChange}
-												onBlur={handleBlur}
-												checked={part_aceit_regul}
-												sx={{ margin: '.5rem' }}
-											/>
-										</Box>
-									</Box>
-
-									<Box
-										sx={{
-											width: '100%',
-											display: 'flex',
-											justifyContent: 'space-around',
-										}}
-									>
-										<Button
-											sx={{ margin: '.625rem', width: '7.5rem' }}
-											variant="contained"
-											onClick={this.reset}
-										>
-											Cancelar
-										</Button>
-										<Button
-											sx={{ margin: '.625rem', width: '7.5rem' }}
-											type="submit"
-											variant="contained"
-											disabled={!isValid}
-										>
-											Concordar
-										</Button>
+									<Box>
+										<FormControlLabel
+											name="part_aceit_regul"
+											id="part_aceit_regul"
+											required
+											control={<Checkbox />}
+											label="Li e aceito as regras e termos descritos acima."
+											onChange={this.handleCheckChange}
+											onBlur={handleBlur}
+											checked={part_aceit_regul}
+											sx={{ margin: '.5rem' }}
+										/>
 									</Box>
 								</Box>
-							</Form>
-						);
-					}}
-				</Formik>
-			</React.Fragment>
+
+								<Box
+									sx={{
+										width: '100%',
+										display: 'flex',
+										justifyContent: 'space-around',
+									}}
+								>
+									<Button
+										sx={{ margin: '.625rem', width: '7.5rem' }}
+										variant="contained"
+										onClick={this.reset}
+									>
+										Cancelar
+									</Button>
+									<Button
+										sx={{ margin: '.625rem', width: '7.5rem' }}
+										type="submit"
+										variant="contained"
+										disabled={!isValid}
+									>
+										Concordar
+									</Button>
+								</Box>
+							</Box>
+						</Form>
+					);
+				}}
+			</Formik>
 		);
 	}
 }

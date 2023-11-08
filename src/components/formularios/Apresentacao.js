@@ -81,7 +81,7 @@ export class Apresentacao extends Component {
 			const { handleChangeAutocomplete } = this.props;
 			await handleChangeAutocomplete(value);
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	};
 
@@ -106,7 +106,7 @@ export class Apresentacao extends Component {
 			const { handleChangeAutocomplete } = this.props;
 			await handleChangeAutocomplete(value);
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	};
 
@@ -131,7 +131,7 @@ export class Apresentacao extends Component {
 			const { handleChangeAutocomplete } = this.props;
 			await handleChangeAutocomplete(value);
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	};
 
