@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+const proxyUrl = 'https://corsproxy.io/?';
 
 export const encurtador = async (link) => {
     try {
