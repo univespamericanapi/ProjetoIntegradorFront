@@ -14,6 +14,8 @@ import * as Yup from 'yup';
 import api from '../../services/api';
 import validaCpf from '../../utils/validaCpf';
 import { deepOrange } from '@mui/material/colors';
+import cpfMascara from '../../utils/cpfMascara';
+import celularMascara from '../../utils/celularMascara';
 
 const phoneRegExp = /^(\(\d{2}\)\s)?\d{4,5}-?\d{4,5}$/;
 const cpfRegExp = /^\d{3}.?\d{3}.?\d{3}-?\d{2}/;
@@ -100,21 +102,13 @@ export class InformacaoPessoal extends Component {
 	};
 
 	handleChangeCpfMask = (e, handleChange) => {
-		const value = e.target.value
-			.replace(/\D/g, '') // remove caracteres não numéricos
-			.replace(/(\d{3})(\d)/, '$1.$2') // insere o primeiro ponto
-			.replace(/(\d{3})(\d)/, '$1.$2') // insere o segundo ponto
-			.replace(/(\d{3})(\d{1,2})/, '$1-$2') // insere o traço
-			.replace(/(-\d{2})\d$/, '$1'); // remove os dígitos excedentes
+		const value = cpfMascara(e.target.value); // remove os dígitos excedentes
 		e.target.value = value;
 		handleChange(e);
 	};
 
 	handleChangeWhatsMask = (e, handleChange) => {
-		const value = e.target.value
-			.replace(/\D/g, '') // remove caracteres não numéricos
-			.replace(/(\d{2})(\d)/, '($1) $2') // insere o parêntese e espaço
-			.replace(/(\d{4,5})(\d{4})$/, '$1-$2'); // insere o traços
+		const value = celularMascara(e.target.value);// insere o traços
 		e.target.value = value;
 		handleChange(e);
 	};
