@@ -356,11 +356,11 @@ export class Checkin extends Component {
                                 initialState={{
                                     pagination: {
                                         paginationModel: {
-                                            pageSize: 10,
+                                            pageSize: 20,
                                         },
                                     },
                                 }}
-                                pageSizeOptions={[10]}
+                                pageSizeOptions={[20]}
                                 disableRowSelectionOnClick
                             />
                         </Box>
