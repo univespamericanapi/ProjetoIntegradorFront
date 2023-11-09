@@ -9,6 +9,7 @@ import UserService from '../services/user';
 import EventBus from '../common/eventBus';
 import { withRouter } from '../common/withRouter';
 import { Card, CardActionArea, CardContent } from '@mui/material';
+import Checkin from '../components/staff/checkin';
 
 class StaffBoard extends Component {
 	constructor(props) {
@@ -143,7 +144,7 @@ class StaffBoard extends Component {
 							</Box>
 						</TabPanel>
 						<TabPanel value={value} index={1} style={{ width: '100%' }}>
-							Fazer checkin
+							<Checkin {...this.props} setLogged={this.setLogged} />
 						</TabPanel>
 					</Box>
 				) : (
