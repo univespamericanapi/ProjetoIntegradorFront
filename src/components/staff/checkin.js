@@ -10,7 +10,8 @@ import api from '../../services/api';
 import UserService from '../../services/user';
 import EventBus from '../../common/eventBus';
 import { DataGrid } from '@mui/x-data-grid';
-
+import cpfMascara from '../../utils/cpfMascara';
+import celularMascara from '../../utils/celularMascara';
 
 export class Checkin extends Component {
     constructor(props) {
@@ -47,37 +48,48 @@ export class Checkin extends Component {
                 justifyContent: 'center',
             },
             columns: [
-                { field: 'id', headerName: 'ID', width: 90 },
+                {
+                    field: 'id',
+                    headerName: 'ID',
+                    width: 60,
+                    headerClassName: 'data-grid-theme-header',
+                },
                 {
                     field: 'comp_nome_social',
                     headerName: 'Nome Social',
-                    width: 250,
+                    width: 240,
+                    headerClassName: 'data-grid-theme-header',
                 },
                 {
                     field: 'comp_nome',
                     headerName: 'Nome',
-                    width: 250,
+                    width: 240,
+                    headerClassName: 'data-grid-theme-header',
                 },
                 {
                     field: 'comp_cpf',
                     headerName: 'CPF',
-                    width: 110,
+                    width: 120,
+                    headerClassName: 'data-grid-theme-header',
                 },
                 {
                     field: 'comp_whats',
                     headerName: 'WhatsApp',
-                    width: 110,
+                    width: 120,
+                    headerClassName: 'data-grid-theme-header',
                 },
                 {
                     field: 'apres_nome',
                     headerName: 'Personagem / Música',
-                    width: 150,
+                    width: 180,
+                    headerClassName: 'data-grid-theme-header',
                 },
                 {
                     field: 'part_checkin',
                     headerName: 'Chekin',
                     type: 'boolean',
                     editable: true,
+                    headerClassName: 'data-grid-theme-header',
                 },
             ],
             rowsInscr: [],
@@ -176,6 +188,10 @@ export class Checkin extends Component {
                 id: row.comp_id,
                 ...row
             }));
+            for (const row of rows) {
+                row.comp_cpf = cpfMascara(row.comp_cpf);
+                row.comp_whats = celularMascara(row.comp_whats);
+            }
             return [...rows];
         } catch (error) {
             console.error(error);
@@ -362,6 +378,21 @@ export class Checkin extends Component {
                                 }}
                                 pageSizeOptions={[20]}
                                 disableRowSelectionOnClick
+                                sx={{
+                                    boxShadow: 2,
+                                    border: 2,
+                                    borderColor: 'primary.light',
+                                    fontSize: '.825rem',
+                                    '& .MuiDataGrid-cell:hover': {
+                                        color: 'primary.main',
+                                    },
+                                    '& .data-grid-theme-header': {
+                                        backgroundColor: 'primary.main',
+                                        color: '#FFFFFF',
+                                        fontWeight: '900',
+                                        fontSize: '1rem',
+                                    },
+                                }}
                             />
                         </Box>
                     )}
