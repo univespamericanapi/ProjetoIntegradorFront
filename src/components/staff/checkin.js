@@ -107,7 +107,7 @@ export class Checkin extends Component {
     }
 
     componentDidMount() {
-        UserService.getAdminBoard().then(
+        UserService.getStaffBoard().then(
             (response) => {
                 this.setState({
                     content: response.data,

@@ -7,6 +7,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import { styled } from '@mui/material/styles';
+import UserService from '../../services/user';
+import EventBus from '../../common/eventBus';
 
 //imports dos combobox
 import TextField from '@mui/material/TextField';
@@ -77,6 +79,33 @@ export class RelatorioCandidatos extends Component {
             value: 0,
             searchData: [], // Estado para armazenar os dados da tabela
         };
+    }
+
+    componentDidMount() {
+        UserService.getStaffBoard().then(
+            (response) => {
+                this.setState({
+                    content: response.data,
+                });
+                this.props.setLogged(true);
+            },
+            (error) => {
+                this.setState({
+                    content:
+                        (error.response?.data?.message) ||
+                        error.message ||
+                        error.toString(),
+                });
+
+                if (error.response && error.response.status === 401) {
+                    EventBus.dispatch('logout');
+                }
+
+                this.props.setLogged(false);
+
+                this.props.logOut();
+            }
+        );
     }
 
     render() {

@@ -32,7 +32,8 @@ class StaffBoard extends Component {
         this.setLogged(true);
       },
       (error) => {
-        this.setState({ content: error.response?.data?.message || error.message || error.toString() });
+        console.error(error);
+        this.setState({ content: error.response?.data?.message || error.message || error.toString(), });
 
         if (error.response && error.response.status === 401) {
           EventBus.dispatch('logout');
