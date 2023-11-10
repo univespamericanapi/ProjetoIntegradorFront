@@ -12,6 +12,7 @@ import EventBus from '../../common/eventBus';
 import { DataGrid } from '@mui/x-data-grid';
 import cpfMascara from '../../utils/cpfMascara';
 import celularMascara from '../../utils/celularMascara';
+import { titleListasInscr } from '../../styles/MuiTheme';
 
 export class Checkin extends Component {
     constructor(props) {
@@ -20,7 +21,8 @@ export class Checkin extends Component {
             open: false,
             listaEventos: [],
             listaConcursos: [],
-            concursoSelecionado: false,
+            temInscricoes: false,
+            temEspera: false,
             selectBoxStyle: { width: '90%' },
             values: {
                 conc_event: 0,
@@ -211,10 +213,13 @@ export class Checkin extends Component {
     concursoSelecionado = async (event, value) => {
         try {
             this.handleChangeAutocomplete(value);
-            const rowsInscr = await this.fetchRows(value.part_conc, false);
-            const rowsEsp = await this.fetchRows(value.part_conc, true);
+            const rowsInscr = await this.fetchRows(value.part_conc, 0);
+            const rowsEsp = await this.fetchRows(value.part_conc, 1);
+            console.log(rowsEsp);
+            console.log(rowsInscr);
             this.setState({
-                concursoSelecionado: Boolean(rowsInscr.length),
+                temInscricoes: Boolean(rowsInscr.length),
+                temEspera: Boolean(rowsEsp.length),
                 rowsEsp: rowsEsp,
                 rowsInscr: rowsInscr,
             });
@@ -252,6 +257,7 @@ export class Checkin extends Component {
                 this.setState((prevState, props) => { // função que recebe o estado anterior e as props como parâmetros
                     return { // retorna um objeto com as alterações de estado
                         rowsInscr: [...prevState.rowsInscr],
+                        rowsEsp: [...prevState.rowsEsp],
                     };
                 });
             }
@@ -260,7 +266,7 @@ export class Checkin extends Component {
 
     render() {
         const { conc_event, conc_event_nome, part_conc, part_conc_nome } = this.state.values;
-        const { listaEventos, listaConcursos, selectBoxStyle, concursoSelecionado, columns, rowsInscr } =
+        const { listaEventos, listaConcursos, selectBoxStyle, temInscricoes, temEspera, columns, rowsInscr, rowsEsp } =
             this.state;
 
         return (
@@ -352,7 +358,7 @@ export class Checkin extends Component {
                             disableClearable
                         />
                     </Box>
-                    {!concursoSelecionado ? (
+                    {!temInscricoes ? (
                         ''
                     ) : (
                         <Box
@@ -365,8 +371,58 @@ export class Checkin extends Component {
                                 marginTop: '1.875rem',
                             }}
                         >
+                            <Typography variant="h4" gutterBottom sx={titleListasInscr}>
+                                Lista de Inscrições
+                            </Typography>
                             <DataGrid
                                 rows={rowsInscr}
+                                columns={columns}
+                                onCellEditStop={this.handleRowChange}
+                                initialState={{
+                                    pagination: {
+                                        paginationModel: {
+                                            pageSize: 20,
+                                        },
+                                    },
+                                }}
+                                pageSizeOptions={[20]}
+                                disableRowSelectionOnClick
+                                sx={{
+                                    boxShadow: 2,
+                                    border: 2,
+                                    borderColor: 'primary.light',
+                                    fontSize: '.825rem',
+                                    '& .MuiDataGrid-cell:hover': {
+                                        color: 'primary.main',
+                                    },
+                                    '& .data-grid-theme-header': {
+                                        backgroundColor: 'primary.main',
+                                        color: '#FFFFFF',
+                                        fontWeight: '900',
+                                        fontSize: '1rem',
+                                    },
+                                }}
+                            />
+                        </Box>
+                    )}
+                    {!temEspera ? (
+                        ''
+                    ) : (
+                        <Box
+                            sx={{
+                                width: '100%',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                marginTop: '1.875rem',
+                            }}
+                        >
+                            <Typography variant="h4" gutterBottom sx={titleListasInscr}>
+                                Lista de Espera
+                            </Typography>
+                            <DataGrid
+                                rows={rowsEsp}
                                 columns={columns}
                                 onCellEditStop={this.handleRowChange}
                                 initialState={{

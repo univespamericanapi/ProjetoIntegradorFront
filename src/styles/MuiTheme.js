@@ -77,3 +77,8 @@ export const inputErrors = {
 	marginBottom: '1.25rem',
 	zIndex: 10,
 };
+
+export const titleListasInscr = {
+	color: '#572d7f',
+	marginBottom: '10px',
+};
