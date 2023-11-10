@@ -77,9 +77,7 @@ export class CadastrarUsuario extends Component {
 			(error) => {
 				this.setState({
 					content:
-						(error.response &&
-							error.response.data &&
-							error.response.data.message) ||
+						(error.response?.data?.message) ||
 						error.message ||
 						error.toString(),
 				});
@@ -99,33 +97,33 @@ export class CadastrarUsuario extends Component {
 		const data = this.state.values;
 		try {
 			const response = await api.post('admin/usuario/criar', data);
-			this.setState({
+			this.setState((prevState, props) => ({
 				successMsg: {
 					type: 'succcess',
 					title: 'Sucesso',
 					msg: response.data,
 				},
 				style: {
-					...this.state.style,
+					...prevState.style,
 					bgcolor: 'rgba(6, 68, 6, 0.8)',
 					border: '2px solid #0F0',
 				},
-			});
+			}));
 			this.handleOpen();
 		} catch (error) {
 			console.error(error);
-			this.setState({
+			this.setState((prevState, props) => ({
 				successMsg: {
 					type: 'error',
 					title: 'Erro na solicitação',
 					msg: error.response.data,
 				},
 				style: {
-					...this.state.style,
+					...prevState.style,
 					bgcolor: 'rgba(138, 22, 22, 0.8)',
 					border: '2px solid #F00',
 				},
-			});
+			}));
 			this.handleOpen();
 		}
 	};
@@ -140,9 +138,9 @@ export class CadastrarUsuario extends Component {
 
 	reset = (e) => {
 		e.preventDefault();
-		this.setState({
-			values: { ...this.state.initialValues },
-		});
+		this.setState((prevState, props) => ({
+			values: { ...prevState.initialValues },
+		}));
 	};
 
 	async fetchCargos() {
@@ -168,18 +166,18 @@ export class CadastrarUsuario extends Component {
 
 	//Lidar com a mudança
 	handleChange = (input) => (e) => {
-		this.setState({
-			values: { ...this.state.values, [input]: e.target.value },
-		});
+		this.setState((prevState, props) => ({
+			values: { ...prevState.values, [input]: e.target.value },
+		}));
 	};
 
 	handleChangeAutocomplete = (value) => {
-		this.setState({
+		this.setState((prevState, props) => ({
 			values: {
-				...this.state.values,
+				...prevState.values,
 				...value,
 			},
-		});
+		}));
 	};
 
 	handleClickShowPassword = (event, campo) => {
