@@ -213,23 +213,26 @@ export class Checkin extends Component {
     concursoSelecionado = async (event, value) => {
         try {
             this.handleChangeAutocomplete(value);
-            const rowsInscr = await this.fetchRows(value.part_conc, 0);
-            const rowsEsp = await this.fetchRows(value.part_conc, 1);
-            console.log(rowsEsp);
-            console.log(rowsInscr);
-            this.setState({
-                temInscricoes: Boolean(rowsInscr.length),
-                temEspera: Boolean(rowsEsp.length),
-                rowsEsp: rowsEsp,
-                rowsInscr: rowsInscr,
-            });
+            this.carregarRows(value.part_conc);
         } catch (error) {
             console.error(error);
         }
     };
 
+    carregarRows = async (part_conc) => {
+        const rowsInscr = await this.fetchRows(part_conc, 0);
+        const rowsEsp = await this.fetchRows(part_conc, 1);
+        this.setState({
+            temInscricoes: Boolean(rowsInscr.length),
+            temEspera: Boolean(rowsEsp.length),
+            rowsEsp: rowsEsp,
+            rowsInscr: rowsInscr,
+        });
+    };
+
     handleRowChange = async (params, event, details) => {
         const partId = params.row.part_id;
+        const part_conc = this.state.values.part_conc;
 
         console.log(params);
 
@@ -254,12 +257,7 @@ export class Checkin extends Component {
                     };
                 });
                 this.handleOpen();
-                this.setState((prevState, props) => { // função que recebe o estado anterior e as props como parâmetros
-                    return { // retorna um objeto com as alterações de estado
-                        rowsInscr: [...prevState.rowsInscr],
-                        rowsEsp: [...prevState.rowsEsp],
-                    };
-                });
+                this.carregarRows(part_conc);
             }
         };
     }
@@ -270,20 +268,27 @@ export class Checkin extends Component {
             this.state;
 
         return (
-            <Box sx={{ width: '100%' }}>
+            <Box
+                sx={{
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}
+            >
                 <Box
                     sx={{
                         width: '100%',
+                        marginTop: '1.875rem',
                         display: 'flex',
-                        flexDirection: 'column',
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
                 >
                     <Box
                         sx={{
-                            width: '100%',
-                            marginTop: '1.875rem',
+                            width: '45%',
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'center',
@@ -321,8 +326,7 @@ export class Checkin extends Component {
                     </Box>
                     <Box
                         sx={{
-                            width: '100%',
-                            marginTop: '1.875rem',
+                            width: '45%',
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'center',
@@ -358,101 +362,101 @@ export class Checkin extends Component {
                             disableClearable
                         />
                     </Box>
-                    {!temInscricoes ? (
-                        ''
-                    ) : (
-                        <Box
-                            sx={{
-                                width: '100%',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                marginTop: '1.875rem',
-                            }}
-                        >
-                            <Typography variant="h4" gutterBottom sx={titleListasInscr}>
-                                Lista de Inscrições
-                            </Typography>
-                            <DataGrid
-                                rows={rowsInscr}
-                                columns={columns}
-                                onCellEditStop={this.handleRowChange}
-                                initialState={{
-                                    pagination: {
-                                        paginationModel: {
-                                            pageSize: 20,
-                                        },
-                                    },
-                                }}
-                                pageSizeOptions={[20]}
-                                disableRowSelectionOnClick
-                                sx={{
-                                    boxShadow: 2,
-                                    border: 2,
-                                    borderColor: 'primary.light',
-                                    fontSize: '.825rem',
-                                    '& .MuiDataGrid-cell:hover': {
-                                        color: 'primary.main',
-                                    },
-                                    '& .data-grid-theme-header': {
-                                        backgroundColor: 'primary.main',
-                                        color: '#FFFFFF',
-                                        fontWeight: '900',
-                                        fontSize: '1rem',
-                                    },
-                                }}
-                            />
-                        </Box>
-                    )}
-                    {!temEspera ? (
-                        ''
-                    ) : (
-                        <Box
-                            sx={{
-                                width: '100%',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                marginTop: '1.875rem',
-                            }}
-                        >
-                            <Typography variant="h4" gutterBottom sx={titleListasInscr}>
-                                Lista de Espera
-                            </Typography>
-                            <DataGrid
-                                rows={rowsEsp}
-                                columns={columns}
-                                onCellEditStop={this.handleRowChange}
-                                initialState={{
-                                    pagination: {
-                                        paginationModel: {
-                                            pageSize: 20,
-                                        },
-                                    },
-                                }}
-                                pageSizeOptions={[20]}
-                                disableRowSelectionOnClick
-                                sx={{
-                                    boxShadow: 2,
-                                    border: 2,
-                                    borderColor: 'primary.light',
-                                    fontSize: '.825rem',
-                                    '& .MuiDataGrid-cell:hover': {
-                                        color: 'primary.main',
-                                    },
-                                    '& .data-grid-theme-header': {
-                                        backgroundColor: 'primary.main',
-                                        color: '#FFFFFF',
-                                        fontWeight: '900',
-                                        fontSize: '1rem',
-                                    },
-                                }}
-                            />
-                        </Box>
-                    )}
                 </Box>
+                {!temInscricoes ? (
+                    ''
+                ) : (
+                    <Box
+                        sx={{
+                            width: '100%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            marginTop: '1.875rem',
+                        }}
+                    >
+                        <Typography variant="h4" gutterBottom sx={titleListasInscr}>
+                            Lista de Inscrições
+                        </Typography>
+                        <DataGrid
+                            rows={rowsInscr}
+                            columns={columns}
+                            onCellEditStop={this.handleRowChange}
+                            initialState={{
+                                pagination: {
+                                    paginationModel: {
+                                        pageSize: 20,
+                                    },
+                                },
+                            }}
+                            pageSizeOptions={[20]}
+                            disableRowSelectionOnClick
+                            sx={{
+                                boxShadow: 2,
+                                border: 2,
+                                borderColor: 'primary.light',
+                                fontSize: '.825rem',
+                                '& .MuiDataGrid-cell:hover': {
+                                    color: 'primary.main',
+                                },
+                                '& .data-grid-theme-header': {
+                                    backgroundColor: 'primary.main',
+                                    color: '#FFFFFF',
+                                    fontWeight: '900',
+                                    fontSize: '1rem',
+                                },
+                            }}
+                        />
+                    </Box>
+                )}
+                {!temEspera ? (
+                    ''
+                ) : (
+                    <Box
+                        sx={{
+                            width: '100%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            marginTop: '1.875rem',
+                        }}
+                    >
+                        <Typography variant="h4" gutterBottom sx={titleListasInscr}>
+                            Lista de Espera
+                        </Typography>
+                        <DataGrid
+                            rows={rowsEsp}
+                            columns={columns}
+                            onCellEditStop={this.handleRowChange}
+                            initialState={{
+                                pagination: {
+                                    paginationModel: {
+                                        pageSize: 20,
+                                    },
+                                },
+                            }}
+                            pageSizeOptions={[20]}
+                            disableRowSelectionOnClick
+                            sx={{
+                                boxShadow: 2,
+                                border: 2,
+                                borderColor: 'primary.light',
+                                fontSize: '.825rem',
+                                '& .MuiDataGrid-cell:hover': {
+                                    color: 'primary.main',
+                                },
+                                '& .data-grid-theme-header': {
+                                    backgroundColor: 'primary.main',
+                                    color: '#FFFFFF',
+                                    fontWeight: '900',
+                                    fontSize: '1rem',
+                                },
+                            }}
+                        />
+                    </Box>
+                )}
                 <Modal
                     open={this.state.open}
                     onClose={this.handleClose}
