@@ -6,13 +6,6 @@ export const deepPurpleTheme = createTheme({
 		primary: {
 			main: '#572d7f',
 		},
-		secondary: {
-			main: '#000000',
-		},
-		background: {
-			background: '#000000',
-			backgroundColor: '#000000',
-		}
 	},
 });
 
@@ -21,13 +14,6 @@ export const deepOrangeTheme = createTheme({
 		primary: {
 			main: deepOrange[500],
 		},
-		secondary: {
-			main: '#000000',
-		},
-		background: {
-			background: '#000000',
-			backgroundColor: '#000000',
-		}
 	},
 });
 

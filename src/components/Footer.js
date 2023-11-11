@@ -34,7 +34,7 @@ export class Footer extends Component {
 					<CardMedia
 						component="img"
 						image={logo}
-						alt="Logo Avalon"
+						alt="Logotipo da empresa, onde lê-se Avalon Eventos"
 						sx={{
 							width: '12.5rem',
 						}}
@@ -59,10 +59,10 @@ export class Footer extends Component {
 									borderRadius: '50%',
 									backgroundColor: 'transparent',
 									margin: '1rem .5rem',
-									':hover': { backgroundColor: '#e119bd' },
+									':hover': { backgroundColor: '#fff' },
 								}}
 							>
-								<InstagramIcon sx={{ color: '#fff', fontSize: '2.25rem' }} />
+								<InstagramIcon sx={{ color: '#fff', fontSize: '2.25rem', ':hover': { color: '#572d7f' }, }} name='Ícone do Instagram' />
 							</Box>
 						</a>
 						<a href="https://www.facebook.com/CircuitoAnimeFest/">
@@ -73,10 +73,10 @@ export class Footer extends Component {
 									borderRadius: '50%',
 									backgroundColor: 'transparent',
 									margin: '1rem .5rem',
-									':hover': { backgroundColor: '#e119bd' },
+									':hover': { backgroundColor: '#fff' },
 								}}
 							>
-								<FacebookIcon sx={{ color: '#fff', fontSize: '2.25rem' }} />
+								<FacebookIcon sx={{ color: '#fff', fontSize: '2.25rem', ':hover': { color: '#572d7f' }, }} name='Ícone do Facebook' />
 							</Box>
 						</a>
 					</Box>
