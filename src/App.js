@@ -119,11 +119,11 @@ export class App extends Component {
 						<AppBar position="static">
 							<Container maxWidth="xl">
 								<Toolbar disableGutters>
-									<Link to={'/'}>
+									<Link to={'/'} title='link para página inicial'>
 										<CardMedia
 											component="img"
 											image={logoLinha}
-											alt="Logo Avalon"
+											alt="Logotipo do circuito Anime Fest"
 											sx={{
 												display: { xs: 'none', md: 'flex' },
 												flexGrow: 1,
@@ -172,6 +172,7 @@ export class App extends Component {
 												onClick={this.handleCloseNavMenu}
 												component={Link}
 												to="/cadastro"
+												title='botão para cadastramento'
 											>
 												<Typography textAlign="center">
 													{'Cadastro'}
@@ -183,6 +184,7 @@ export class App extends Component {
 													onClick={this.handleCloseNavMenu}
 													component={Link}
 													to="/staff"
+													title='botão apra área de staff'
 												>
 													<Typography textAlign="center">
 														{'Staff Board'}
@@ -195,6 +197,7 @@ export class App extends Component {
 													onClick={this.handleCloseNavMenu}
 													component={Link}
 													to="/admin"
+													title='botão para área do administrador'
 												>
 													<Typography textAlign="center">
 														{'Admin Board'}
@@ -230,6 +233,7 @@ export class App extends Component {
 											sx={{ my: 2, color: 'white', display: 'block' }}
 											component={Link}
 											to="/cadastro"
+											title='botão para cadastramento'
 										>
 											{'cadastro'}
 										</Button>
@@ -241,6 +245,7 @@ export class App extends Component {
 												sx={{ my: 2, color: 'white', display: 'block' }}
 												component={Link}
 												to="/staff"
+												title='botão apra área de staff'
 											>
 												{'Staff Board'}
 											</Button>
@@ -253,6 +258,7 @@ export class App extends Component {
 												sx={{ my: 2, color: 'white', display: 'block' }}
 												component={Link}
 												to="/admin"
+												title='botão para área do administrador'
 											>
 												{'Admin Board'}
 											</Button>
@@ -260,13 +266,13 @@ export class App extends Component {
 									</Box>
 									<Box sx={{ flexGrow: 0 }}>
 										{currentUser ? (
-											<Tooltip title="Open settings">
+											<Tooltip title="abrir configurações">
 												<IconButton
 													onClick={this.handleOpenUserMenu}
 													sx={{ p: 0 }}
 												>
 													<Avatar
-														alt={currentUser.usuario_nome}
+														alt={`imagem do usuário logado, atualmente ${currentUser.usuario_nome}`}
 														src="/static/images/avatar/2.jpg"
 													/>
 												</IconButton>
@@ -278,6 +284,7 @@ export class App extends Component {
 												sx={{ my: 2, color: 'white', display: 'block' }}
 												component={Link}
 												to="/login"
+												title='botão para login'
 											>
 												{'Login'}
 											</Button>
@@ -299,7 +306,7 @@ export class App extends Component {
 											onClose={this.handleCloseUserMenu}
 											onClick={this.handleCloseUserMenu}
 										>
-											<MenuItem key={'perfil'} component={Link} to="/profile">
+											<MenuItem key={'perfil'} component={Link} to="/profile" title="link para profile">
 												<Typography textAlign="center">{'Perfil'}</Typography>
 											</MenuItem>
 											<MenuItem
@@ -307,6 +314,7 @@ export class App extends Component {
 												onClick={this.logOut}
 												component={Link}
 												to="/"
+												title='link para logout'
 											>
 												<Typography textAlign="center">{'Logout'}</Typography>
 											</MenuItem>
