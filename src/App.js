@@ -284,7 +284,7 @@ export class App extends Component {
 										)}
 										<Menu
 											sx={{ mt: '2.875rem' }}
-											id="menu-appbar"
+											id="menu-perfil"
 											anchorEl={anchorElUser}
 											anchorOrigin={{
 												vertical: 'top',

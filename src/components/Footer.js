@@ -51,7 +51,7 @@ export class Footer extends Component {
 							display: 'flex',
 						}}
 					>
-						<a href="https://www.instagram.com/animefest/">
+						<a href="https://www.instagram.com/animefest/" title='link para instagram'>
 							<Box
 								sx={{
 									display: 'flex',
@@ -62,10 +62,16 @@ export class Footer extends Component {
 									':hover': { backgroundColor: '#fff' },
 								}}
 							>
-								<InstagramIcon sx={{ color: '#fff', fontSize: '2.25rem', ':hover': { color: '#572d7f' }, }} name='Ícone do Instagram' />
+								<InstagramIcon sx={{
+									color: '#fff',
+									fontSize: '2.25rem',
+									':hover': { color: '#572d7f' },
+								}}
+									aria-label="ícone do instagram"
+								/>
 							</Box>
 						</a>
-						<a href="https://www.facebook.com/CircuitoAnimeFest/">
+						<a href="https://www.facebook.com/CircuitoAnimeFest/" title='link para facebook'>
 							<Box
 								sx={{
 									display: 'flex',
@@ -76,7 +82,13 @@ export class Footer extends Component {
 									':hover': { backgroundColor: '#fff' },
 								}}
 							>
-								<FacebookIcon sx={{ color: '#fff', fontSize: '2.25rem', ':hover': { color: '#572d7f' }, }} name='Ícone do Facebook' />
+								<FacebookIcon sx={{
+									color: '#fff',
+									fontSize: '2.25rem',
+									':hover': { color: '#572d7f' },
+								}}
+									aria-label="ícone do facebook"
+								/>
 							</Box>
 						</a>
 					</Box>
