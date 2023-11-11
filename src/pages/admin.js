@@ -14,6 +14,7 @@ import { Card, CardActionArea, CardContent } from '@mui/material';
 import CadastrarUsuario from '../components/admin/cadastrarUsuario';
 import AlterarEvento from '../components/admin/alterarEvento';
 import AlterarUsuario from '../components/admin/alterarUsuario';
+import { Graficos } from '../components/admin/graficos';
 
 class BoardAdmin extends Component {
 	constructor(props) {
@@ -134,6 +135,7 @@ class BoardAdmin extends Component {
 							<StyledTab label="Cadastrar Usuário" {...a11yProps(3)} />
 							<StyledTab label="Alterar Evento" {...a11yProps(4)} />
 							<StyledTab label="Alterar Usuário" {...a11yProps(5)} />
+							<StyledTab label="Gráficos" {...a11yProps(6)} />
 						</StyledTabs>
 
 						<TabPanel value={value} index={0} style={{ width: '100%' }}>
@@ -166,6 +168,9 @@ class BoardAdmin extends Component {
 						</TabPanel>
 						<TabPanel value={value} index={5} style={{ width: '100%' }}>
 							<AlterarUsuario {...this.props} setLogged={this.setLogged} />
+						</TabPanel>
+						<TabPanel value={value} index={6} style={{ width: '100%' }}>
+							<Graficos  {...this.props} setLogged={this.setLogged} />
 						</TabPanel>
 					</Box>
 				) : (
