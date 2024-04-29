@@ -13,7 +13,7 @@ import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import api from '../../services/api';
 import { deepOrange } from '@mui/material/colors';
-import { encurtador } from '../../consumers/encurtador';
+import extrairNomeDoSite from '../../utils/extrairNomeDoSite';
 
 const urlRegExp = /(https?:\/\/)?(www\.)?[a-zA-Z0-9]+\.[a-z]+(\/[^\s]*)?/i;
 
@@ -49,9 +49,9 @@ export class Apresentacao extends Component {
 		this.fetchModalidades();
 	}
 
-	continue = async (e) => {
-		this.props.values.extra_link_av_short = await encurtador(this.props.values.extra_link_av);
-		this.props.values.apres_link_ref_short = await encurtador(this.props.values.apres_link_ref);
+	continue = (e) => {
+		this.props.values.extra_link_av_short = extrairNomeDoSite(this.props.values.extra_link_av);
+		this.props.values.apres_link_ref_short = extrairNomeDoSite(this.props.values.apres_link_ref);
 		this.props.nextStep();
 	};
 
