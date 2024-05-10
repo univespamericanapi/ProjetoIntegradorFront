@@ -137,9 +137,7 @@ export class Graficos extends Component {
                 type: type,
                 data: data,
             });
-            if (type === 'bar') {
-                grafico.legend.options.display = false;
-            }
+            grafico.legend.options.display = false;
             return grafico;
         }
         return null;
@@ -211,7 +209,7 @@ export class Graficos extends Component {
                         >
                             <Box
                                 sx={{
-                                    width: '45%',
+                                    width: '18%',
                                     marginTop: '1.875rem',
                                     display: 'flex',
                                     flexDirection: 'column',
@@ -221,7 +219,7 @@ export class Graficos extends Component {
                                 id="grafico-cidade-place"
                             >
                                 <Typography sx={{
-                                    fontSize: '16px',
+                                    fontSize: '12px',
                                     marginBottom: '20px',
                                     color: '#572d7f',
                                 }}>
@@ -231,7 +229,7 @@ export class Graficos extends Component {
                             </Box>
                             <Box
                                 sx={{
-                                    width: '45%',
+                                    width: '18%',
                                     marginTop: '1.875rem',
                                     display: 'flex',
                                     flexDirection: 'column',
@@ -241,13 +239,33 @@ export class Graficos extends Component {
                                 id="grafico-concurso-place"
                             >
                                 <Typography sx={{
-                                    fontSize: '16px',
+                                    fontSize: '12px',
                                     marginBottom: '20px',
                                     color: '#572d7f',
                                 }}>
                                     Competidores / Concurso
                                 </Typography>
                                 <canvas id="grafico-concurso" />
+                            </Box>
+                            <Box
+                                sx={{
+                                    width: '28%',
+                                    marginTop: '1.875rem',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                                id="grafico-etario-place"
+                            >
+                                <Typography sx={{
+                                    fontSize: '12px',
+                                    marginBottom: '20px',
+                                    color: '#572d7f',
+                                }}>
+                                    Faixa Etária
+                                </Typography>
+                                <canvas id="grafico-etario" />
                             </Box>
                         </Box>
                         <Box
@@ -259,26 +277,7 @@ export class Graficos extends Component {
                                 alignItems: 'center',
                             }}
                         >
-                            <Box
-                                sx={{
-                                    width: '45%',
-                                    marginTop: '1.875rem',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                }}
-                                id="grafico-etario-place"
-                            >
-                                <Typography sx={{
-                                    fontSize: '16px',
-                                    marginBottom: '20px',
-                                    color: '#572d7f',
-                                }}>
-                                    Faixa Etária
-                                </Typography>
-                                <canvas id="grafico-etario" />
-                            </Box>
+
                         </Box>
                     </Box>
                 }
