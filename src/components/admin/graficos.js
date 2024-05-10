@@ -12,6 +12,7 @@ export class Graficos extends Component {
             listaEventos: [],
             dataConcurso: {},
             dataCidade: {},
+            dataFaixaEtaria: {},
             dadosCarregados: false,
             values: {
                 conc_event: 0,
@@ -56,11 +57,30 @@ export class Graficos extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevState.dataCidade !== this.state.dataCidade) {
-            this.criarGrafico(this.state.dataCidade, "grafico-cidade");
+            this.criarGrafico(
+                this.state.dataCidade,
+                "grafico-cidade",
+                "grafico-cidade-place",
+                "pie"
+            );
         }
 
         if (prevState.dataConcurso !== this.state.dataConcurso) {
-            this.criarGrafico(this.state.dataConcurso, "grafico-concurso");
+            this.criarGrafico(
+                this.state.dataConcurso,
+                "grafico-concurso",
+                "grafico-concurso-place",
+                "pie"
+            );
+        }
+
+        if (prevState.dataFaixaEtaria !== this.state.dataFaixaEtaria) {
+            this.criarGrafico(
+                this.state.dataFaixaEtaria,
+                "grafico-etario",
+                "grafico-etario-place",
+                "bar"
+            );
         }
     }
 
@@ -93,25 +113,33 @@ export class Graficos extends Component {
             this.handleChangeAutocomplete(value);
             const dataCidade = await api.get(`/admin/grafico/cidade/${value.conc_event}`);
             const dataConcurso = await api.get(`/admin/grafico/concurso/${value.conc_event}`);
-            console.log(dataCidade.data)
-            console.log(dataConcurso.data)
+            const dataFaixaEtaria = await api.get(`/admin/grafico/faixas-etarias/${value.conc_event}`);
             this.setState({
                 dadosCarregados: true,
                 dataCidade: dataCidade.data,
                 dataConcurso: dataConcurso.data,
+                dataFaixaEtaria: dataFaixaEtaria.data,
             });
         } catch (error) {
             console.error(error);
         }
     };
 
-    criarGrafico = (data, id) => {
+    criarGrafico = (data, id, place, type) => {
         const canvas = document.getElementById(id);
+        const canvasPlace = document.getElementById(place);
         if (canvas) {
-            const grafico = new Chart(canvas, {
-                type: 'pie',
+            canvasPlace.removeChild(canvas);
+            const newCanvas = document.createElement('canvas');
+            newCanvas.id = id;
+            canvasPlace.appendChild(newCanvas);
+            const grafico = new Chart(newCanvas, {
+                type: type,
                 data: data,
             });
+            if (type === 'bar') {
+                grafico.legend.options.display = false;
+            }
             return grafico;
         }
         return null;
@@ -163,55 +191,96 @@ export class Graficos extends Component {
                     />
                 </Box>
                 {dadosCarregados &&
-                    <Box
-                        sx={{
-                            width: '100%',
-                            marginTop: '1.875rem',
-                            display: 'flex',
-                            justifyContent: 'space-around',
-                            alignItems: 'center',
-                        }}
+                    <Box sx={{
+                        width: '100%',
+                        marginTop: '1.875rem',
+                        display: 'flex',
+                        justifyContent: 'space-around',
+                        alignItems: 'center',
+                        flexDirection: 'column',
+                    }}
                     >
                         <Box
                             sx={{
-                                width: '45%',
+                                width: '100%',
                                 marginTop: '1.875rem',
                                 display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'center',
+                                justifyContent: 'space-around',
                                 alignItems: 'center',
                             }}
                         >
-                            <Typography sx={{
-                                fontSize: '30px',
-                                marginBottom: '20px',
-                                color: '#572d7f',
-                            }}>
-                                Competidores / Cidade
-                            </Typography>
-                            <canvas id="grafico-cidade" />
+                            <Box
+                                sx={{
+                                    width: '45%',
+                                    marginTop: '1.875rem',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                                id="grafico-cidade-place"
+                            >
+                                <Typography sx={{
+                                    fontSize: '16px',
+                                    marginBottom: '20px',
+                                    color: '#572d7f',
+                                }}>
+                                    Competidores / Cidade
+                                </Typography>
+                                <canvas id="grafico-cidade" />
+                            </Box>
+                            <Box
+                                sx={{
+                                    width: '45%',
+                                    marginTop: '1.875rem',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                                id="grafico-concurso-place"
+                            >
+                                <Typography sx={{
+                                    fontSize: '16px',
+                                    marginBottom: '20px',
+                                    color: '#572d7f',
+                                }}>
+                                    Competidores / Concurso
+                                </Typography>
+                                <canvas id="grafico-concurso" />
+                            </Box>
                         </Box>
                         <Box
                             sx={{
-                                width: '45%',
+                                width: '100%',
                                 marginTop: '1.875rem',
                                 display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'center',
+                                justifyContent: 'space-around',
                                 alignItems: 'center',
                             }}
                         >
-                            <Typography sx={{
-                                fontSize: '30px',
-                                marginBottom: '20px',
-                                color: '#572d7f',
-                            }}>
-                                Competidores / Concurso
-                            </Typography>
-                            <canvas id="grafico-concurso" />
+                            <Box
+                                sx={{
+                                    width: '45%',
+                                    marginTop: '1.875rem',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                                id="grafico-etario-place"
+                            >
+                                <Typography sx={{
+                                    fontSize: '16px',
+                                    marginBottom: '20px',
+                                    color: '#572d7f',
+                                }}>
+                                    Faixa Etária
+                                </Typography>
+                                <canvas id="grafico-etario" />
+                            </Box>
                         </Box>
                     </Box>
-
                 }
             </Box>
         );

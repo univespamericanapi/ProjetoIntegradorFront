@@ -51,7 +51,7 @@ export class Login extends Component {
 				window.location.reload();
 			},
 			(error) => {
-				console.error(error.response.data);
+				console.error(error);
 				const resMessage =
 					error.response.data || error.message || error.toString();
 
