@@ -14,6 +14,8 @@ export class Graficos extends Component {
             dataConcurso: {},
             dataCidade: {},
             dataFaixaEtaria: {},
+            dataVagas: {},
+            dataFrequencia: {},
             dataTemas: {},
             dadosCarregados: false,
             dadosCarregadosConc: false,
@@ -61,6 +63,21 @@ export class Graficos extends Component {
                 this.props.logOut();
             }
         );
+
+        this.intervalo = setInterval(this.testFunction, 10000);
+    }
+
+    testFunction() {
+        const agora = new Date();
+        const hora = agora.getHours();
+        const minutos = agora.getMinutes();
+        const segundos = agora.getSeconds();
+
+        console.log(`A hora atual é: ${hora}:${minutos}:${segundos}`);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.intervalo); // Limpa o intervalo quando o componente é desmontado
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -87,7 +104,7 @@ export class Graficos extends Component {
                 this.state.dataFaixaEtaria,
                 "grafico-etario",
                 "grafico-etario-place",
-                "bar"
+                "line"
             );
         }
 
@@ -98,6 +115,19 @@ export class Graficos extends Component {
                 "grafico-temas-place",
                 "bar"
             );
+        }
+
+        if (prevState.dataFrequencia !== this.state.dataFrequencia) {
+            this.criarGrafico(
+                this.state.dataFrequencia,
+                "grafico-frequencia",
+                "grafico-frequencia-place",
+                "bar"
+            );
+        }
+
+        if (prevState.dataVagas !== this.state.dataVagas) {
+            this.criarVagas(this.state.dataVagas);
         }
     }
 
@@ -143,14 +173,19 @@ export class Graficos extends Component {
             this.handleChangeAutocomplete(value);
             const dataCidade = await api.get(`/admin/grafico/cidade/${value.conc_event}`);
             const dataConcurso = await api.get(`/admin/grafico/concurso/${value.conc_event}`);
+            const dataFrequencia = await api.get(`/admin/grafico/frequencia/${value.conc_event}`);
             const dataFaixaEtaria = await api.get(`/admin/grafico/faixas-etarias/${value.conc_event}`);
+            const dataVagas = await api.get(`/admin/grafico/vagas/${value.conc_event}`);
             this.setState((prevState, props) => {
                 return {
                     dadosCarregados: true,
                     dadosCarregadosConc: false,
                     dataCidade: dataCidade.data,
                     dataConcurso: dataConcurso.data,
+                    dataFrequencia: dataFrequencia.data,
                     dataFaixaEtaria: dataFaixaEtaria.data,
+                    dataVagas: dataVagas.data,
+                    dataTemas: null,
                     values: {
                         ...prevState.values,
                         part_conc: 0,
@@ -167,7 +202,7 @@ export class Graficos extends Component {
     concursoSelecionado = async (conc, value) => {
         try {
             this.handleChangeAutocomplete(value);
-            const dataTemas = await api.get(`/admin/grafico/temas/${value.part_conc}`);;
+            const dataTemas = await api.get(`/admin/grafico/temas/${value.part_conc}`);
             this.setState({
                 dadosCarregadosConc: true,
                 dataTemas: dataTemas.data,
@@ -185,7 +220,7 @@ export class Graficos extends Component {
             const newCanvas = document.createElement('canvas');
             newCanvas.id = id;
             canvasPlace.appendChild(newCanvas);
-            const eixo = id === 'grafico-etario' ? 'y' : 'x';
+            const eixo = id === 'grafico-temas' ? 'y' : 'x';
             const grafico = new Chart(newCanvas, {
                 type: type,
                 data: data,
@@ -208,14 +243,48 @@ export class Graficos extends Component {
         return null;
     };
 
+    criarVagas = (data) => {
+        const restantePlace = document.getElementById("vagas-restantes");
+        const restanteTable = document.getElementById("vagas-restantes-table");
+        const cadastradosPlace = document.getElementById("vagas-cadastrados");
+        const cadastradosTable = document.getElementById("vagas-cadastrados-table");
+
+        restantePlace.removeChild(restanteTable);
+        cadastradosPlace.removeChild(cadastradosTable);
+
+        const newRestanteTable = document.createElement('div');
+        const newCadastradosTable = document.createElement('div');
+        newRestanteTable.id = "vagas-restantes-table";
+        newCadastradosTable.id = "vagas-cadastrados-table";
+
+        let innerHtml = "";
+        data.map(concurso =>
+            innerHtml += `<p style="text-align: center; margin: 10px; font-size: 12px; color: #572d7f;">
+            <span style="font-weight: 700;">${concurso.nome}</span> = ${concurso.restantes}
+            </p>`
+        );
+        newRestanteTable.innerHTML = innerHtml;
+
+        innerHtml = "";
+        data.map(concurso =>
+            innerHtml += `<p style="text-align: center; margin: 10px; font-size: 12px; color: #572d7f;">
+            <span style="font-weight: 700;">${concurso.nome}</span> = ${concurso.atual}
+            </p>`
+        );
+        newCadastradosTable.innerHTML = innerHtml;
+
+        restantePlace.appendChild(newRestanteTable);
+        cadastradosPlace.appendChild(newCadastradosTable);
+    };
+
     render() {
         const { conc_event, conc_event_nome, part_conc, part_conc_nome } = this.state.values;
         const { listaEventos, listaConcursos, dadosCarregados, dadosCarregadosConc, selectBoxStyle } = this.state;
         const graphBox = {
-            width: '22%',
-            maxHeight: 240,
-            height: 240,
-            marginTop: '1.875rem',
+            maxWidth: 260,
+            maxHeight: 260,
+            width: '100%',
+            height: '100%',
             display: 'flex',
             position: 'relative',
             flexDirection: 'column',
@@ -231,6 +300,20 @@ export class Graficos extends Component {
                 transform: 'scale(1.2)',
                 zIndex: '100',
             },
+        };
+        const dataBox = {
+            maxWidth: 260,
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            position: 'relative',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'rgba(113, 113, 113, 0.1)',
+            padding: '36px',
+            borderRadius: '10px',
+            boxShadow: '2px 2px 2px rgba(0, 0, 0, 0.2)',
         };
         const graphTitle = {
             fontSize: '12px',
@@ -248,7 +331,8 @@ export class Graficos extends Component {
                     sx={{
                         transform: '',
                         width: '100%',
-                        marginTop: '1.875rem',
+                        marginTop: '.5rem',
+                        marginBottom: '1.875rem',
                         display: 'flex',
                         justifyContent: 'space-around',
                         alignItems: 'center',
@@ -314,65 +398,73 @@ export class Graficos extends Component {
                 {dadosCarregados &&
                     <Box sx={{
                         width: '100%',
-                        display: 'flex',
-                        justifyContent: 'space-around',
-                        alignItems: 'center',
-                        flexDirection: 'column',
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 1fr 1fr 1fr',
+                        gridTemplateRows: '1fr 1fr 1fr 1fr',
+                        gap: '50px',
+                        placeItems: 'center',
                     }}
                     >
                         <Box
                             sx={{
-                                width: '100%',
-                                marginTop: '1rem',
-                                display: 'flex',
-                                justifyContent: 'space-around',
-                                alignItems: 'center',
+                                ...graphBox,
+                                gridArea: '1 / 1 / 2 / 2',
                             }}
+                            title="Quantidade de participante por cidade do evento selecionado."
+                            id="grafico-cidade-place"
                         >
-                            <Box
-                                sx={graphBox}
-                                id="grafico-cidade-place"
-                            >
-                                <Typography sx={graphTitle}>
-                                    Análise Demográfica
-                                </Typography>
-                                <canvas id="grafico-cidade" />
-                            </Box>
-                            <Box
-                                sx={graphBox}
-                                id="grafico-concurso-place"
-                            >
-                                <Typography sx={graphTitle}>
-                                    Análise de Tendência: Concursos
-                                </Typography>
-                                <canvas id="grafico-concurso" />
-                            </Box>
-                            <Box
-                                sx={graphBox}
-                                id="grafico-etario-place"
-                            >
-                                <Typography sx={graphTitle}>
-                                    Análise Etária
-                                </Typography>
-                                <canvas id="grafico-etario" />
-                            </Box>
-                            {dadosCarregadosConc ?
-                                <Box
-                                    sx={graphBox}
-                                    id="grafico-temas-place"
-                                >
-                                    <Typography sx={graphTitle}>
-                                        Análise de Tendência: Temas
-                                    </Typography>
-                                    <canvas id="grafico-temas" />
-                                </Box> :
-                                <Box
-                                    sx={graphBox}
-                                    id="grafico-temas-place"
-                                >
-                                    <Typography sx={graphTitle}>
-                                        Análise de Tendência: Temas
-                                    </Typography>
+                            <Typography sx={graphTitle}>
+                                Análise Demográfica
+                            </Typography>
+                            <canvas id="grafico-cidade" />
+                        </Box>
+                        <Box
+                            sx={{
+                                ...graphBox,
+                                gridArea: '1 / 2 / 2 / 3',
+                            }}
+                            title="Quantidade de participante por concurso do evento selecionado."
+                            id="grafico-concurso-place"
+                        >
+                            <Typography sx={graphTitle}>
+                                Análise de Tendência: Concursos
+                            </Typography>
+                            <canvas id="grafico-concurso" />
+                        </Box>
+                        <Box
+                            sx={{
+                                ...graphBox,
+                                gridArea: '1 / 3 / 2 / 4',
+                            }}
+                            title="Quantidade de participante por faixa etária do evento selecionado."
+                            id="grafico-etario-place"
+                        >
+                            <Typography sx={graphTitle}>
+                                Análise Etária
+                            </Typography>
+                            <canvas id="grafico-etario" />
+                        </Box>
+                        <Box
+                            sx={{
+                                ...graphBox,
+                                gridArea: '1 / 4 / 2 / 5',
+                            }}
+                            title="Quantidade de participante por tema do concurso e do evento selecionado."
+                            id="grafico-temas-place"
+                        >
+                            <Typography sx={graphTitle}>
+                                Análise de Tendência: Temas
+                            </Typography>
+                            <canvas id="grafico-temas" />
+                            {dadosCarregadosConc ? null :
+                                <Box sx={{
+                                    display: 'flex',
+                                    position: 'absolute',
+                                    width: '100%',
+                                    height: '100%',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}>
                                     <Typography sx={{
                                         ...graphTitle,
                                         position: 'initial',
@@ -380,18 +472,193 @@ export class Graficos extends Component {
                                     }}>
                                         Selecione o Concurso para carregar o gráfico.
                                     </Typography>
-                                </Box>}
+                                </Box>
+                            }
                         </Box>
                         <Box
                             sx={{
-                                width: '100%',
-                                marginTop: '1rem',
                                 display: 'flex',
-                                justifyContent: 'space-around',
+                                position: 'relative',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
                                 alignItems: 'center',
+                                backgroundColor: 'rgba(113, 113, 113, 0.1)',
+                                padding: '36px',
+                                borderRadius: '10px',
+                                boxShadow: '2px 2px 2px rgba(0, 0, 0, 0.2)',
+                                transition: 'transform 0.3s ease',
+                                width: '100%',
+                                height: '100%',
+                                gridArea: '2 / 1 / 4 / 4',
                             }}
+                            title="Quantidade de participantes e a quantidade de vezes que frequentou o evento."
+                            id="grafico-frequencia-place"
                         >
-
+                            <Typography sx={graphTitle}>
+                                Análise de Comportamento
+                            </Typography>
+                            <canvas id="grafico-frequencia" />
+                        </Box>
+                        <Box
+                            sx={{
+                                ...dataBox,
+                                gridArea: '2 / 4 / 3 / 5',
+                            }}
+                            id="vagas-restantes"
+                        >
+                            <Typography sx={graphTitle}>
+                                Vagas dos concursos: restantes
+                            </Typography>
+                            <div id="vagas-restantes-table"></div>
+                        </Box>
+                        <Box
+                            sx={{
+                                ...dataBox,
+                                gridArea: '3 / 4 / 4 / 5',
+                            }}
+                            id="vagas-cadastrados"
+                        >
+                            <Typography sx={graphTitle}>
+                                Vagas dos concursos: cadatrados
+                            </Typography>
+                            <div id="vagas-cadastrados-table"></div>
+                        </Box>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                position: 'relative',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                backgroundColor: 'rgba(113, 113, 113, 0.1)',
+                                padding: '36px !important',
+                                borderRadius: '10px',
+                                boxShadow: '2px 2px 2px rgba(0, 0, 0, 0.2)',
+                                transition: 'transform 0.3s ease',
+                                width: '100%',
+                                height: 260,
+                                overflowY: 'auto',
+                                gridArea: '4 / 1 / 5 / 5',
+                            }}
+                            id="ultimos-cadastros"
+                        >
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    position: 'absolute',
+                                    top: 0,
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    width: '100%',
+                                    height: 40,
+                                    padding: 1,
+                                    backgroundColor: 'rgba(255, 255, 255, 1)',
+                                    boxShadow: '2px 2px 2px rgba(0, 0, 0, 0.2)',
+                                    border: '1px solid rgba(113, 113, 113, 0.3)'
+                                }}
+                            >
+                                <Typography sx={graphTitle}>
+                                    Últimos Cadastros
+                                </Typography>
+                            </Box>
+                            <Typography sx={{
+                                ...graphTitle,
+                                position: 'initial',
+                                textAlign: 'center'
+                            }}>
+                                A ser implantado.
+                            </Typography>
+                            <Typography sx={{
+                                ...graphTitle,
+                                position: 'initial',
+                                textAlign: 'center'
+                            }}>
+                                A ser implantado.
+                            </Typography>
+                            <Typography sx={{
+                                ...graphTitle,
+                                position: 'initial',
+                                textAlign: 'center'
+                            }}>
+                                A ser implantado.
+                            </Typography>
+                            <Typography sx={{
+                                ...graphTitle,
+                                position: 'initial',
+                                textAlign: 'center'
+                            }}>
+                                A ser implantado.
+                            </Typography>
+                            <Typography sx={{
+                                ...graphTitle,
+                                position: 'initial',
+                                textAlign: 'center'
+                            }}>
+                                A ser implantado.
+                            </Typography>
+                            <Typography sx={{
+                                ...graphTitle,
+                                position: 'initial',
+                                textAlign: 'center'
+                            }}>
+                                A ser implantado.
+                            </Typography>
+                            <Typography sx={{
+                                ...graphTitle,
+                                position: 'initial',
+                                textAlign: 'center'
+                            }}>
+                                A ser implantado.
+                            </Typography>
+                            <Typography sx={{
+                                ...graphTitle,
+                                position: 'initial',
+                                textAlign: 'center'
+                            }}>
+                                A ser implantado.
+                            </Typography>
+                            <Typography sx={{
+                                ...graphTitle,
+                                position: 'initial',
+                                textAlign: 'center'
+                            }}>
+                                A ser implantado.
+                            </Typography>
+                            <Typography sx={{
+                                ...graphTitle,
+                                position: 'initial',
+                                textAlign: 'center'
+                            }}>
+                                A ser implantado.
+                            </Typography>
+                            <Typography sx={{
+                                ...graphTitle,
+                                position: 'initial',
+                                textAlign: 'center'
+                            }}>
+                                A ser implantado.
+                            </Typography>
+                            <Typography sx={{
+                                ...graphTitle,
+                                position: 'initial',
+                                textAlign: 'center'
+                            }}>
+                                A ser implantado.
+                            </Typography>
+                            <Typography sx={{
+                                ...graphTitle,
+                                position: 'initial',
+                                textAlign: 'center'
+                            }}>
+                                A ser implantado.
+                            </Typography>
+                            <Typography sx={{
+                                ...graphTitle,
+                                position: 'initial',
+                                textAlign: 'center'
+                            }}>
+                                A ser implantado.
+                            </Typography>
                         </Box>
                     </Box>
                 }

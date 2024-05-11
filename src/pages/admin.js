@@ -135,7 +135,7 @@ class BoardAdmin extends Component {
 							<StyledTab label="Cadastrar Usuário" {...a11yProps(3)} />
 							<StyledTab label="Alterar Evento" {...a11yProps(4)} />
 							<StyledTab label="Alterar Usuário" {...a11yProps(5)} />
-							<StyledTab label="Gráficos" {...a11yProps(6)} />
+							<StyledTab label="Análise de Dados" {...a11yProps(6)} />
 						</StyledTabs>
 
 						<TabPanel value={value} index={0} style={{ width: '100%' }}>
