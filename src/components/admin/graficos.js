@@ -348,6 +348,11 @@ export class Graficos extends Component {
             top: 0,
             marginTop: '10px',
         };
+        const tableHeader = {
+            fontWeight: '700',
+            color: '#fff',
+            backgroundColor: '#572d7f',
+        };
 
         return (
             <Box sx={{ width: '100%' }}>
@@ -602,14 +607,14 @@ export class Graficos extends Component {
                                 <Table sx={{ minWidth: 650 }} size="small" aria-label="uma tabela com os ultimos cadastros.">
                                     <TableHead>
                                         <TableRow>
-                                            <TableCell>Id Participação</TableCell>
-                                            <TableCell align='right'>Nome</TableCell>
-                                            <TableCell align='right'>Concurso</TableCell>
-                                            <TableCell align='right'>Apresentação</TableCell>
-                                            <TableCell align='right'>Origem</TableCell>
-                                            <TableCell align='right'>WhatsApp</TableCell>
-                                            <TableCell align='right'>Data Nascimento</TableCell>
-                                            <TableCell align='right'>Cidade / Estado</TableCell>
+                                            <TableCell sx={tableHeader}>Id Participação</TableCell>
+                                            <TableCell sx={tableHeader} align='right'>Nome</TableCell>
+                                            <TableCell sx={tableHeader} align='right'>Concurso</TableCell>
+                                            <TableCell sx={tableHeader} align='right'>Apresentação</TableCell>
+                                            <TableCell sx={tableHeader} align='right'>Origem</TableCell>
+                                            <TableCell sx={tableHeader} align='right'>WhatsApp</TableCell>
+                                            <TableCell sx={tableHeader} align='right'>Data Nascimento</TableCell>
+                                            <TableCell sx={tableHeader} align='right'>Cidade / Estado</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody component="th" scope='row'>
