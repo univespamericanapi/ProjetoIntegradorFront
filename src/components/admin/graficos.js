@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import UserService from '../../services/user';
 import EventBus from '../../common/eventBus';
 import api from '../../services/api';
-import { Autocomplete, Box, TextField, Typography } from '@mui/material';
+import { Autocomplete, Box, CircularProgress, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
 
 export class Graficos extends Component {
     constructor(props) {
@@ -17,6 +17,8 @@ export class Graficos extends Component {
             dataVagas: {},
             dataFrequencia: {},
             dataTemas: {},
+            dataUltimos: {},
+            dataLoading: false,
             dadosCarregados: false,
             dadosCarregadosConc: false,
             values: {
@@ -170,22 +172,32 @@ export class Graficos extends Component {
 
     eventoSelecionado = async (event, value) => {
         try {
+            this.setState((prevState, props) => {
+                return {
+                    dataLoading: true,
+                    dadosCarregados: false,
+                    dadosCarregadosConc: false,
+                };
+            });
             this.handleChangeAutocomplete(value);
             const dataCidade = await api.get(`/admin/grafico/cidade/${value.conc_event}`);
             const dataConcurso = await api.get(`/admin/grafico/concurso/${value.conc_event}`);
             const dataFrequencia = await api.get(`/admin/grafico/frequencia/${value.conc_event}`);
             const dataFaixaEtaria = await api.get(`/admin/grafico/faixas-etarias/${value.conc_event}`);
             const dataVagas = await api.get(`/admin/grafico/vagas/${value.conc_event}`);
+            const dataUltimos = await api.get(`/admin/grafico/ultimos/${value.conc_event}`);
+            await this.fetchConcursos(value.conc_event);
             this.setState((prevState, props) => {
                 return {
                     dadosCarregados: true,
-                    dadosCarregadosConc: false,
+                    dataLoading: false,
                     dataCidade: dataCidade.data,
                     dataConcurso: dataConcurso.data,
                     dataFrequencia: dataFrequencia.data,
                     dataFaixaEtaria: dataFaixaEtaria.data,
                     dataVagas: dataVagas.data,
                     dataTemas: null,
+                    dataUltimos: dataUltimos.data,
                     values: {
                         ...prevState.values,
                         part_conc: 0,
@@ -193,7 +205,6 @@ export class Graficos extends Component {
                     },
                 }
             });
-            await this.fetchConcursos(value.conc_event);
         } catch (error) {
             console.error(error);
         }
@@ -278,8 +289,21 @@ export class Graficos extends Component {
     };
 
     render() {
-        const { conc_event, conc_event_nome, part_conc, part_conc_nome } = this.state.values;
-        const { listaEventos, listaConcursos, dadosCarregados, dadosCarregadosConc, selectBoxStyle } = this.state;
+        const {
+            conc_event,
+            conc_event_nome,
+            part_conc,
+            part_conc_nome
+        } = this.state.values;
+        const {
+            listaEventos,
+            listaConcursos,
+            dataLoading,
+            dadosCarregados,
+            dadosCarregadosConc,
+            dataUltimos,
+            selectBoxStyle
+        } = this.state;
         const graphBox = {
             maxWidth: 260,
             maxHeight: 260,
@@ -395,6 +419,19 @@ export class Graficos extends Component {
                         disableClearable
                     />
                 </Box>
+                {dataLoading &&
+                    <Box sx={{
+                        width: '100%',
+                        height: '60vh',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        position: 'relative',
+                    }}
+                    >
+                        <CircularProgress color='primary' size='80px'></CircularProgress>
+                    </Box>
+                }
                 {dadosCarregados &&
                     <Box sx={{
                         width: '100%',
@@ -531,7 +568,8 @@ export class Graficos extends Component {
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 backgroundColor: 'rgba(113, 113, 113, 0.1)',
-                                padding: '36px !important',
+                                padding: '20px',
+                                paddingTop: '42px',
                                 borderRadius: '10px',
                                 boxShadow: '2px 2px 2px rgba(0, 0, 0, 0.2)',
                                 transition: 'transform 0.3s ease',
@@ -551,7 +589,6 @@ export class Graficos extends Component {
                                     alignItems: 'center',
                                     width: '100%',
                                     height: 40,
-                                    padding: 1,
                                     backgroundColor: 'rgba(255, 255, 255, 1)',
                                     boxShadow: '2px 2px 2px rgba(0, 0, 0, 0.2)',
                                     border: '1px solid rgba(113, 113, 113, 0.3)'
@@ -561,104 +598,41 @@ export class Graficos extends Component {
                                     Últimos Cadastros
                                 </Typography>
                             </Box>
-                            <Typography sx={{
-                                ...graphTitle,
-                                position: 'initial',
-                                textAlign: 'center'
-                            }}>
-                                A ser implantado.
-                            </Typography>
-                            <Typography sx={{
-                                ...graphTitle,
-                                position: 'initial',
-                                textAlign: 'center'
-                            }}>
-                                A ser implantado.
-                            </Typography>
-                            <Typography sx={{
-                                ...graphTitle,
-                                position: 'initial',
-                                textAlign: 'center'
-                            }}>
-                                A ser implantado.
-                            </Typography>
-                            <Typography sx={{
-                                ...graphTitle,
-                                position: 'initial',
-                                textAlign: 'center'
-                            }}>
-                                A ser implantado.
-                            </Typography>
-                            <Typography sx={{
-                                ...graphTitle,
-                                position: 'initial',
-                                textAlign: 'center'
-                            }}>
-                                A ser implantado.
-                            </Typography>
-                            <Typography sx={{
-                                ...graphTitle,
-                                position: 'initial',
-                                textAlign: 'center'
-                            }}>
-                                A ser implantado.
-                            </Typography>
-                            <Typography sx={{
-                                ...graphTitle,
-                                position: 'initial',
-                                textAlign: 'center'
-                            }}>
-                                A ser implantado.
-                            </Typography>
-                            <Typography sx={{
-                                ...graphTitle,
-                                position: 'initial',
-                                textAlign: 'center'
-                            }}>
-                                A ser implantado.
-                            </Typography>
-                            <Typography sx={{
-                                ...graphTitle,
-                                position: 'initial',
-                                textAlign: 'center'
-                            }}>
-                                A ser implantado.
-                            </Typography>
-                            <Typography sx={{
-                                ...graphTitle,
-                                position: 'initial',
-                                textAlign: 'center'
-                            }}>
-                                A ser implantado.
-                            </Typography>
-                            <Typography sx={{
-                                ...graphTitle,
-                                position: 'initial',
-                                textAlign: 'center'
-                            }}>
-                                A ser implantado.
-                            </Typography>
-                            <Typography sx={{
-                                ...graphTitle,
-                                position: 'initial',
-                                textAlign: 'center'
-                            }}>
-                                A ser implantado.
-                            </Typography>
-                            <Typography sx={{
-                                ...graphTitle,
-                                position: 'initial',
-                                textAlign: 'center'
-                            }}>
-                                A ser implantado.
-                            </Typography>
-                            <Typography sx={{
-                                ...graphTitle,
-                                position: 'initial',
-                                textAlign: 'center'
-                            }}>
-                                A ser implantado.
-                            </Typography>
+                            <TableContainer component={Paper}>
+                                <Table sx={{ minWidth: 650 }} size="small" aria-label="uma tabela com os ultimos cadastros.">
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Id Participação</TableCell>
+                                            <TableCell align='right'>Nome</TableCell>
+                                            <TableCell align='right'>Concurso</TableCell>
+                                            <TableCell align='right'>Apresentação</TableCell>
+                                            <TableCell align='right'>Origem</TableCell>
+                                            <TableCell align='right'>WhatsApp</TableCell>
+                                            <TableCell align='right'>Data Nascimento</TableCell>
+                                            <TableCell align='right'>Cidade / Estado</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody component="th" scope='row'>
+                                        {dataUltimos.map((row) => (
+                                            <TableRow
+                                                key={row.idParticipacao}
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    {row.idParticipacao}
+                                                </TableCell>
+                                                <TableCell align="right">{row.nomeCompetidor}</TableCell>
+                                                <TableCell align="right">{row.concurso}</TableCell>
+                                                <TableCell align="right">{row.apresentacao}</TableCell>
+                                                <TableCell align="right">{row.origemApresentacao}</TableCell>
+                                                <TableCell align="right">{row.whatsapp}</TableCell>
+                                                <TableCell align="right">{row.dataNascimento}</TableCell>
+                                                <TableCell align="right">{row.cidade}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
                         </Box>
                     </Box>
                 }
